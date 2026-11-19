@@ -46,13 +46,12 @@ export default {
         method: "POST",
         body: JSON.stringify({ ids, zufall, reihe, akku: akku === null ? null : Number(akku), geraet }),
       })).json();
-      const eintrag = liste.find(a => a.id === wahl.id) || {};
-      const bmp = eintrag.format === "bmp";
-      const bild = await fetch(`${env.QUELLE}/img/rahmen/${wahl.id}.${bmp ? "bmp" : "jpg"}?v=${env.BILD_VERSION || "1"}`, { cf: { cacheTtl: 86400, cacheEverything: true } });
+      // Fertig umgerechnetes Bild in den 6 Displayfarben (PNG mit Palette)
+      const bild = await fetch(`${env.QUELLE}/img/rahmen/${wahl.id}.png?v=${env.BILD_VERSION || "1"}`, { cf: { cacheTtl: 86400, cacheEverything: true } });
       if (!bild.ok) return new Response("Bild nicht erreichbar", { status: 502 });
       return new Response(bild.body, {
         headers: {
-          "Content-Type": bmp ? "image/bmp" : "image/jpeg",
+          "Content-Type": "image/png",
           "Cache-Control": "no-store",
           "X-Kunstkurator-Id": wahl.id,
         },
