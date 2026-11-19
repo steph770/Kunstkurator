@@ -60,6 +60,18 @@
     "commons": "File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg"
   },
   {
+    "id": "engelsturz",
+    "kuerzel": "ES",
+    "titel": "Der Sturz der rebellierenden Engel",
+    "kuenstler": "Pieter Bruegel d. Ä.",
+    "datierung": "1562",
+    "technik": "Öl auf Eichenholz",
+    "masse": "117 × 162 cm",
+    "museum": "Königliche Museen der Schönen Künste",
+    "ort": "Brüssel",
+    "commons": "File:Pieter Bruegel the Elder - The Fall of the Rebel Angels - Google Art Project.jpg"
+  },
+  {
     "id": "genter",
     "kuerzel": "GA",
     "titel": "Der Genter Altar",
