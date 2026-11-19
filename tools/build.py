@@ -262,7 +262,9 @@ def build(werke, crops):
     zp = os.path.join(ROOT, "download", "rahmenbilder.zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_STORED) as z:
         for c in crops:
-            z.write(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"), f"{c['id']}.jpg")
+            info = zipfile.ZipInfo(f"{c['id']}.jpg", date_time=(2026, 1, 1, 0, 0, 0))
+            with open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"), "rb") as f:
+                z.writestr(info, f.read())
     print(f"Fertig: {len(crops)} Ausschnitte", flush=True)
 
 

@@ -34,6 +34,8 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Werkzeuge
         run: |
           sudo apt-get update -qq
@@ -63,7 +65,7 @@ jobs:
           else
             git add img download data/bildinfo.json
             git commit -qm "Bilder aktualisiert [skip ci]" || exit 0
-            git pull --rebase -q origin main
+            git pull --rebase -X theirs -q origin main
             git push origin HEAD:main
           fi
 
