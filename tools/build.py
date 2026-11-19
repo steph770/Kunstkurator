@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 import zipfile
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 Image.MAX_IMAGE_PIXELS = None
 
@@ -99,6 +99,7 @@ def extract(src, left, top, width, height, out_w, out_h, dest, quality=92, hell=
     if hell:
         lut = [round(255 * (i / 255) ** (1 / hell)) for i in range(256)]
         img = img.point(lut * 3)
+        img = ImageOps.autocontrast(img, cutoff=0.5, preserve_tone=True)
     img.save(dest, "JPEG", quality=quality, optimize=True, progressive=True)
     os.remove(png)
 
@@ -239,7 +240,7 @@ def build(werke, crops):
         vsrc = None
         for c in [c for c in crops if c["werk"] == wid]:
             left, top, cw, ch = crop_box(c, W, H)
-            key = f"{left},{top},{cw},{ch},{c.get('hell')}"
+            key = f"{left},{top},{cw},{ch},{c.get('hell')},k2"
             meta["_ausschnitte"][c["id"]] = hashlib.sha1(key.encode()).hexdigest()[:8]
             dest = os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg")
             stamp = dest + ".box"

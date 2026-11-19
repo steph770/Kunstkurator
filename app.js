@@ -286,7 +286,6 @@ function detail(id, keepScroll) {
   leisteKnoepfe(app);
   rahmenKnoepfe(app);
   if (!keepScroll && !vorhanden) window.scrollTo(0, 0);
-  if (vorhanden && !keepScroll) document.getElementById("detailtext").scrollIntoView({ block: "nearest" });
 }
 
 function rahmenAktion(a) {
