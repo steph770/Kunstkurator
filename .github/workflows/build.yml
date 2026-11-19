@@ -1,0 +1,66 @@
+name: Bilder bauen
+
+on:
+  push:
+    branches: [main]
+    paths: ["data/werke.json", "data/ausschnitte.json", "tools/**", ".github/workflows/build.yml"]
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: "build oder survey"
+        default: "build"
+      werk:
+        description: "nur diese Werke (survey), kommagetrennt"
+        default: ""
+      kacheln:
+        description: "Kacheln pro Zeile (survey)"
+        default: "4"
+      probe:
+        description: "Probeausschnitte als JSON (survey)"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bilder
+  cancel-in-progress: false
+
+jobs:
+  bilder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Werkzeuge
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libvips-tools fonts-dejavu-core
+          pip install --quiet pillow
+      - name: Originale aus dem Cache
+        uses: actions/cache@v4
+        with:
+          path: .originale
+          key: originale-${{ hashFiles('data/werke.json') }}
+          restore-keys: originale-
+      - name: Bilder erzeugen
+        env:
+          SURVEY_WERK: ${{ github.event.inputs.werk }}
+          SURVEY_TILES: ${{ github.event.inputs.kacheln }}
+          SURVEY_PROBE: ${{ github.event.inputs.probe }}
+        run: python3 tools/build.py "${{ github.event.inputs.modus || 'build' }}"
+      - name: Ergebnis sichern
+        run: |
+          git config user.name "kunstkurator-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if [ "${{ github.event.inputs.modus }}" = "survey" ]; then
+            git checkout -B werkstatt
+            git add -f werkstatt
+            git commit -qm "Werkstatt-Ansichten" || true
+            git push -f origin werkstatt
+          else
+            git add img download data/bildinfo.json
+            git commit -qm "Bilder aktualisiert [skip ci]" || exit 0
+            git pull --rebase -q origin main
+            git push origin HEAD:main
+          fi

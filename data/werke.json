@@ -1,0 +1,62 @@
+[
+  {
+    "id": "garten",
+    "kuerzel": "GL",
+    "titel": "Der Garten der Lüste",
+    "kuenstler": "Hieronymus Bosch",
+    "datierung": "um 1490-1510",
+    "technik": "Öl auf Eichenholz, Triptychon",
+    "masse": "205,5 × 384,9 cm (geöffnet)",
+    "museum": "Museo del Prado",
+    "ort": "Madrid",
+    "commons": "File:The Garden of earthly delights.jpg"
+  },
+  {
+    "id": "weltgericht",
+    "kuerzel": "WG",
+    "titel": "Das Weltgericht",
+    "kuenstler": "Hieronymus Bosch",
+    "datierung": "um 1490-1505",
+    "technik": "Öl auf Eichenholz, Triptychon",
+    "masse": "Mitteltafel 163,7 × 127 cm, Flügel je 167,7 × 60 cm",
+    "museum": "Gemäldegalerie der Akademie der bildenden Künste",
+    "ort": "Wien",
+    "commons": "File:Hieronymus Bosch - The Last Judgment (Academy of Fine Arts Vienna).jpg"
+  },
+  {
+    "id": "sprichwoerter",
+    "kuerzel": "NS",
+    "titel": "Die niederländischen Sprichwörter",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1559",
+    "technik": "Öl auf Eichenholz",
+    "masse": "117 × 163 cm",
+    "museum": "Gemäldegalerie, Staatliche Museen zu Berlin",
+    "ort": "Berlin",
+    "commons": "File:Pieter Brueghel the Elder - The Dutch Proverbs - Google Art Project.jpg"
+  },
+  {
+    "id": "kinderspiele",
+    "kuerzel": "KS",
+    "titel": "Die Kinderspiele",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1560",
+    "technik": "Öl auf Eichenholz",
+    "masse": "118 × 161 cm",
+    "museum": "Kunsthistorisches Museum",
+    "ort": "Wien",
+    "commons": "File:Children's Games (Bruegel).jpg"
+  },
+  {
+    "id": "turmbau",
+    "kuerzel": "TB",
+    "titel": "Der Turmbau zu Babel",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1563",
+    "technik": "Öl auf Eichenholz",
+    "masse": "114 × 155 cm",
+    "museum": "Kunsthistorisches Museum",
+    "ort": "Wien",
+    "commons": "File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg"
+  }
+]
