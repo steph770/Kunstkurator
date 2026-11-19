@@ -10,6 +10,17 @@
     "text": "In der Mitte des Paradieses steht ein rosafarbenes Gebilde, halb Pflanze, halb gotisches Sakramentshäuschen, also einer jener turmartigen Schreine, in denen Kirchen die geweihten Hostien aufbewahrten. Aus seinen Röhren rieselt Wasser in den Teich darunter. Man nennt es den Lebensbrunnen, und in der Bildtradition ist er die Quelle der vier Paradiesflüsse. Bosch macht daraus ein organisches Ding, das wächst und sprießt und Blätter treibt wie ein Spargel.\n\nDer Blick bleibt an der kugeligen Basis hängen. In ihrer runden Öffnung sitzt eine Eule und schaut heraus. Die Eule ist bei Bosch ein wiederkehrendes Tier, und sie ist doppeldeutig: Sie kann für Weisheit stehen, im christlichen Bildgebrauch aber auch für die Nacht, die Blindheit gegenüber dem Licht, für Ketzerei und das Böse. Mitten im Herzen des Paradieses lauert also schon etwas Dunkles.\n\nRundherum zeigt Bosch, was ein Mensch um 1500 über exotische Tiere wusste. Der Elefant wirkt etwas steif, die Giraffe hat er mit Sicherheit nie lebend gesehen. Forscher vermuten als Vorlage Zeichnungen, die auf den Reisenden Cyriacus von Ancona zurückgehen. Daneben tummeln sich Fabelwesen, ein Stachelschwein und ein dunkles Tier, das einen Baum hinaufklettert.\n\nUnd wer genau hinsieht, findet unten rechts im Felsen ein menschliches Profil. Solche versteckten Gesichter in Steinen und Hügeln sind ein Spiel, das Bosch gern mit dem Betrachter treibt."
   },
   {
+    "id": "GL15",
+    "werk": "garten",
+    "x": 0.114,
+    "y": 0.464,
+    "w": 0.04,
+    "titel": "Fuß des Lebensbrunnens",
+    "stelle": "Garten der Lüste, linker Flügel",
+    "text": "Das ist der Sockel des Lebensbrunnens, etwa so groß, wie man ihn im Prado mit der Nase am Bild sehen würde. Jetzt erkennt man, was beim normalen Ausschnitt verschwindet: das feine Netz aus Rissen im Firnis, das Craquelé. Es entsteht über Jahrhunderte, wenn Holz und Farbschichten arbeiten.\n\nOben links schaut die Eule aus der runden Öffnung. Rechts davon steigt ein Vogel mit langem Schwanz auf, aus dem Wasser ragt ein gläsernes Rohr. Im dunklen Schlamm liegen kleine Edelsteine und Perlen, jeder mit einem eigenen winzigen Lichtpunkt. Bosch hat sie mit einem einzigen Tupfer weißer Farbe zum Glänzen gebracht.",
+    "makro": true
+  },
+  {
     "id": "GL02",
     "werk": "garten",
     "x": 0.05,
@@ -70,6 +81,28 @@
     "text": "Oben in diesem Ausschnitt schwimmt eine riesige rosa Frucht im Wasser. Aus ihrer Öffnung schauen zwei Köpfe heraus, ein Paar, das sich darin eingerichtet hat. Ein Bein ragt aus einem kleinen Loch, Trauben wachsen oben heraus, eine Ranke wickelt sich um das Ganze. Daneben trägt ein Mann eine große Muschelschale auf dem Rücken, in der wieder ein Paar liegt. Man sieht nur Beine und Hüften.\n\nFrüchte und Muscheln sind auf dieser Tafel überall, und sie sind kein Zufall. Beeren, Kirschen, Erdbeeren und Granatäpfel galten als Sinnbilder flüchtiger Genüsse: süß, prall, schnell verdorben. Die Muschel war ein verbreitetes Symbol für das Weibliche. Bosch baut daraus Behausungen, in die sich die Menschen zurückziehen, als wären es Zimmer.\n\nUnten drängt sich eine Gruppe von Frauen, einige tragen Kirschen auf dem Kopf wie Schmuck. Ein Mann kriecht unter ihnen hindurch, eine Ente schaut ihm aus nächster Nähe ins Gesicht. Eine Kohlmeise, so groß wie ein Hund, sitzt auf der Muschel.\n\nDas Faszinierende ist die Gelassenheit aller Beteiligten. Niemand wundert sich, niemand hat Angst. Diese unbekümmerte Selbstverständlichkeit ist es, die viele Betrachter verstört: Das Absurde wird hier so ruhig gemalt wie ein Stillleben."
   },
   {
+    "id": "GL18",
+    "werk": "garten",
+    "x": 0.31,
+    "y": 0.69,
+    "w": 0.04,
+    "titel": "Der Blick aus der Frucht",
+    "stelle": "Garten der Lüste, Mitteltafel",
+    "text": "Zwischen Wasser und Wiese in der Mitte des Gartens liegt eine große, rosa Frucht. Darauf sitzt eine gläserne Kugel, in der sich ein Liebespaar umarmt. Unten in der Frucht ist ein rundes Loch, aus dem ein Mann ernst herausschaut. Rechts daneben steht eine gläserne Röhre, in die gerade eine Maus hineinläuft.\n\nGlas ist in Boschs Garten ein häufiges Motiv. Ein niederländisches Sprichwort sagt, Glück und Glas, wie bald bricht das. Die Liebenden in der Kugel sind also in einem Glück eingeschlossen, das jeden Moment zerspringen kann.\n\nIn dieser Vergrößerung sieht man auch das feine Rissnetz im Firnis, das Craquelé, das sich über die glatte Haut der Frucht zieht.",
+    "makro": true
+  },
+  {
+    "id": "GL19",
+    "werk": "garten",
+    "x": 0.428,
+    "y": 0.65,
+    "w": 0.04,
+    "titel": "Die Kohlmeise",
+    "stelle": "Garten der Lüste, Mitteltafel",
+    "text": "In der Mitte des Gartens, hinter einer riesigen Muschel, liegt eine Kohlmeise im Gras. Bosch hat sie mit großer Genauigkeit gemalt: der schwarze Kopf, die weiße Wange, die gelbe Brust, die blaugrauen Flügel. Jeder Vogelkundler würde sie sofort erkennen.\n\nDas ist eine Eigenheit des Gartens der Lüste. Die Vögel sind naturgetreu gemalt, aber riesig, größer als die Menschen, die um sie herum spielen. Eisvogel, Stieglitz, Specht, Wiedehopf und Meise sitzen zwischen den Nackten, als gehöre ihnen der Garten.\n\nWas die Riesenvögel bedeuten, ist umstritten. Manche sehen darin Sinnbilder der Sinnlichkeit, andere schlicht Boschs Freude an der Natur.",
+    "makro": true
+  },
+  {
     "id": "GL08",
     "werk": "garten",
     "x": 0.6,
@@ -120,6 +153,17 @@
     "text": "In dieser Ecke der Hölle werden Musikinstrumente zu Folterwerkzeugen. Ein Mensch hängt gekreuzigt in den Saiten einer Harfe. Eine riesige Laute liegt quer, ein anderer ist darunter eingeklemmt. Daneben ragt eine gewaltige Drehleier auf, ein Instrument mit Kurbel und Tasten, das im Mittelalter bei Bettlern und auf Jahrmärkten verbreitet war. Eine Trommel, Schalmeien und Flöten liegen herum.\n\nDie Strafe trifft hier jene, die sich der weltlichen Musik hingegeben haben, der Musik der Wirtshäuser und Tanzböden. Die Hölle wird damit laut, ein Ort von Lärm und Missklang im Gegensatz zur himmlischen Harmonie der Engelschöre.\n\nAuf das Hinterteil eines Mannes, der unter der Laute liegt, ist eine Notenzeile tätowiert, und ein aufgeschlagenes Notenbuch liegt daneben. 2014 übertrug eine amerikanische Studentin diese Melodie in moderne Notation und stellte sie ins Netz. Das sogenannte Hinternlied ging um die Welt, auch wenn offen bleibt, ob Bosch eine spielbare Melodie im Sinn hatte.\n\nUnten rechts beginnt eine weitere Szene: Ein Hase mit Spieß, ein Würfel, ein umgestürzter Spieltisch. Hier büßen die Spieler und Betrüger. Der Ausschnitt zeigt gut, wie Bosch in der Hölle nach Sünden ordnet, beinahe wie ein Prediger, der seine Zuhörer der Reihe nach anspricht."
   },
   {
+    "id": "GL16",
+    "werk": "garten",
+    "x": 0.773,
+    "y": 0.69,
+    "w": 0.035,
+    "titel": "Die Noten auf dem Hintern",
+    "stelle": "Garten der Lüste, Höllenflügel, unter der Laute",
+    "text": "Unter der riesigen Laute des Höllenflügels liegt ein Verdammter auf dem Bauch. Auf sein Hinterteil ist eine Notenzeile gemalt, sauber mit Notenlinien und Notenköpfen. Daneben liegt ein aufgeschlagenes Chorbuch mit weiteren Noten, nach denen ein Chor von Verdammten singen muss.\n\nIn Boschs Hölle wird die Musik, die im Leben verführt hat, zur Folter. Die Instrumente sind riesig, die Musiker sind ihre Gefangenen.\n\nDie Noten sind so genau gemalt, dass man sie tatsächlich lesen kann. Vor einigen Jahren hat eine Studentin die Melodie in moderne Notenschrift übertragen und eingespielt. Das Ergebnis ging als „500 Jahre altes Hintern-Lied“ um die Welt. Ob Bosch eine echte Melodie im Kopf hatte, weiß niemand.",
+    "makro": true
+  },
+  {
     "id": "GL13",
     "werk": "garten",
     "x": 0.867,
@@ -128,6 +172,17 @@
     "titel": "Der Höllenfürst",
     "stelle": "Rechter Flügel, unten rechts",
     "text": "Auf einem hohen Stuhl, der zugleich Thron und Leibstuhl ist, sitzt ein blaues Wesen mit Vogelkopf und einem Kessel als Krone. Es verschlingt einen Menschen, dessen Beine noch aus dem Schnabel ragen. Was es gefressen hat, scheidet es in eine durchsichtige blaue Blase aus, aus der die Verdauten in eine Grube fallen. Die Forschung nennt die Figur meist den Fürsten der Hölle, manchmal Satan selbst.\n\nRund um diesen Thron sind Strafen nach den Todsünden verteilt. In die Grube übergibt sich ein Völler, ein Geizhals scheidet Goldmünzen aus. Unten links lehnt eine nackte Frau, auf deren Brust eine Kröte sitzt, in den Armen eines dunklen Dämons. Vor ihr bückt sich ein grünes Mischwesen, an dessen Hinterteil ein Spiegel befestigt ist, und darin zeigt sich ihr Gesicht: die Strafe der Eitelkeit, die sich nun für immer betrachten muss.\n\nDie Vorstellung eines menschenfressenden Höllenfürsten war älter als Bosch. In mittelalterlichen Visionsschriften, etwa der weit verbreiteten Vision des Tondalus, wird ein solches Ungeheuer beschrieben. Bosch übersetzt den Text in ein Bild, das man nicht mehr vergisst.\n\nOben im Ausschnitt sieht man, dass die Hölle auch gefroren ist: Eine Gestalt gleitet auf Schlittschuhen über das Eis. Diese Mischung aus Feuer und Kälte stammt ebenfalls aus der Tradition der Jenseitsvisionen."
+  },
+  {
+    "id": "GL17",
+    "werk": "garten",
+    "x": 0.925,
+    "y": 0.86,
+    "w": 0.05,
+    "titel": "Das Schwein im Nonnenschleier",
+    "stelle": "Garten der Lüste, Höllenflügel, unten rechts",
+    "text": "Ganz unten rechts im Höllenflügel umarmt ein Schwein, das den Schleier einer Nonne trägt, einen nackten Mann. Es drängt sich an ihn und will ihm offenbar ein Schriftstück unterschieben, auf dem schon Siegel hängen. Daneben hockt ein Wesen in einer Rüstung, das Feder und Tintenfass bereithält.\n\nDie Szene wird meist als Spott auf die Kirche gelesen: Geistliche, die Sterbenden ihr Vermögen abschwatzen und es sich per Urkunde vermachen lassen. Das Schwein steht für Gier und Unreinheit, der Schleier für das geistliche Gewand, das sie verdeckt.\n\nBosch malte in einer Zeit, in der solche Kritik an der Kirche weit verbreitet war, wenige Jahrzehnte vor der Reformation.",
+    "makro": true
   },
   {
     "id": "GL14",
@@ -180,6 +235,17 @@
     "text": "Ein Dämon trägt ein riesiges Messer, dessen Klinge größer ist als ein Mensch. Oben steht ein Bauwerk mit kupferfarbenem Dach, vielleicht ein Ofen oder ein Kochkessel, aus dem Rauch dringt. Davor liegen nackte Körper am Boden, durcheinander geworfen. Ein Mann wird auf einer Stange davongetragen, ein anderer steckt in einem Korb. In einem Fass unten links sitzen Köpfe wie Gemüse.\n\nDie Hölle in Boschs Weltgericht funktioniert wie ein Betrieb: Es wird geschlachtet, gekocht, gebraten und serviert. Die Menschen sind Material. Diese Bildsprache greift auf die Sünde der Völlerei zurück. Wer im Leben maßlos gegessen hat, wird nun selbst zur Speise.\n\nDas Messer ist ein wiederkehrendes Motiv bei Bosch. Es taucht auch im Garten der Lüste auf, dort zwischen zwei Ohren. Hier wirkt es noch bedrohlicher, weil es wie ein Werkzeug getragen wird, ganz beiläufig, als gehöre es zum Arbeitstag.\n\nAuffällig ist die Farbigkeit. Gegen den braunen Grund setzt Bosch helles Inkarnat, also die gemalte Hautfarbe, dazu leuchtendes Rot und ein giftiges Grün an den Dämonen. Gerade diese Farbkontraste machen die Szene auf dem E-Ink-Rahmen gut lesbar."
   },
   {
+    "id": "WG08",
+    "werk": "weltgericht",
+    "x": 0.56,
+    "y": 0.885,
+    "w": 0.05,
+    "titel": "Das Fass und der Drache",
+    "stelle": "Weltgericht, Mitteltafel unten",
+    "text": "Ganz unten auf der Mitteltafel steckt ein Mensch kopfüber in einem Holzfass, nur sein Gesicht schaut aus der Öffnung heraus. Daneben richtet sich ein grüner Drache auf. Darüber hält ein Wesen mit weißem Hut einen Stock wie zum Schlag bereit.\n\nFässer stehen bei Bosch oft für Völlerei und Trunksucht. Wer im Leben zu viel getrunken hat, wird nun selbst ins Fass gesteckt.\n\nDie Szene zeigt eine typische Eigenheit von Boschs Höllen: Die Strafe ähnelt der Sünde. Die Verdammten werden mit dem gequält, was sie im Leben geliebt haben.",
+    "makro": true
+  },
+  {
     "id": "WG05",
     "werk": "weltgericht",
     "x": 0.38,
@@ -188,6 +254,17 @@
     "titel": "Die Höllenmaschinen",
     "stelle": "Mitteltafel, Mitte",
     "text": "Mitten in der Höllenlandschaft stehen Maschinen. Ein bauchiges blaues Gefäß ist mit einem großen Laufrad verbunden, in dem ein Mensch läuft wie ein Hamster. Darüber hängt ein grünes, schuhartiges Gebilde, aus dem Dämonen klettern. Ganz oben dreht sich ein roter Mühlstein auf einer Scheibe, und links hängt ein Mann an einem Seil, durchbohrt von einem Spieß.\n\nBosch übersetzt die Hölle in die Technik seiner Zeit. Mühlen, Räder, Hebel und Destillierkolben waren um 1500 die modernen Maschinen der Städte und Werkstätten. In der Hölle werden sie zu Apparaten, die Menschen zermahlen und verarbeiten. Das ist eine bemerkenswerte Idee: Die Strafe ist eine Art Fabrik, die nie stillsteht.\n\nLinks oben schaut ein Kopf mit einer roten Mütze aus einem Kasten, mit Bart und einer Schlange darunter. Bosch verschont auch geistliche Würdenträger nicht. Mönche, Nonnen und Bischöfe erscheinen in seinen Höllen immer wieder unter den Verdammten, ein deutlicher Hinweis darauf, wie kritisch man zu seiner Zeit auf den Klerus blickte.\n\nUnten rechts drängen sich weitere Gestalten in Rüstungen und mit Helmen, Mischwesen aus Metall und Tier. Der Ausschnitt ist wie ein Blick in eine Werkhalle, in der man die Funktion der Maschinen nicht ganz versteht und gerade deshalb nicht wegsehen kann."
+  },
+  {
+    "id": "WG07",
+    "werk": "weltgericht",
+    "x": 0.31,
+    "y": 0.46,
+    "w": 0.05,
+    "titel": "Die Frau auf dem Tisch",
+    "stelle": "Weltgericht, Mitteltafel",
+    "text": "Auf einer hellen Tischplatte steht eine nackte Frau mit langem, blondem Haar. Um ihren Körper windet sich eine schwarze Echse, ein drachenartiges Wesen mit grünem Kopf reckt sich ihr entgegen. Links daneben hockt ein bläuliches Wesen mit einem langen Horn als Nase.\n\nSolche Szenen in Boschs Höllen werden meist als Strafen für bestimmte Sünden gedeutet. Die Nacktheit, das lange offene Haar und das Reptil, das sich an sie schmiegt, verweisen eher auf Wollust oder Eitelkeit. Eindeutig ist das nicht, Bosch lässt vieles offen.\n\nDie Vergrößerung zeigt die zarte Malweise, mit der Bosch die Haut gestaltet: wenige helle Lasuren, also durchscheinende Farbschichten, auf einem hellen Grund.",
+    "makro": true
   },
   {
     "id": "WG06",
@@ -290,6 +367,17 @@
     "text": "Zwei Mädchen knien auf dem Boden und spielen mit kleinen Knochen. Das Knöchelspiel ist uralt, man kannte es schon in der Antike: Die Sprunggelenkknochen von Schafen werden geworfen, gefangen und nach bestimmten Regeln gelegt. Das Mädchen links hat einen ganzen Korb davon neben sich, die andere wirft gerade.\n\nHinter ihnen, unter einem Vordach, sitzen Jungen auf einer Bank. Einer trägt einen spitzen Hut aus Flechtwerk, ein anderer hält ein Windrad, ein Mädchen in rosa Kleid reckt die Arme nach etwas in die Höhe. Die Szene wirkt wie eine kleine Spielgruppe, die sich in eine geschützte Ecke zurückgezogen hat.\n\nLinks öffnet sich der Blick in ein Haus. Ein Regal ist vollgestellt mit Gegenständen, zwei Frauen sitzen beisammen. Man sieht hier, wie Bruegel Innen und Außen verbindet. Der Platz ist kein abgeschlossener Spielplatz, das Leben der Erwachsenen ist immer mit dabei.\n\nDer Ausschnitt gehört zu den ruhigsten des Bildes. Statt Gerangel und Geschrei sieht man konzentriertes Spiel, zwei Mädchen, die ganz in ihre Sache vertieft sind. Die warmen Rot- und Brauntöne passen gut auf den Rahmen."
   },
   {
+    "id": "KS08",
+    "werk": "kinderspiele",
+    "x": 0.0606,
+    "y": 0.823,
+    "w": 0.0578,
+    "titel": "Das Knöchelspiel",
+    "stelle": "Kinderspiele, unten links",
+    "text": "Das Mädchen mit dem roten Kopftuch spielt das Knöchelspiel, rechts greift eine zweite Hand nach den Knochen. Einige liegen vor ihr am Boden, gemalt mit wenigen sicheren Strichen: ein Lichtpunkt oben, ein dunkler Schatten unten, fertig.\n\nIn dieser Vergrößerung sieht man Bruegels Technik. Die braune Erde ist eine dünne, fast durchscheinende Schicht, durch die stellenweise die helle Grundierung schimmert. Die Kleidung ist dagegen dichter gemalt, mit kräftigem Rot, warmem Gelb und einem kühlen Graublau. Bruegel arbeitet sparsam: Er setzt Farbe nur dort dick auf, wo sie gebraucht wird.\n\nDer Scan der Kinderspiele ist so hoch aufgelöst, dass dieser Ausschnitt nur etwa neun Zentimeter des Gemäldes zeigt.",
+    "makro": true
+  },
+  {
     "id": "KS03",
     "werk": "kinderspiele",
     "x": 0.25,
@@ -350,6 +438,28 @@
     "text": "Unten links besucht König Nimrod die Baustelle. Er trägt eine Krone und einen weiten, silbrig glänzenden Mantel, hinter ihm drängt sich sein Gefolge mit Hellebarden. Vor ihm werfen sich Steinmetze auf die Knie, einer liegt beinahe flach auf dem Boden. Die Steinblöcke liegen kreuz und quer, Werkzeuge daneben, ein Arbeiter klopft noch mit seinem Meißel.\n\nDie Unterwerfung der Arbeiter ist auffällig übertrieben. Sie knien in einer Weise, die man in Europa vor allem aus Darstellungen orientalischer Höfe kannte. Bruegel macht damit deutlich, dass Nimrod ein Herrscher ist, der Ehrfurcht verlangt, ein Bild des Hochmuts, das auch auf mächtige Fürsten seiner eigenen Zeit gemünzt sein könnte.\n\nInteressant ist der Kontrast der Maßstäbe. Hier vorne ist alles menschlich groß, man sieht Gesichter, Kleider, die Struktur des Steins. Dahinter wächst der Turm ins Unermessliche, und die Menschen auf ihm werden zu Ameisen. Nimrod, der König, ist der größte Mensch im Bild, und doch wirkt er gegen seinen eigenen Turm klein.\n\nAuf einem Steinblock im Vordergrund hat Bruegel sein Werk signiert und datiert. Wer den Ausschnitt am Rahmen betrachtet, kann sich vorstellen, wie der Maler selbst hier vorne zwischen den Arbeitern stand, mit dem Blick des Handwerkers auf das Handwerk."
   },
   {
+    "id": "TB07",
+    "werk": "turmbau",
+    "x": 0.12,
+    "y": 0.69,
+    "w": 0.04,
+    "titel": "Das Bauernhaus vor dem Turm",
+    "stelle": "Turmbau zu Babel, links unten",
+    "text": "Unterhalb des Turms, fast am Bildrand, steht ein kleines Bauernhaus mit Strohdach. In der Tür lehnt eine Gestalt, ein Schornstein raucht nicht. Davor ragen die Spitzen der Hellebarden aus Nimrods Gefolge ins Bild.\n\nAus der Nähe sieht man, wie Bruegel das Stroh malt: mit vielen parallelen, leicht geschwungenen Strichen in Gelb und Ocker, die dem Pinsel folgen. Der helle Boden ist mit lockeren Zügen hingesetzt, die Wände des Hauses mit kurzen Tupfern. Es ist dieselbe Hand, die oben den riesigen Turm Stein für Stein aufbaut.\n\nDer Ausschnitt zeigt nur etwa sechs Zentimeter des Gemäldes in Originalauflösung des Scans.",
+    "makro": true
+  },
+  {
+    "id": "TB08",
+    "werk": "turmbau",
+    "x": 0.285,
+    "y": 0.927,
+    "w": 0.04,
+    "titel": "Die Signatur im Stein",
+    "stelle": "Turmbau zu Babel, unterer Rand",
+    "text": "Ganz unten im Bild, auf einem frisch behauenen Steinblock, hat Bruegel unterschrieben: „BRVEGEL. FE. M.CCCCC.LXIII“. „FE“ steht für das lateinische „fecit“, er hat es gemacht, dahinter folgt die Jahreszahl 1563 in römischen Ziffern.\n\nDie Signatur ist geschickt versteckt. Sie sieht aus wie eine Steinmetzinschrift und gehört damit zur Baustelle, auf der rund um König Nimrod die Steine bearbeitet werden. Darüber knien Arbeiter vor dem König, einer hat seine Mütze abgenommen.\n\nMit der Schreibweise „Bruegel“ ohne h unterschied er sich von seinen Söhnen, die sich später „Brueghel“ schrieben.",
+    "makro": true
+  },
+  {
     "id": "TB02",
     "werk": "turmbau",
     "x": 0.44,
@@ -398,6 +508,17 @@
     "titel": "Die Stadt",
     "stelle": "Links, Mitte",
     "text": "Links vom Turm breitet sich eine Stadt aus, so weit das Auge reicht. Dächer an Dächer, Kirchtürme, Mauern, ein Fluss mit Brücke, dahinter ein langer Aquädukt und grüne Hügel. Die Häuser sind spitzgiebelig und bunt, mit roten und grauen Dächern. Es ist eine nordeuropäische Stadt, keine orientalische.\n\nBruegel malt hier die Stadt, die zum Turm gehört. In der Bibel wollen die Menschen beides zugleich bauen: eine Stadt und einen Turm. Die Stadt ist das Fundament der Ambition, der Ort, an dem all die Menschen wohnen, die am Turm arbeiten oder von ihm profitieren.\n\nDie Größenverhältnisse sind bemerkenswert. Die Häuser der Stadt, die schon für sich eine ansehnliche Siedlung bilden, erscheinen neben dem Turm wie Spielzeug. Bruegel macht so spürbar, wie maßlos der Turm ist. Kein Gebäude der Zeit kam auch nur in die Nähe dieser Höhe.\n\nAuf dem Rahmen wird der Ausschnitt zu einer eigenen Stadtansicht, voller kleiner Details: einzelne Fenster, Gärten, Menschen auf der Straße. Er zeigt, dass Bruegel auch dort, wo er nur den Hintergrund ausfüllt, mit derselben Sorgfalt arbeitet wie im Vordergrund."
+  },
+  {
+    "id": "TB09",
+    "werk": "turmbau",
+    "x": 0.275,
+    "y": 0.485,
+    "w": 0.045,
+    "titel": "Wohnen im Rohbau",
+    "stelle": "Turmbau zu Babel, linke Turmseite",
+    "text": "Auf einem Absatz des halbfertigen Turms steht eine kleine Hütte mit Strohdach und Schornstein. Daneben ein Karren, Säcke, Fässer. Mitten im gewaltigen Steinbau wohnen und lagern die Bauleute, als wäre der Turm ein eigenes Dorf.\n\nBruegel hat den Turm voller solcher Alltagsszenen gemalt. Es gibt Rampen für Karren, Kräne, Gerüste und eben diese Behausungen. Der Turm wirkt dadurch eher wie eine Baustelle, an der Generationen arbeiten, als wie ein Bauwerk, das je fertig wird.\n\nDie Vergrößerung zeigt, wie fein Bruegel Mauerwerk malt: helle Steine, dunkle Fugen, ein paar Schatten, und schon entsteht Masse.",
+    "makro": true
   },
   {
     "id": "GA01",
@@ -489,6 +610,51 @@
     "titel": "Der Spiegel",
     "stelle": "Wand im Hintergrund",
     "text": "In der Mitte der Rückwand hängt ein runder, gewölbter Spiegel. In ihm sieht man das ganze Zimmer noch einmal, verzerrt wie durch ein Fischauge: das Fenster, das Bett, das Paar von hinten. Und in der Tür, durch die der Betrachter hereinschaut, stehen zwei weitere Personen, eine in Blau, eine in Rot. Sie sind die Zeugen der Szene, und einer von ihnen ist möglicherweise der Maler selbst.\n\nDarauf deutet die Schrift über dem Spiegel. In verschnörkelten Buchstaben steht dort auf Latein: Johannes de eyck fuit hic 1434. Jan van Eyck war hier. Die Formulierung erinnert an die Sprache von Urkunden, in denen Zeugen ihre Anwesenheit bestätigten. Der Maler beglaubigt das Bild wie ein Notar.\n\nDer Spiegelrahmen ist selbst ein Wunderwerk. In kleinen Rundbildern, kaum größer als ein Fingernagel, sind Szenen aus der Passion Christi gemalt. Links daneben hängt eine Kette aus Bernsteinperlen, ein Rosenkranz, ein Hinweis auf Frömmigkeit und auf Wohlstand.\n\nDer gewölbte Spiegel war damals ein Luxusgegenstand, schwer herzustellen und teuer. Er zeigt, was nur die Malerei kann: zwei Ansichten desselben Raums in einem Bild."
+  },
+  {
+    "id": "AR07",
+    "werk": "arnolfini",
+    "x": 0.43,
+    "y": 0.185,
+    "w": 0.1,
+    "titel": "„Johannes de eyck fuit hic“",
+    "stelle": "Arnolfini-Hochzeit, Wand über dem Spiegel",
+    "text": "Über dem Spiegel steht in kunstvoller Schrift an der Wand: „Johannes de eyck fuit hic 1434“, lateinisch für „Jan van Eyck war hier 1434“.\n\nDas ist eine ungewöhnliche Signatur. Maler schrieben sonst „hat mich gemacht“. Van Eyck schreibt dagegen „war hier“, so wie ein Zeuge, der bei einem Ereignis anwesend war. Die verschnörkelte Schrift ähnelt der Schrift, die damals in Urkunden und Verträgen verwendet wurde. Deshalb wurde das Bild lange als eine Art gemaltes Dokument einer Eheschließung gedeutet, mit dem Maler als Trauzeugen.\n\nDiese Deutung ist heute umstritten. Sicher ist, dass van Eyck seine Anwesenheit betonen wollte. Im Spiegel darunter sieht man zwei Gestalten in der Tür, eine davon ist vermutlich er selbst.",
+    "makro": true
+  },
+  {
+    "id": "AR08",
+    "werk": "arnolfini",
+    "x": 0.457,
+    "y": 0.25,
+    "w": 0.08,
+    "titel": "Was der Spiegel zeigt",
+    "stelle": "Arnolfini-Hochzeit, Bildmitte",
+    "text": "Der runde, gewölbte Spiegel an der Rückwand ist eines der berühmtesten Details der Malereigeschichte. Er zeigt das ganze Zimmer noch einmal von der anderen Seite: das Paar von hinten, das Fenster, den Leuchter und das Bett, alles gekrümmt wie in einem Fischauge.\n\nIn der Tür stehen zwei weitere Personen, eine in Blau, eine in Rot. Sie stehen ungefähr dort, wo wir als Betrachter stehen. Eine von ihnen ist vermutlich Jan van Eyck selbst, passend zur Inschrift darüber.\n\nIm Rahmen des Spiegels sitzen zehn kleine runde Bilder mit Szenen aus der Passion Christi, also seinem Leiden und Sterben. Oben in der Mitte ist die Kreuzigung zu sehen. Jedes Medaillon ist nur wenige Millimeter groß.",
+    "makro": true
+  },
+  {
+    "id": "AR09",
+    "werk": "arnolfini",
+    "x": 0.495,
+    "y": 0.37,
+    "w": 0.11,
+    "titel": "Die Hände",
+    "stelle": "Arnolfini-Hochzeit, Bildmitte",
+    "text": "Giovanni Arnolfini hält mit seiner linken Hand die rechte Hand seiner Frau. Ihre Hand liegt locker in seiner, die Handfläche nach oben. An ihren Handgelenken sieht man goldene Armreifen, auf seinem Ärmel die dunkle Pelzverbrämung.\n\nDie Geste wurde lange als Eheversprechen gelesen. Heute sind sich die Forscher nicht mehr einig, was hier genau stattfindet: eine Hochzeit, eine Verlobung oder ein Erinnerungsbild an eine verstorbene Frau.\n\nOben rechts sitzt auf der Lehne eines Stuhls eine kleine geschnitzte Figur. Sie wird meist als heilige Margarete gedeutet, die Schutzpatronin der Schwangeren und Gebärenden. Van Eyck malt die Hände so plastisch, dass man fast die Wärme der Haut zu spüren meint.",
+    "makro": true
+  },
+  {
+    "id": "AR10",
+    "werk": "arnolfini",
+    "x": 0.08,
+    "y": 0.47,
+    "w": 0.07,
+    "hell": 1.4,
+    "titel": "Die Orangen am Fenster",
+    "stelle": "Arnolfini-Hochzeit, linker Rand",
+    "text": "Am Fensterbrett und auf der Truhe darunter liegen einige Orangen. Van Eyck hat sie mit wenigen Glanzlichtern zum Leuchten gebracht, sie wirken im dunklen Zimmer wie kleine Lampen.\n\nIn Brügge waren Orangen um 1434 ein teures Importgut aus Südeuropa. Wer sie offen herumliegen ließ, zeigte seinen Wohlstand. Arnolfini war Kaufmann aus Lucca und handelte unter anderem mit Luxuswaren.\n\nManche sehen in den Früchten auch einen Hinweis auf das Paradies, auf den Zustand vor dem Sündenfall. Wie bei vielen Dingen in diesem Bild bleibt offen, ob van Eyck einfach einen reichen Haushalt zeigt oder jedem Gegenstand eine Bedeutung gibt.\n\nDer Ausschnitt ist für das Display etwas aufgehellt.",
+    "makro": true
   },
   {
     "id": "AR02",
@@ -777,6 +943,18 @@
     "text": "Mitten unter den Männern leuchtet ein kleines Mädchen in goldgelbem Kleid, als stünde es in einem eigenen Scheinwerfer. Am Gürtel hängt ein totes Huhn, mit den Krallen deutlich sichtbar. Diese Figur hat Generationen von Betrachtern gerätselt: Wer ist sie, und was tut sie zwischen den Soldaten?\n\nDie Antwort liegt im Namen der Auftraggeber. Die Nachtwache zeigt eine Kompanie der Kloveniers, der Amsterdamer Bürgerwehr der Büchsenschützen. Ihr Wappen war eine goldene Kralle auf blauem Grund. Die Krallen des Huhns sind also ein Wortspiel auf den Namen der Gilde. Dazu trägt das Mädchen ein Trinkhorn, wie es bei den Festessen der Kompanie verwendet wurde.\n\nDas Mädchen ist demnach wohl als Maskottchen oder Sinnbild der Kompanie gedacht. Rembrandt verwandelt das Wappen in eine lebendige Figur und setzt sie ins hellste Licht des ganzen Bildes.\n\nIhr Gesicht hat viele an Saskia erinnert, Rembrandts Frau, die im Jahr der Fertigstellung des Bildes, 1642, starb. Das ist eine reizvolle Vermutung, aber nicht belegt. Für den Rahmen ist dieser Ausschnitt aufgehellt, damit die Details auf dem E-Ink-Display sichtbar bleiben."
   },
   {
+    "id": "NW07",
+    "werk": "nachtwache",
+    "x": 0.245,
+    "y": 0.59,
+    "w": 0.075,
+    "hell": 1.6,
+    "titel": "Das Mädchen und die Krallen",
+    "stelle": "Nachtwache, links der Mitte",
+    "text": "Das Mädchen in Gold ist die rätselhafteste Figur der Nachtwache. Es leuchtet zwischen den dunklen Männern auf, als fiele ein Scheinwerfer auf es. Am Gürtel hängt ein totes Huhn, dessen Krallen nach unten weisen.\n\nDie Krallen sind ein Wappenzeichen. Die Männer im Bild gehören zur Schützengilde der Kloveniers, und deren Zeichen war eine Vogelkralle. Das Mädchen ist also eine Art lebendes Maskottchen der Kompanie. Auch die Farbe Gold und das Trinkhorn, das sie trägt, gehören zu den Abzeichen der Gilde.\n\nManche sehen in ihrem Gesicht die Züge von Saskia, Rembrandts Frau, die im Jahr der Fertigstellung des Bildes starb.\n\nDer Ausschnitt ist für das Display stark aufgehellt.",
+    "makro": true
+  },
+  {
     "id": "NW02",
     "werk": "nachtwache",
     "x": 0.42,
@@ -786,6 +964,42 @@
     "titel": "Der Kapitän und der Schatten",
     "stelle": "Mitte",
     "text": "In der Mitte schreiten die beiden Anführer auf den Betrachter zu. Links Hauptmann Frans Banninck Cocq in Schwarz, mit roter Schärpe und weißem Spitzenkragen, rechts sein Leutnant Willem van Ruytenburch in einem hellen, goldbestickten Gewand. Der Hauptmann streckt die linke Hand aus und gibt einen Befehl, der Leutnant wendet sich ihm zu.\n\nDer berühmteste Kniff dieser Szene ist der Schatten der Hand. Er fällt genau auf den Rock des Leutnants, an die Stelle, an der das Wappen Amsterdams eingestickt ist. Ob Rembrandt damit sagen wollte, dass die Kompanie die Stadt schützt, oder ob er schlicht mit Licht und Schatten spielte, wird diskutiert.\n\nUngewöhnlich war die ganze Komposition. Gruppenporträts von Bürgerwehren zeigten die Mitglieder meist in Reihen, gleichmäßig beleuchtet, damit jeder zahlende Kunde gut zu sehen war. Rembrandt stellt die Kompanie dagegen in dem Moment dar, in dem sie aufbricht, in Bewegung, mit Lärm und Durcheinander.\n\nDas Bild ist übrigens keine Nachtszene. Der Name Nachtwache kam erst im 18. Jahrhundert auf, als nachgedunkelter Firnis und Schmutz das Bild so verdunkelt hatten, dass man es für eine nächtliche Szene hielt."
+  },
+  {
+    "id": "NW05",
+    "werk": "nachtwache",
+    "x": 0.543,
+    "y": 0.6,
+    "w": 0.064,
+    "hell": 1.6,
+    "titel": "Der Rock des Leutnants",
+    "stelle": "Nachtwache, Bildmitte",
+    "text": "So nah sieht man Rembrandts Malweise. Der Rock des Leutnants Willem van Ruytenburch ist aus dicken, pastosen Farbschichten aufgebaut, also mit Farbe, die so dick aufgetragen ist, dass sie eine eigene Oberfläche bildet. Die Goldstickerei entsteht aus kleinen Häufchen von Gelb und Weiß, die das Licht fangen. Aus der Ferne liest man sie als Stickerei, aus der Nähe sind es einzelne Pinseltupfer.\n\nQuer über die Brust läuft die weiße Schärpe, deren Falten Rembrandt mit wenigen breiten Strichen malt. Oben glänzt der Ringkragen aus Metall.",
+    "makro": true
+  },
+  {
+    "id": "NW08",
+    "werk": "nachtwache",
+    "x": 0.575,
+    "y": 0.74,
+    "w": 0.05,
+    "hell": 1.5,
+    "titel": "Die Partisane des Leutnants",
+    "stelle": "Nachtwache, rechts der Mitte",
+    "text": "Leutnant Willem van Ruytenburch hält eine Partisane, eine Stangenwaffe mit breiter Metallspitze, die nur noch als Zeichen seines Rangs diente. Rembrandt malt sie so, dass die Spitze direkt auf den Betrachter zeigt. Die starke Verkürzung lässt sie aus dem Bild herausragen.\n\nUm die Klinge sieht man die Goldstickerei auf dem hellen Rock des Leutnants. Aus der Nähe besteht sie aus dick aufgetragenen Farbtupfern, die das Licht fangen.\n\nDiese Tiefenwirkung war Rembrandt wichtig. Die Nachtwache ist kein Gruppenbild, in dem alle in einer Reihe stehen. Die Kompanie scheint auf uns zuzumarschieren.\n\nDer Ausschnitt ist für das Display aufgehellt.",
+    "makro": true
+  },
+  {
+    "id": "NW06",
+    "werk": "nachtwache",
+    "x": 0.52,
+    "y": 0.48,
+    "w": 0.06,
+    "hell": 1.6,
+    "titel": "Gesicht eines Musketiers",
+    "stelle": "Nachtwache, rechts der Mitte",
+    "text": "Hinter Kapitän Banninck Cocq und seinem Leutnant drängen sich die übrigen Schützen der Kompanie. Dieser Mann mit dem breitkrempigen Hut hält seine Muskete schräg vor sich, sein Gesicht ist halb im Schatten.\n\nIn dieser Vergrößerung sieht man, wie locker Rembrandt Gesichter malte: Stirn und Nase leuchten aus wenigen hellen Strichen, der Bart ist mit rauen, trockenen Pinselzügen hingesetzt. Aus der Nähe wirkt das fast skizzenhaft, aus der Entfernung entsteht ein lebendiges Gesicht.\n\nRembrandt hat die Kompanie nicht in einer ordentlichen Reihe gemalt. Viele Mitglieder, die für ihr Porträt bezahlt hatten, sind nur teilweise zu sehen, manche fast ganz verdeckt.",
+    "makro": true
   },
   {
     "id": "NW03",
@@ -808,220 +1022,6 @@
     "titel": "Der Musketier in Rot",
     "stelle": "Links",
     "text": "Ein Musketier in leuchtend rotem Gewand und mit breitem Hut ist damit beschäftigt, seine Muskete zu laden. Er stopft das Pulver in den Lauf, konzentriert, den Blick nach unten gerichtet. Sein Kragen ist weiß und gekräuselt, der Hut mit einer Feder geschmückt.\n\nRembrandt hat in der Nachtwache drei Schritte im Umgang mit der Muskete auf drei verschiedene Männer verteilt. Einer lädt, ein zweiter feuert, ein dritter bläst den Rest des Pulvers von der Pfanne. Diese Abfolge entspricht den Waffenhandbüchern der Zeit, in denen das Exerzieren Schritt für Schritt bebildert wurde. Rembrandt zeigt also eine Art Bewegungsstudie, verteilt auf mehrere Personen.\n\nDas Rot dieses Mannes ist eine der wenigen kräftigen Farben im dunklen Bild. Rembrandt setzt Farbe sparsam ein und lässt sie dadurch umso stärker wirken. Das Licht fällt von links oben und hebt einzelne Figuren hervor, während andere im Schatten verschwinden.\n\nDiese Lichtregie nennt man Chiaroscuro, italienisch für hell-dunkel. Sie lenkt den Blick und erzeugt Tiefe und Spannung. Für den Rahmen ist auch dieser Ausschnitt aufgehellt, damit die Farben auf dem Display leuchten."
-  },
-  {
-    "id": "GL15",
-    "werk": "garten",
-    "x": 0.114,
-    "y": 0.464,
-    "w": 0.04,
-    "titel": "Fuß des Lebensbrunnens",
-    "stelle": "Garten der Lüste, linker Flügel",
-    "text": "Das ist der Sockel des Lebensbrunnens, etwa so groß, wie man ihn im Prado mit der Nase am Bild sehen würde. Jetzt erkennt man, was beim normalen Ausschnitt verschwindet: das feine Netz aus Rissen im Firnis, das Craquelé. Es entsteht über Jahrhunderte, wenn Holz und Farbschichten arbeiten.\n\nOben links schaut die Eule aus der runden Öffnung. Rechts davon steigt ein Vogel mit langem Schwanz auf, aus dem Wasser ragt ein gläsernes Rohr. Im dunklen Schlamm liegen kleine Edelsteine und Perlen, jeder mit einem eigenen winzigen Lichtpunkt. Bosch hat sie mit einem einzigen Tupfer weißer Farbe zum Glänzen gebracht.",
-    "makro": true
-  },
-  {
-    "id": "NW05",
-    "werk": "nachtwache",
-    "x": 0.543,
-    "y": 0.6,
-    "w": 0.064,
-    "hell": 1.6,
-    "titel": "Der Rock des Leutnants",
-    "stelle": "Nachtwache, Bildmitte",
-    "text": "So nah sieht man Rembrandts Malweise. Der Rock des Leutnants Willem van Ruytenburch ist aus dicken, pastosen Farbschichten aufgebaut, also mit Farbe, die so dick aufgetragen ist, dass sie eine eigene Oberfläche bildet. Die Goldstickerei entsteht aus kleinen Häufchen von Gelb und Weiß, die das Licht fangen. Aus der Ferne liest man sie als Stickerei, aus der Nähe sind es einzelne Pinseltupfer.\n\nQuer über die Brust läuft die weiße Schärpe, deren Falten Rembrandt mit wenigen breiten Strichen malt. Oben glänzt der Ringkragen aus Metall.",
-    "makro": true
-  },
-  {
-    "id": "NW06",
-    "werk": "nachtwache",
-    "x": 0.52,
-    "y": 0.48,
-    "w": 0.06,
-    "hell": 1.6,
-    "titel": "Gesicht eines Musketiers",
-    "stelle": "Nachtwache, rechts der Mitte",
-    "text": "Hinter dem Leutnant steht ein Musketier mit breitkrempigem Hut und hält seine Waffe vor sich. In der Nachtwache zeigt Rembrandt mehrere Schritte im Umgang mit der Muskete, verteilt auf verschiedene Männer. Dieser Mann wird meist als derjenige gedeutet, der die Pulverreste von der Zündpfanne bläst.\n\nIn dieser Vergrößerung sieht man, wie locker Rembrandt Gesichter malte: Stirn und Nase leuchten aus wenigen hellen Strichen, der Bart ist mit rauen, trockenen Pinselzügen hingesetzt. Aus der Nähe wirkt das fast skizzenhaft, aus der Entfernung entsteht ein lebendiges Gesicht.",
-    "makro": true
-  },
-  {
-    "id": "KS08",
-    "werk": "kinderspiele",
-    "x": 0.0606,
-    "y": 0.823,
-    "w": 0.0578,
-    "titel": "Das Knöchelspiel",
-    "stelle": "Kinderspiele, unten links",
-    "text": "Das Mädchen mit dem roten Kopftuch spielt das Knöchelspiel, rechts greift eine zweite Hand nach den Knochen. Einige liegen vor ihr am Boden, gemalt mit wenigen sicheren Strichen: ein Lichtpunkt oben, ein dunkler Schatten unten, fertig.\n\nIn dieser Vergrößerung sieht man Bruegels Technik. Die braune Erde ist eine dünne, fast durchscheinende Schicht, durch die stellenweise die helle Grundierung schimmert. Die Kleidung ist dagegen dichter gemalt, mit kräftigem Rot, warmem Gelb und einem kühlen Graublau. Bruegel arbeitet sparsam: Er setzt Farbe nur dort dick auf, wo sie gebraucht wird.\n\nDer Scan der Kinderspiele ist so hoch aufgelöst, dass dieser Ausschnitt nur etwa neun Zentimeter des Gemäldes zeigt.",
-    "makro": true
-  },
-  {
-    "id": "TB07",
-    "werk": "turmbau",
-    "x": 0.12,
-    "y": 0.69,
-    "w": 0.04,
-    "titel": "Das Bauernhaus vor dem Turm",
-    "stelle": "Turmbau zu Babel, links unten",
-    "text": "Unterhalb des Turms, fast am Bildrand, steht ein kleines Bauernhaus mit Strohdach. In der Tür lehnt eine Gestalt, ein Schornstein raucht nicht. Davor ragen die Spitzen der Hellebarden aus Nimrods Gefolge ins Bild.\n\nAus der Nähe sieht man, wie Bruegel das Stroh malt: mit vielen parallelen, leicht geschwungenen Strichen in Gelb und Ocker, die dem Pinsel folgen. Der helle Boden ist mit lockeren Zügen hingesetzt, die Wände des Hauses mit kurzen Tupfern. Es ist dieselbe Hand, die oben den riesigen Turm Stein für Stein aufbaut.\n\nDer Ausschnitt zeigt nur etwa sechs Zentimeter des Gemäldes in Originalauflösung des Scans.",
-    "makro": true
-  },
-  {
-    "id": "GL16",
-    "werk": "garten",
-    "x": 0.773,
-    "y": 0.69,
-    "w": 0.035,
-    "titel": "Die Noten auf dem Hintern",
-    "stelle": "Garten der Lüste, Höllenflügel, unter der Laute",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "GL17",
-    "werk": "garten",
-    "x": 0.91,
-    "y": 0.855,
-    "w": 0.055,
-    "titel": "Das Schwein im Nonnenschleier",
-    "stelle": "Garten der Lüste, Höllenflügel, unten rechts",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "GL18",
-    "werk": "garten",
-    "x": 0.31,
-    "y": 0.69,
-    "w": 0.04,
-    "titel": "Der Blick aus der Frucht",
-    "stelle": "Garten der Lüste, Mitteltafel",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "GL19",
-    "werk": "garten",
-    "x": 0.425,
-    "y": 0.645,
-    "w": 0.035,
-    "titel": "Die Kohlmeise",
-    "stelle": "Garten der Lüste, Mitteltafel",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "AR07",
-    "werk": "arnolfini",
-    "x": 0.415,
-    "y": 0.18,
-    "w": 0.09,
-    "titel": "„Johannes de eyck fuit hic“",
-    "stelle": "Arnolfini-Hochzeit, Wand über dem Spiegel",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "AR08",
-    "werk": "arnolfini",
-    "x": 0.457,
-    "y": 0.25,
-    "w": 0.08,
-    "titel": "Was der Spiegel zeigt",
-    "stelle": "Arnolfini-Hochzeit, Bildmitte",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "AR09",
-    "werk": "arnolfini",
-    "x": 0.495,
-    "y": 0.37,
-    "w": 0.11,
-    "titel": "Die Hände",
-    "stelle": "Arnolfini-Hochzeit, Bildmitte",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "AR10",
-    "werk": "arnolfini",
-    "x": 0.08,
-    "y": 0.47,
-    "w": 0.07,
-    "hell": 1.4,
-    "titel": "Die Orangen am Fenster",
-    "stelle": "Arnolfini-Hochzeit, linker Rand",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "NW07",
-    "werk": "nachtwache",
-    "x": 0.255,
-    "y": 0.595,
-    "w": 0.06,
-    "hell": 1.6,
-    "titel": "Das Mädchen und die Krallen",
-    "stelle": "Nachtwache, links der Mitte",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "NW08",
-    "werk": "nachtwache",
-    "x": 0.575,
-    "y": 0.74,
-    "w": 0.05,
-    "hell": 1.5,
-    "titel": "Die Partisane des Leutnants",
-    "stelle": "Nachtwache, rechts der Mitte",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "TB08",
-    "werk": "turmbau",
-    "x": 0.24,
-    "y": 0.915,
-    "w": 0.045,
-    "titel": "Die Signatur im Stein",
-    "stelle": "Turmbau zu Babel, unterer Rand",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "TB09",
-    "werk": "turmbau",
-    "x": 0.275,
-    "y": 0.485,
-    "w": 0.045,
-    "titel": "Wohnen im Rohbau",
-    "stelle": "Turmbau zu Babel, linke Turmseite",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "WG07",
-    "werk": "weltgericht",
-    "x": 0.31,
-    "y": 0.46,
-    "w": 0.05,
-    "titel": "Die Frau auf dem Tisch",
-    "stelle": "Weltgericht, Mitteltafel",
-    "text": "ENTWURF",
-    "makro": true
-  },
-  {
-    "id": "WG08",
-    "werk": "weltgericht",
-    "x": 0.56,
-    "y": 0.885,
-    "w": 0.05,
-    "titel": "Das Fass und der Drache",
-    "stelle": "Weltgericht, Mitteltafel unten",
-    "text": "ENTWURF",
-    "makro": true
   },
   {
     "id": "ES01",

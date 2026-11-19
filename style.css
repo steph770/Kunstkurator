@@ -160,3 +160,4 @@ button.knopf { font: inherit; }
 .hinweis-klein { font-size: .8em; color: #b8902f; }
 .marke-test { border: 2px dashed #e0b84a !important; }
 .moduswahl { display: flex; gap: .5em; margin: .4em 0 .2em; flex-wrap: wrap; }
+.makro-marke { display: inline-block; font-size: .75em; padding: 0 .4em; border: 1px solid #b8902f; color: #b8902f; border-radius: 4px; margin-right: .2em; }

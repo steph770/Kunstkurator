@@ -38,7 +38,7 @@ function kachel(a) {
   return `<a class="kachel" href="#/a/${a.id}">
     <img loading="lazy" src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt="">
     <div class="kachel-text"><div class="kachel-titel">${esc(a.titel)}</div>
-    <div class="kachel-werk">${esc(w ? w.titel : "")}</div></div></a>`;
+    <div class="kachel-werk">${a.makro ? `<span class="makro-marke">Makro</span> ` : ""}${esc(w ? w.titel : "")}</div></div></a>`;
 }
 
 
