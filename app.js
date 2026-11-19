@@ -14,7 +14,8 @@ async function laden() {
   const get = n => fetch("data/" + n + V, { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null);
   const [werke, ausschnitte, info, texte, rahmen] = await Promise.all([
     get("werke.json"), get("ausschnitte.json"), get("bildinfo.json"), get("werktexte.json"), get("rahmen.json")]);
-  D = { werke: werke || [], ausschnitte: ausschnitte || [], info: info || {}, texte: texte || {},
+  const alle = ausschnitte || [];
+  D = { werke: werke || [], alle, ausschnitte: alle.filter(a => !a.test), tests: alle.filter(a => a.test), info: info || {}, texte: texte || {},
         vermittler: (rahmen && rahmen.vermittler || "").replace(/\/$/, ""), status: null };
   D.werkBy = Object.fromEntries(D.werke.map(w => [w.id, w]));
   D.nummer = {};
@@ -52,7 +53,7 @@ const seit = iso => {
   const d = Math.round(h / 24);
   return d === 1 ? "gestern" : `vor ${d} Tagen`;
 };
-const titelVon = id => (D.ausschnitte.find(a => a.id === id) || {}).titel || id;
+const titelVon = id => (D.alle.find(a => a.id === id) || {}).titel || id;
 
 async function statusLaden() {
   if (!D.vermittler) return;
@@ -174,7 +175,7 @@ function rechteck(a) {
 function buehneBauen(el, werkId, startId) {
   const fallback = () => {
     const w = D.werkBy[werkId];
-    const a = D.ausschnitte.find(x => x.id === startId);
+    const a = D.alle.find(x => x.id === startId);
     el.classList.add("statisch");
     el.innerHTML = gesamtbild(w, a || null, !a);
     zoomen(el);
@@ -206,7 +207,12 @@ function buehneBauen(el, werkId, startId) {
       viewer.addOverlay({ element: m, location: rechteck(a) });
       new OpenSeadragon.MouseTracker({ element: m, clickHandler: () => { location.hash = "#/a/" + a.id; } });
     }
-    const a = D.ausschnitte.find(x => x.id === startId);
+    const a = D.alle.find(x => x.id === startId);
+    if (a && a.test) {
+      const m = document.createElement("div");
+      m.className = "marke-alle aktiv marke-test";
+      viewer.addOverlay({ element: m, location: rechteck(a) });
+    }
     if (a) viewer.viewport.fitBounds(rechteck(a), true);
   });
 }
@@ -215,13 +221,17 @@ function buehneZu(id) {
   if (!buehne) return;
   buehne.aktiv = id;
   buehne.el.querySelectorAll(".marke-alle").forEach(m => m.classList.toggle("aktiv", m.dataset.id === id));
-  const a = D.ausschnitte.find(x => x.id === id);
+  const a = D.alle.find(x => x.id === id);
   if (a && buehne.viewer.world.getItemCount()) buehne.viewer.viewport.fitBounds(rechteck(a));
 }
 
 function stationen(werkId) { return D.ausschnitte.filter(x => x.werk === werkId); }
 
 function leiste(a) {
+  if (a.test) return `<div class="buehne-leiste">
+      <a class="knopf" href="#/info">‹ Zum Test</a>
+      <button class="knopf" data-ganz>Ganzes Bild</button>
+    </div>`;
   const st = stationen(a.werk), i = st.indexOf(a);
   const vor = st[(i - 1 + st.length) % st.length], nach = st[(i + 1) % st.length];
   return `<div class="buehne-leiste">
@@ -241,8 +251,8 @@ function detailText(a) {
     <div class="lesetext">${absatz(a.text)}</div>
     <div class="detail-fuss">
       <img src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt="">
-      <div class="klein leise">So erscheint der Ausschnitt am Rahmen · Datei ${esc(a.id)}.jpg<br>
-        <a class="knopf" href="img/rahmen/${a.id}.jpg" download="${a.id}.jpg">Bild laden</a>
+      <div class="klein leise">${a.format === "bmp" ? "Simulation mit den gemessenen Displayfarben" : "So erscheint der Ausschnitt am Rahmen"} · Datei ${esc(a.id)}.${a.format === "bmp" ? "bmp" : "jpg"}<br>
+        <a class="knopf" href="img/rahmen/${a.id}.${a.format === "bmp" ? "bmp" : "jpg"}" download="${a.id}.${a.format === "bmp" ? "bmp" : "jpg"}">Bild laden</a>
         <a class="knopf" href="#/werk/${w.id}">Zum Gemälde</a></div>
     </div>`;
 }
@@ -252,7 +262,7 @@ function leisteKnoepfe(root) {
     if (!buehne) return;
     const vp = buehne.viewer.viewport;
     if (b.dataset.zustand === "ganz") {
-      const a = D.ausschnitte.find(x => x.id === buehne.aktiv);
+      const a = D.alle.find(x => x.id === buehne.aktiv);
       if (a) vp.fitBounds(rechteck(a));
       b.dataset.zustand = ""; b.textContent = "Ganzes Bild";
     } else {
@@ -263,7 +273,7 @@ function leisteKnoepfe(root) {
 }
 
 function detail(id, keepScroll) {
-  const a = D.ausschnitte.find(x => x.id === id);
+  const a = D.alle.find(x => x.id === id);
   if (!a) return uebersicht();
   document.title = a.titel + " · Kunstkurator";
   const vorhanden = buehne && buehne.werk === a.werk && document.body.contains(buehne.el) && document.getElementById("detailtext");
@@ -316,6 +326,32 @@ function werk(id) {
   window.scrollTo(0, 0);
 }
 
+function testKachel(a, zusatz) {
+  const s = D.status || {};
+  const marke = s.aktuell && s.aktuell.id === a.id ? "hängt gerade" : s.wunsch && s.wunsch.id === a.id ? "kommt als Nächstes" : "";
+  return `<div class="testkarte">
+    <a href="#/a/${a.id}"><img loading="lazy" src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt=""></a>
+    <div><strong>${esc(a.titel)}</strong>${zusatz ? `<br><span class="leise klein">${esc(zusatz)}</span>` : ""}
+      ${marke ? `<br><span class="hinweis-klein">${marke}</span>` : ""}
+      <br>${D.vermittler ? `<button class="mini" data-wunsch="${a.id}">Als Nächstes zeigen</button>` : ""}
+      <a class="mini" href="#/a/${a.id}">Text</a></div></div>`;
+}
+
+function testBereich() {
+  if (!D.tests.length) return "";
+  const ref = D.ausschnitte.find(a => a.id === "GL01");
+  const varianten = D.tests.filter(a => a.format === "bmp"), makros = D.tests.filter(a => a.format !== "bmp");
+  return `<h2>Darstellungstest</h2>
+    <p class="leise">Derselbe Ausschnitt in mehreren Umrechnungen. Schick sie nacheinander an den Rahmen und vergleich aus normalem Betrachtungsabstand. Die Vorschaubilder hier sind nur eine Annäherung, entscheidend ist das echte Display.</p>
+    <div class="testliste">
+      ${ref ? testKachel(ref, "Referenz: so wie bisher, Umrechnung durch den Rahmen") : ""}
+      ${varianten.map(a => testKachel(a)).join("")}
+    </div>
+    ${makros.length ? `<h3>Makros</h3>
+    <p class="leise">Sehr enge Ausschnitte, in denen Pinselstriche, pastose Farbe und Craquelé sichtbar werden.</p>
+    <div class="testliste">${makros.map(a => testKachel(a, D.werkBy[a.werk] && D.werkBy[a.werk].titel)).join("")}</div>` : ""}`;
+}
+
 function info() {
   document.title = "Rahmen · Kunstkurator";
   const url = D.vermittler ? D.vermittler + "/bild" : "";
@@ -338,7 +374,8 @@ function info() {
       </ol>
     </div>` : `<p class="leise">Die Verbindung zum Rahmen ist noch nicht eingerichtet.</p>`}
     ${D.status && D.status.verlauf && D.status.verlauf.length ? `<h2>Zuletzt am Rahmen</h2>
-      <div class="raster">${D.status.verlauf.slice(0, 8).map(v => D.ausschnitte.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}
+      <div class="raster">${D.status.verlauf.slice(0, 8).map(v => D.alle.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}
+    ${testBereich()}
     <h2>Ohne Internet</h2>
     <p class="leise">Alle Bilder gibt es auch als ZIP mit 1200 × 1600 Pixeln, zum Hochladen über die Weboberfläche des Rahmens in ein Album.</p>
     <p><a class="knopf" href="download/rahmenbilder.zip" download>Alle ${D.ausschnitte.length} Bilder als ZIP</a></p>`;

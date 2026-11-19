@@ -19,6 +19,8 @@ import urllib.parse
 import urllib.request
 import zipfile
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 Image.MAX_IMAGE_PIXELS = None
@@ -241,7 +243,7 @@ def build(werke, crops):
         vsrc = None
         for c in [c for c in crops if c["werk"] == wid]:
             left, top, cw, ch = crop_box(c, W, H)
-            key = f"{left},{top},{cw},{ch},{c.get('hell')},k3"
+            key = f"{left},{top},{cw},{ch},{c.get('hell')},{c.get('glaetten')},k3"
             meta["_ausschnitte"][c["id"]] = hashlib.sha1(key.encode()).hexdigest()[:8]
             dest = os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg")
             stamp = dest + ".box"
@@ -250,6 +252,8 @@ def build(werke, crops):
             print(f"  {c['id']}: {cw}x{ch} px aus {wid}", flush=True)
             vsrc = vsrc or unpacked(src)
             extract(vsrc, left, top, cw, ch, FRAME_W, FRAME_H, dest, quality=93, hell=c.get("hell"))
+            if c.get("glaetten"):
+                glaetten(dest, c["glaetten"])
             Image.open(dest).resize((450, 600), Image.LANCZOS).save(
                 os.path.join(ROOT, "img/vorschau", f"{c['id']}.jpg"), quality=82, optimize=True)
             with open(stamp, "w") as f:
@@ -268,11 +272,55 @@ def build(werke, crops):
     os.makedirs(os.path.join(ROOT, "download"), exist_ok=True)
     zp = os.path.join(ROOT, "download", "rahmenbilder.zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_STORED) as z:
-        for c in crops:
+        for c in [c for c in crops if not c.get("test")]:
             info = zipfile.ZipInfo(f"{c['id']}.jpg", date_time=(2026, 1, 1, 0, 0, 0))
             with open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"), "rb") as f:
                 z.writestr(info, f.read())
+    # Eigene Umrechnung ins Displayformat (BMP in der Rahmenpalette) für Testvarianten
+    bmp = [c for c in crops if c.get("format") == "bmp"]
+    if bmp:
+        import dither
+        palette = dither.palette_aus(geraet_laden())
+        print("Palette:", palette, flush=True)
+        for c in bmp:
+            v = c.get("verarbeitung") or {}
+            img = Image.open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"))
+            theo, sim = dither.umrechnen(img, palette, v.get("saettigung", 1.0), v.get("kern", "floyd-steinberg"),
+                                         v.get("fehleranteil", 1.0), v.get("gamma", 0.9))
+            theo.save(os.path.join(ROOT, "img/rahmen", f"{c['id']}.bmp"))
+            sim.resize((450, 600), Image.LANCZOS).save(os.path.join(ROOT, "img/vorschau", f"{c['id']}.jpg"), quality=88)
+            print(f"  BMP {c['id']} fertig", flush=True)
     print(f"Fertig: {len(crops)} Ausschnitte", flush=True)
+
+
+def geraet_laden():
+    """Holt die Einstellungen, die der Rahmen beim letzten Abruf an den Vermittler gemeldet hat."""
+    try:
+        with open(os.path.join(ROOT, "data", "rahmen.json")) as f:
+            url = json.load(f).get("vermittler", "")
+        if not url:
+            return None
+        return json.loads(http_get(url.rstrip("/") + "/status", tries=2)).get("geraet")
+    except Exception as e:  # noqa: BLE001
+        print("Geräteeinstellungen nicht verfügbar:", e, flush=True)
+        return None
+
+
+def glaetten(path, staerke):
+    """Kantenerhaltendes Glätten: beruhigt Craquelé und Rauschen, Konturen bleiben scharf."""
+    img = Image.open(path).convert("RGB")
+    try:
+        import cv2
+        import numpy as np
+        a = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
+        d = int(staerke)
+        a = cv2.bilateralFilter(a, d, d * 6, d * 2)
+        a = cv2.bilateralFilter(a, d, d * 4, d * 2)
+        img = Image.fromarray(cv2.cvtColor(a, cv2.COLOR_BGR2RGB))
+    except ImportError:
+        from PIL import ImageFilter
+        img = img.filter(ImageFilter.MedianFilter(3))
+    img.save(path, "JPEG", quality=93, optimize=True, progressive=False, subsampling=0)
 
 
 KACHEL_MAX = int(os.environ.get("KACHEL_MAX", "7000"))

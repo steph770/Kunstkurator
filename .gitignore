@@ -3,3 +3,4 @@
 *.tmp.png
 werkstatt/
 kacheln/
+tools/__pycache__/

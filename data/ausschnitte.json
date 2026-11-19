@@ -808,5 +808,128 @@
     "titel": "Der Musketier in Rot",
     "stelle": "Links",
     "text": "Ein Musketier in leuchtend rotem Gewand und mit breitem Hut ist damit beschäftigt, seine Muskete zu laden. Er stopft das Pulver in den Lauf, konzentriert, den Blick nach unten gerichtet. Sein Kragen ist weiß und gekräuselt, der Hut mit einer Feder geschmückt.\n\nRembrandt hat in der Nachtwache drei Schritte im Umgang mit der Muskete auf drei verschiedene Männer verteilt. Einer lädt, ein zweiter feuert, ein dritter bläst den Rest des Pulvers von der Pfanne. Diese Abfolge entspricht den Waffenhandbüchern der Zeit, in denen das Exerzieren Schritt für Schritt bebildert wurde. Rembrandt zeigt also eine Art Bewegungsstudie, verteilt auf mehrere Personen.\n\nDas Rot dieses Mannes ist eine der wenigen kräftigen Farben im dunklen Bild. Rembrandt setzt Farbe sparsam ein und lässt sie dadurch umso stärker wirken. Das Licht fällt von links oben und hebt einzelne Figuren hervor, während andere im Schatten verschwinden.\n\nDiese Lichtregie nennt man Chiaroscuro, italienisch für hell-dunkel. Sie lenkt den Blick und erzeugt Tiefe und Spannung. Für den Rahmen ist auch dieser Ausschnitt aufgehellt, damit die Farben auf dem Display leuchten."
+  },
+  {
+    "id": "XV1",
+    "werk": "garten",
+    "x": 0.05,
+    "y": 0.14,
+    "w": 0.17,
+    "test": true,
+    "format": "bmp",
+    "stelle": "Darstellungstest, gleicher Ausschnitt wie „Der Lebensbrunnen“",
+    "titel": "Test A: gedämpfte Farben",
+    "verarbeitung": {
+      "saettigung": 1.0,
+      "kern": "floyd-steinberg"
+    },
+    "text": "Gleicher Ausschnitt wie der Lebensbrunnen, aber von mir selbst für das Display umgerechnet. Die Helligkeit wird linear in den Bereich des Displays gestaucht, die Farbsättigung bleibt unverändert, und die Farben werden im Lab-Farbraum zugeordnet, der sich am menschlichen Sehen orientiert. Das Punktmuster entsteht mit demselben Verfahren wie bei der Firmware (Floyd-Steinberg).\n\nAchte im Vergleich zum Original-Lebensbrunnen vor allem auf den Gelbstich der Wiese und auf die Hauttöne."
+  },
+  {
+    "id": "XV2",
+    "werk": "garten",
+    "x": 0.05,
+    "y": 0.14,
+    "w": 0.17,
+    "test": true,
+    "format": "bmp",
+    "stelle": "Darstellungstest, gleicher Ausschnitt wie „Der Lebensbrunnen“",
+    "titel": "Test B: gedämpft und geglättet",
+    "verarbeitung": {
+      "saettigung": 1.0,
+      "kern": "floyd-steinberg"
+    },
+    "glaetten": 7,
+    "text": "Wie Test A, aber vor dem Umrechnen kantenerhaltend geglättet. Ein sogenannter bilateraler Filter beruhigt feine Risse im Firnis und Bildrauschen in Flächen, lässt Konturen aber scharf.\n\nAchte auf ruhigere Flächen in Himmel und Wiese. Der Preis dafür sind etwas weniger feine Details, etwa bei den Grashalmen."
+  },
+  {
+    "id": "XV3",
+    "werk": "garten",
+    "x": 0.05,
+    "y": 0.14,
+    "w": 0.17,
+    "test": true,
+    "format": "bmp",
+    "stelle": "Darstellungstest, gleicher Ausschnitt wie „Der Lebensbrunnen“",
+    "titel": "Test C: feineres Punktmuster",
+    "verarbeitung": {
+      "saettigung": 1.0,
+      "kern": "stucki"
+    },
+    "text": "Wie Test A, aber mit einem anderen Verteilungsverfahren für die Punkte. Das Stucki-Verfahren verteilt den Farbfehler auf mehr Nachbarpunkte, und die Zeilen werden abwechselnd von links und von rechts abgearbeitet. Das Ergebnis ist meist feiner und gleichmäßiger, mit weniger „Würmchen“ im Muster.\n\nAchte auf die Körnung in mittleren Tönen, etwa im Elefanten."
+  },
+  {
+    "id": "XV4",
+    "werk": "garten",
+    "x": 0.05,
+    "y": 0.14,
+    "w": 0.17,
+    "test": true,
+    "format": "bmp",
+    "stelle": "Darstellungstest, gleicher Ausschnitt wie „Der Lebensbrunnen“",
+    "titel": "Test D: geglättet, feines Muster, etwas kräftiger",
+    "verarbeitung": {
+      "saettigung": 1.15,
+      "kern": "stucki"
+    },
+    "glaetten": 7,
+    "text": "Kombination aus Test B und C mit leicht verstärkten Farben. Das ist die Variante, von der ich mir am meisten verspreche: ruhige Flächen, feines Punktmuster und etwas mehr Farbe, damit das Bild trotz der Dämpfung nicht flau wirkt.\n\nAchte auf den Gesamteindruck aus ein, zwei Metern Abstand."
+  },
+  {
+    "id": "XM1",
+    "werk": "garten",
+    "x": 0.114,
+    "y": 0.464,
+    "w": 0.04,
+    "test": true,
+    "titel": "Makro: Fuß des Lebensbrunnens",
+    "stelle": "Garten der Lüste, linker Flügel",
+    "text": "Das ist der Sockel des Lebensbrunnens, etwa so groß, wie man ihn im Prado mit der Nase am Bild sehen würde. Jetzt erkennt man, was beim normalen Ausschnitt verschwindet: das feine Netz aus Rissen im Firnis, das Craquelé. Es entsteht über Jahrhunderte, wenn Holz und Farbschichten arbeiten.\n\nOben links schaut die Eule aus der runden Öffnung. Rechts davon steigt ein Vogel mit langem Schwanz auf, aus dem Wasser ragt ein gläsernes Rohr. Im dunklen Schlamm liegen kleine Edelsteine und Perlen, jeder mit einem eigenen winzigen Lichtpunkt. Bosch hat sie mit einem einzigen Tupfer weißer Farbe zum Glänzen gebracht.\n\nDieser Ausschnitt ist fast in Originalauflösung des Scans, rund 100 Bildpunkte pro Zentimeter Gemälde."
+  },
+  {
+    "id": "XM2",
+    "werk": "nachtwache",
+    "x": 0.543,
+    "y": 0.6,
+    "w": 0.064,
+    "test": true,
+    "hell": 1.6,
+    "titel": "Makro: Der Rock des Leutnants",
+    "stelle": "Nachtwache, Bildmitte",
+    "text": "So nah sieht man Rembrandts Malweise. Der Rock des Leutnants Willem van Ruytenburch ist aus dicken, pastosen Farbschichten aufgebaut, also mit Farbe, die so dick aufgetragen ist, dass sie eine eigene Oberfläche bildet. Die Goldstickerei entsteht aus kleinen Häufchen von Gelb und Weiß, die das Licht fangen. Aus der Ferne liest man sie als Stickerei, aus der Nähe sind es einzelne Pinseltupfer.\n\nQuer über die Brust läuft die weiße Schärpe, deren Falten Rembrandt mit wenigen breiten Strichen malt. Oben glänzt der Ringkragen aus Metall.\n\nDer Ausschnitt ist für das Display stark aufgehellt, weil die Nachtwache sehr dunkel ist."
+  },
+  {
+    "id": "XM3",
+    "werk": "nachtwache",
+    "x": 0.52,
+    "y": 0.48,
+    "w": 0.06,
+    "test": true,
+    "hell": 1.6,
+    "titel": "Makro: Gesicht eines Musketiers",
+    "stelle": "Nachtwache, rechts der Mitte",
+    "text": "Hinter dem Leutnant steht ein Musketier mit breitkrempigem Hut und hält seine Waffe vor sich. In der Nachtwache zeigt Rembrandt mehrere Schritte im Umgang mit der Muskete, verteilt auf verschiedene Männer. Dieser Mann wird meist als derjenige gedeutet, der die Pulverreste von der Zündpfanne bläst.\n\nIn dieser Vergrößerung sieht man, wie locker Rembrandt Gesichter malte: Stirn und Nase leuchten aus wenigen hellen Strichen, der Bart ist mit rauen, trockenen Pinselzügen hingesetzt. Aus der Nähe wirkt das fast skizzenhaft, aus der Entfernung entsteht ein lebendiges Gesicht.\n\nAuch dieser Ausschnitt ist für das Display aufgehellt."
+  },
+  {
+    "id": "XM4",
+    "werk": "kinderspiele",
+    "x": 0.0606,
+    "y": 0.823,
+    "w": 0.0578,
+    "test": true,
+    "titel": "Makro: Das Knöchelspiel",
+    "stelle": "Kinderspiele, unten links",
+    "text": "Das Mädchen im roten Kleid wirft die kleinen Knochen für das Knöchelspiel. Vier liegen vor ihr am Boden, gemalt mit wenigen sicheren Strichen: ein Lichtpunkt oben, ein dunkler Schatten unten, fertig.\n\nIn dieser Vergrößerung sieht man Bruegels Technik. Die braune Erde ist eine dünne, fast durchscheinende Schicht, durch die stellenweise die helle Grundierung schimmert. Die Kleidung ist dagegen dichter gemalt, mit kräftigem Rot und einem kühlen Grün. Bruegel arbeitet sparsam: Er setzt Farbe nur dort dick auf, wo sie gebraucht wird.\n\nDer Scan der Kinderspiele ist so hoch aufgelöst, dass dieser Ausschnitt nur etwa neun Zentimeter des Gemäldes zeigt."
+  },
+  {
+    "id": "XM5",
+    "werk": "turmbau",
+    "x": 0.12,
+    "y": 0.69,
+    "w": 0.04,
+    "test": true,
+    "titel": "Makro: Das Bauernhaus vor dem Turm",
+    "stelle": "Turmbau zu Babel, links unten",
+    "text": "Unterhalb des Turms, fast am Bildrand, steht ein kleines Bauernhaus mit Strohdach. In der Tür lehnt eine Gestalt, ein Schornstein raucht nicht. Davor ragen die Spitzen der Hellebarden aus Nimrods Gefolge ins Bild.\n\nAus der Nähe sieht man, wie Bruegel das Stroh malt: mit vielen parallelen, leicht geschwungenen Strichen in Gelb und Ocker, die dem Pinsel folgen. Die Wiese ist mit lockeren, hellen Zügen hingesetzt, die Wände des Hauses mit kurzen Tupfern. Es ist dieselbe Hand, die oben den riesigen Turm Stein für Stein aufbaut.\n\nDer Ausschnitt zeigt nur etwa sechs Zentimeter des Gemäldes in Originalauflösung des Scans."
   }
 ]

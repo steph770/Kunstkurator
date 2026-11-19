@@ -40,7 +40,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq libvips-tools fonts-dejavu-core
-          pip install --quiet pillow
+          pip install --quiet pillow numpy numba opencv-python-headless
       - name: Originale aus dem Cache
         uses: actions/cache@v4
         with:
