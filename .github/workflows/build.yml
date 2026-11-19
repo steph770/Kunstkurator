@@ -3,7 +3,7 @@ name: Bilder bauen
 on:
   push:
     branches: [main]
-    paths: ["data/werke.json", "data/ausschnitte.json", "tools/**", ".github/workflows/build.yml"]
+    paths: ["data/werke.json", "data/ausschnitte.json", "data/werktexte.json", "tools/**", ".github/workflows/build.yml", "index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest"]
   workflow_dispatch:
     inputs:
       modus:
@@ -21,6 +21,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: bilder
@@ -64,3 +66,25 @@ jobs:
             git pull --rebase -q origin main
             git push origin HEAD:main
           fi
+
+  seite:
+    needs: bilder
+    if: ${{ github.event.inputs.modus != 'survey' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Seite zusammenstellen
+        run: |
+          mkdir -p _site
+          cp -r index.html app.js style.css sw.js manifest.webmanifest icon-*.png .nojekyll data img download _site/
+          find _site/img -name "*.box" -delete
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
