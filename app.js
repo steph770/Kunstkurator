@@ -63,6 +63,33 @@ async function statusLaden() {
   } catch { /* offline: alten Stand behalten */ }
 }
 
+// Reihenfolge wie im Vermittler: Gemälde wie in werke.json, darin die Stationen
+function reihe() { return D.werke.flatMap(w => stationen(w.id)).map(a => a.id); }
+function naechsterAmRahmen() {
+  const s = D.status || {};
+  if (s.wunsch) return { id: s.wunsch.id, wunsch: true };
+  if ((s.modus || "reihe") !== "reihe") return null;
+  const r = reihe(), anker = (s.verlauf || []).map(v => v.id).find(x => r.includes(x));
+  return { id: anker ? r[(r.indexOf(anker) + 1) % r.length] : r[0], wunsch: false };
+}
+
+async function modusSetzen(modus) {
+  const pin = pinHolen(); if (!pin) return false;
+  try {
+    const r = await fetch(D.vermittler + "/modus", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ modus, pin }) });
+    if (r.status === 403) { localStorage.removeItem("kk-pin"); alert("Die PIN stimmt nicht."); return false; }
+    if (!r.ok) { alert("Das hat nicht geklappt."); return false; }
+    localStorage.setItem("kk-pin", pin);
+    D.status = await r.json();
+    return true;
+  } catch { alert("Der Rahmen-Vermittler ist gerade nicht erreichbar."); return false; }
+}
+
+function pinHolen() {
+  return localStorage.getItem("kk-pin") || prompt("PIN für den Rahmen (einmalig, wird auf diesem Gerät gespeichert):");
+}
+
 async function wunschSetzen(id) {
   let pin = localStorage.getItem("kk-pin");
   if (!pin) {
@@ -86,8 +113,9 @@ function rahmenKarte() {
   if (!s) return `<div class="rahmenkarte leise klein">Rahmenstatus wird geladen …</div>`;
   const akt = s.aktuell;
   const akku = s.akku ? `<span class="akku ${s.akku.prozent < 20 ? "niedrig" : ""}">Akku ${Math.round(s.akku.prozent)} %</span>` : "";
-  const wunsch = s.wunsch ? `<div class="wunschzeile">Als Nächstes: <a href="#/a/${s.wunsch.id}">${esc(titelVon(s.wunsch.id))}</a>
-      <button class="mini" data-wunsch-weg>Zurücknehmen</button></div>` : "";
+  const n = naechsterAmRahmen();
+  const wunsch = n ? `<div class="wunschzeile">Als Nächstes${n.wunsch ? "" : " (Reihenfolge)"}: <a href="#/a/${n.id}">${esc(titelVon(n.id))}</a>
+      ${n.wunsch ? `<button class="mini" data-wunsch-weg>Zurücknehmen</button>` : ""}</div>` : `<div class="wunschzeile leise klein">Als Nächstes: Zufall</div>`;
   if (!akt) return `<div class="rahmenkarte"><div><div class="leise klein">Am Rahmen</div>
       <div>Noch kein Bild über den Kurator geladen.</div>${wunsch}</div>${akku}</div>`;
   return `<div class="rahmenkarte">
@@ -99,6 +127,10 @@ function rahmenKarte() {
 function rahmenKnoepfe(root) {
   root.querySelectorAll("[data-wunsch-weg]").forEach(b => b.onclick = async e => {
     e.preventDefault(); if (await wunschSetzen(null)) aktualisieren();
+  });
+  root.querySelectorAll("[data-modus]").forEach(b => b.onclick = async e => {
+    e.preventDefault(); b.disabled = true;
+    if (await modusSetzen(b.dataset.modus)) aktualisieren(); else b.disabled = false;
   });
   root.querySelectorAll("[data-wunsch]").forEach(b => b.onclick = async e => {
     e.preventDefault(); b.disabled = true;
@@ -365,13 +397,18 @@ function info() {
         <li>Rahmen mit der Refresh-Taste aufwecken und die Weboberfläche öffnen.</li>
         <li>In den Einstellungen bei Auto-Rotate als Quelle <em>URL</em> wählen und diese Adresse eintragen:<br><code class="url">${esc(url)}</code>
           <button class="mini" data-kopieren="${esc(url)}">Kopieren</button></li>
-        <li>Einen Zeitplan wählen, zum Beispiel einmal täglich in der Früh. Ohne Wunsch kommt dann ein Zufallsbild.</li>
+        <li>Einen Zeitplan wählen, zum Beispiel einmal täglich in der Früh.</li>
       </ol>
       <strong>Im Alltag</strong>
       <ol>
         <li>In der App bei einem Ausschnitt „Als Nächstes am Rahmen zeigen“ tippen.</li>
-        <li>Am Rahmen die rechte Taste drücken. Ohne Wunsch kommt ein zufälliger Ausschnitt.</li>
+        <li>Am Rahmen die rechte Taste drücken. Ohne Wunsch kommt ${(D.status && D.status.modus === "zufall") ? "ein zufälliger Ausschnitt" : "der nächste Ausschnitt des Gemäldes, nach der letzten Station das nächste Gemälde"}.</li>
       </ol>
+      <strong>Ohne Wunsch</strong>
+      <div class="moduswahl">
+        <button class="knopf ${(D.status && D.status.modus === "zufall") ? "" : "gold"}" data-modus="reihe">Der Reihe nach</button>
+        <button class="knopf ${(D.status && D.status.modus === "zufall") ? "gold" : ""}" data-modus="zufall">Zufall</button>
+      </div>
     </div>` : `<p class="leise">Die Verbindung zum Rahmen ist noch nicht eingerichtet.</p>`}
     ${D.status && D.status.verlauf && D.status.verlauf.length ? `<h2>Zuletzt am Rahmen</h2>
       <div class="raster">${D.status.verlauf.slice(0, 8).map(v => D.alle.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}

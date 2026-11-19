@@ -159,3 +159,4 @@ button.knopf { font: inherit; }
 .testkarte .mini { margin-top: .4em; display: inline-block; text-decoration: none; }
 .hinweis-klein { font-size: .8em; color: #b8902f; }
 .marke-test { border: 2px dashed #e0b84a !important; }
+.moduswahl { display: flex; gap: .5em; margin: .4em 0 .2em; flex-wrap: wrap; }

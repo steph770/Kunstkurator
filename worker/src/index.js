@@ -1,9 +1,11 @@
 // Kunstkurator-Vermittler zwischen Begleitapp und E-Ink-Rahmen.
 //
 //   GET  /bild     Der Rahmen holt hier sein nächstes Bild (Auto-Rotate-URL).
-//                  Liegt ein Wunsch vor, kommt dieser, sonst ein zufälliger Ausschnitt.
+//                  Liegt ein Wunsch vor, kommt dieser. Sonst je nach Modus der nächste Ausschnitt
+//                  in Gemälde-Reihenfolge (Standard) oder ein zufälliger.
 //   GET  /status   Die App fragt, was gerade am Rahmen hängt, was als Nächstes kommt und wie voll der Akku ist.
 //   POST /wunsch   Die App legt das nächste Bild fest: {"id": "GL11", "pin": "..."}; {"id": null} löscht den Wunsch.
+//   POST /modus    {"modus": "reihe" | "zufall", "pin": "..."}
 //
 // Der Zustand liegt in einem einzigen Durable Object (kleiner Speicher mit garantierter Reihenfolge),
 // damit ein gerade gesetzter Wunsch beim nächsten Tastendruck sicher ankommt.
@@ -31,6 +33,7 @@ export default {
       if (!liste.length) return new Response("Keine Ausschnitte gefunden", { status: 503 });
       const ids = liste.map(a => a.id);
       const zufall = liste.filter(a => !a.test).map(a => a.id);
+      const reihe = await reihenfolge(env, liste);
       const akku = request.headers.get("X-Battery-Percentage");
       const geraet = {};
       for (const [h, k] of [["X-Processing-Settings", "processing"], ["X-Color-Palette", "palette"],
@@ -41,7 +44,7 @@ export default {
       }
       const wahl = await (await stub.fetch("https://do/naechstes", {
         method: "POST",
-        body: JSON.stringify({ ids, zufall, akku: akku === null ? null : Number(akku), geraet }),
+        body: JSON.stringify({ ids, zufall, reihe, akku: akku === null ? null : Number(akku), geraet }),
       })).json();
       const eintrag = liste.find(a => a.id === wahl.id) || {};
       const bmp = eintrag.format === "bmp";
@@ -71,7 +74,15 @@ export default {
       return json(await (await stub.fetch("https://do/wunsch", { method: "POST", body: JSON.stringify({ id: body.id }) })).json());
     }
 
-    if (url.pathname === "/") return json({ dienst: "Kunstkurator", wege: ["/bild", "/status", "/wunsch"] });
+    if (url.pathname === "/modus" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); } catch { return json({ fehler: "Ungültige Anfrage" }, 400); }
+      if (!env.RAHMEN_PIN || String(body.pin || "") !== String(env.RAHMEN_PIN)) return json({ fehler: "PIN falsch" }, 403);
+      if (!["reihe", "zufall"].includes(body.modus)) return json({ fehler: "Unbekannter Modus" }, 400);
+      return json(await (await stub.fetch("https://do/modus", { method: "POST", body: JSON.stringify({ modus: body.modus }) })).json());
+    }
+
+    if (url.pathname === "/") return json({ dienst: "Kunstkurator", wege: ["/bild", "/status", "/wunsch", "/modus"] });
     return json({ fehler: "Nicht gefunden" }, 404);
   },
 };
@@ -80,6 +91,18 @@ async function ausschnitte(env) {
   const r = await fetch(`${env.QUELLE}/data/ausschnitte.json`, { cf: { cacheTtl: 120, cacheEverything: true } });
   if (!r.ok) return [];
   return r.json();
+}
+
+// Alle Ausschnitte ohne Tests, nach Gemälde (Reihenfolge wie in werke.json) und darin nach Station
+async function reihenfolge(env, liste) {
+  let werke = [];
+  try {
+    const r = await fetch(`${env.QUELLE}/data/werke.json`, { cf: { cacheTtl: 600, cacheEverything: true } });
+    if (r.ok) werke = (await r.json()).map(w => w.id);
+  } catch { /* dann Reihenfolge der Datei */ }
+  const echt = liste.filter(a => !a.test);
+  for (const a of echt) if (!werke.includes(a.werk)) werke.push(a.werk);
+  return werke.flatMap(w => echt.filter(a => a.werk === w).map(a => a.id));
 }
 
 async function ausschnittIds(env) {
@@ -104,11 +127,22 @@ export class Rahmen {
       return Response.json(s);
     }
 
+    if (url.pathname === "/modus") {
+      const { modus } = await request.json();
+      s.modus = modus;
+      await this.storage.put("zustand", s);
+      return Response.json(s);
+    }
+
     if (url.pathname === "/naechstes") {
-      const { ids, zufall, akku, geraet } = await request.json();
+      const { ids, zufall, reihe, akku, geraet } = await request.json();
       let id;
       if (s.wunsch && ids.includes(s.wunsch.id)) {
         id = s.wunsch.id;
+      } else if ((s.modus || "reihe") === "reihe" && reihe && reihe.length) {
+        // Nächste Station nach dem zuletzt gezeigten echten Ausschnitt; Testbilder werden übersprungen
+        const anker = (s.verlauf || []).map(v => v.id).find(x => reihe.includes(x));
+        id = anker ? reihe[(reihe.indexOf(anker) + 1) % reihe.length] : reihe[0];
       } else {
         // Zufall, aber die letzten Bilder auslassen, solange genug übrig bleiben
         const basis = zufall && zufall.length ? zufall : ids;

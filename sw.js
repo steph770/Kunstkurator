@@ -1,5 +1,5 @@
 // Offline-Fähigkeit: App-Gerüst vorab, Daten frisch mit Rückfall, Bilder aus dem Cache sobald einmal geladen.
-const CACHE = "kunstkurator-v4";
+const CACHE = "kunstkurator-v5";
 const SHELL = ["./", "index.html", "style.css", "app.js", "vendor/openseadragon.min.js", "manifest.webmanifest", "icon-192.png"];
 
 self.addEventListener("install", e => {
