@@ -89,12 +89,16 @@ def vips(*args):
     subprocess.run(["vips", *map(str, args)], check=True)
 
 
-def extract(src, left, top, width, height, out_w, out_h, dest, quality=92):
-    """Schneidet einen Bereich aus und skaliert ihn exakt auf out_w x out_h."""
+def extract(src, left, top, width, height, out_w, out_h, dest, quality=92, hell=None):
+    """Schneidet einen Bereich aus und skaliert ihn exakt auf out_w x out_h.
+    hell: optionaler Gammawert > 1 hellt dunkle Bilder für das E-Ink-Display auf."""
     png = dest + ".tmp.png"
     vips("extract_area", src, png, left, top, width, height)
     img = Image.open(png).convert("RGB")
     img = img.resize((out_w, out_h), Image.LANCZOS)
+    if hell:
+        lut = [round(255 * (i / 255) ** (1 / hell)) for i in range(256)]
+        img = img.point(lut * 3)
     img.save(dest, "JPEG", quality=quality, optimize=True, progressive=True)
     os.remove(png)
 
@@ -206,7 +210,7 @@ def survey(werke):
             vsrc = unpacked(src)
             for c in mine:
                 left, top, cw, ch = crop_box(c, info["width"], info["height"])
-                extract(vsrc, left, top, cw, ch, 600, 800, os.path.join(out, f"probe_{c['id']}.jpg"))
+                extract(vsrc, left, top, cw, ch, 600, 800, os.path.join(out, f"probe_{c['id']}.jpg"), hell=c.get("hell"))
             drop(src)
 
 
@@ -235,7 +239,7 @@ def build(werke, crops):
         vsrc = None
         for c in [c for c in crops if c["werk"] == wid]:
             left, top, cw, ch = crop_box(c, W, H)
-            key = f"{left},{top},{cw},{ch}"
+            key = f"{left},{top},{cw},{ch},{c.get('hell')}"
             meta["_ausschnitte"][c["id"]] = hashlib.sha1(key.encode()).hexdigest()[:8]
             dest = os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg")
             stamp = dest + ".box"
@@ -243,7 +247,7 @@ def build(werke, crops):
                 continue
             print(f"  {c['id']}: {cw}x{ch} px aus {wid}", flush=True)
             vsrc = vsrc or unpacked(src)
-            extract(vsrc, left, top, cw, ch, FRAME_W, FRAME_H, dest, quality=93)
+            extract(vsrc, left, top, cw, ch, FRAME_W, FRAME_H, dest, quality=93, hell=c.get("hell"))
             Image.open(dest).resize((450, 600), Image.LANCZOS).save(
                 os.path.join(ROOT, "img/vorschau", f"{c['id']}.jpg"), quality=82, optimize=True)
             with open(stamp, "w") as f:
