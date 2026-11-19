@@ -164,7 +164,7 @@ def survey(werke):
     only = os.environ.get("SURVEY_WERK")
     tiles = int(os.environ.get("SURVEY_TILES", "4"))
     for werk in werke:
-        if only and werk["id"] not in only.split(","):
+        if only and (only == "none" or werk["id"] not in only.split(",")):
             continue
         src, info = original(werk)
         W, H = info["width"], info["height"]
@@ -197,11 +197,17 @@ def survey(werke):
     probe = os.environ.get("SURVEY_PROBE")
     if probe:
         # Probeausschnitte: JSON-Liste [{"werk":..,"id":..,"x":..,"y":..,"w":..}]
-        werk_by = {w["id"]: w for w in werke}
-        for c in json.loads(probe):
-            src, info = original(werk_by[c["werk"]])
-            left, top, cw, ch = crop_box(c, info["width"], info["height"])
-            extract(src, left, top, cw, ch, 600, 800, os.path.join(out, f"probe_{c['id']}.jpg"))
+        liste = json.loads(probe)
+        for werk in werke:
+            mine = [c for c in liste if c["werk"] == werk["id"]]
+            if not mine:
+                continue
+            src, info = original(werk)
+            vsrc = unpacked(src)
+            for c in mine:
+                left, top, cw, ch = crop_box(c, info["width"], info["height"])
+                extract(vsrc, left, top, cw, ch, 600, 800, os.path.join(out, f"probe_{c['id']}.jpg"))
+            drop(src)
 
 
 def build(werke, crops):
