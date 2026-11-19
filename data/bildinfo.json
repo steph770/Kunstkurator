@@ -26,6 +26,16 @@
   "BW02": "72be8ebb",
   "BW03": "090aa742",
   "BW04": "f96972c5",
+  "ES01": "9ee0a8ef",
+  "ES02": "799664ce",
+  "ES03": "e5ea87c2",
+  "ES04": "1e13611f",
+  "ES05": "04af42b4",
+  "ES06": "61117d01",
+  "ES07": "e8a3f1e0",
+  "ES08": "81285aa4",
+  "ES09": "d8f5100b",
+  "ES10": "ec960de9",
   "GL01": "603235f2",
   "GL02": "4117b474",
   "GL03": "e8933386",
@@ -119,6 +129,11 @@
   "breite": 4702,
   "hoehe": 2940,
   "quelle": "https://commons.wikimedia.org/wiki/File:Bernardo_Bellotto,_il_Canaletto_-_View_of_Vienna_from_the_Belvedere.jpg"
+ },
+ "engelsturz": {
+  "breite": 30000,
+  "hoehe": 21654,
+  "quelle": "https://commons.wikimedia.org/wiki/File:Pieter_Bruegel_the_Elder_-_The_Fall_of_the_Rebel_Angels_-_Google_Art_Project.jpg"
  },
  "garten": {
   "breite": 39137,
