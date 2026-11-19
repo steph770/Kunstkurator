@@ -1022,5 +1022,106 @@
     "stelle": "Weltgericht, Mitteltafel unten",
     "text": "ENTWURF",
     "makro": true
+  },
+  {
+    "id": "ES01",
+    "werk": "engelsturz",
+    "x": 0.0,
+    "y": 0.0,
+    "w": 0.2,
+    "titel": "Die Posaunenengel",
+    "stelle": "Sturz der rebellierenden Engel, oben links",
+    "text": "Ganz oben links beginnt der Kampf. Ein Engel in einem leuchtend gelben Gewand bläst in eine lange, geschwungene Posaune, ein rotes Band flattert hinter ihm. Daneben stürmt ein zweiter Engel mit einem Horn heran. In der Offenbarung des Johannes, auf die sich das Bild bezieht, kündigen Engel mit Posaunen die großen Ereignisse am Ende der Zeit an. Bei Bruegel sind sie das Signal zum Angriff.\n\nDirekt unter ihnen ist die Verwandlung schon im Gang. Ein rosa Wesen mit dem Hals und Schnabel eines Stelzvogels stürzt kopfüber nach unten, Beine und Krallen in die Luft gestreckt. Darunter hängt ein weißes Ei, als hätte es das Tier im Fallen verloren.\n\nDer Gegensatz ist das Prinzip des ganzen Gemäldes: Oben im hellen Blau die Engel, schlank, in hellen Farben, mit Flügeln wie die von Schwänen. Je tiefer man schaut, desto dunkler, dichter und seltsamer wird alles."
+  },
+  {
+    "id": "ES02",
+    "werk": "engelsturz",
+    "x": 0.08,
+    "y": 0.28,
+    "w": 0.16,
+    "titel": "Der Engel mit dem Schwert",
+    "stelle": "Sturz der rebellierenden Engel, linke Bildhälfte",
+    "text": "Ein junger Engel in einem weißen, weit flatternden Hemd hat den Arm hoch über den Kopf gerissen und holt mit dem Schwert zum Schlag aus. Sein Gesicht wirkt dabei fast unbeteiligt, rotblonde Locken, große ruhige Augen. Unter ihm schwebt ein runder roter Schild.\n\nDas fällt bei allen Engeln dieses Bildes auf: Sie kämpfen, ohne zu kämpfen. Keiner von ihnen wirkt bedroht oder angestrengt. Die Gewalt geht von der Bewegung aus, vom Sturz der anderen, die ins Bodenlose fallen.\n\nHinter dem Engel breitet sich ein riesiger Flügel aus, dessen Federn Bruegel einzeln gemalt hat. Links unten, schon im Dunkel, beginnt das Gewimmel der Gestürzten: Schuppen, Stacheln, Fischhaut."
+  },
+  {
+    "id": "ES03",
+    "werk": "engelsturz",
+    "x": 0.395,
+    "y": 0.29,
+    "w": 0.2,
+    "titel": "Der Erzengel Michael",
+    "stelle": "Sturz der rebellierenden Engel, Bildmitte",
+    "text": "In der Mitte des Getümmels steht der Erzengel Michael in einer goldenen Rüstung, über die ein grün-blauer Umhang fällt. Er ist erstaunlich schmal, fast zerbrechlich, ein Jüngling mit gesenktem Blick. Mit beiden Händen schwingt er das Schwert über dem Kopf, am Arm trägt er einen rot-weißen Schild.\n\nNach der Offenbarung des Johannes kämpft Michael mit seinen Engeln gegen den Drachen und wirft ihn mit seinen Anhängern aus dem Himmel. Laut der Beschreibung des Museums steht Michael auf dem siebenköpfigen Drachen, umgeben von dessen Gefolge.\n\nAuffällig ist, wie ruhig Bruegel ihn malt. Michael scheint nicht zu kämpfen, er verrichtet eine Aufgabe. Die Spannung des Bildes liegt in der Masse der Fallenden, die rund um ihn nach unten drängt.\n\nDer goldene Panzer ist ein kleines Kunststück für sich: Glanzlichter in hellem Gelb auf dunklem Ocker lassen Metall entstehen, ohne dass Bruegel echtes Gold verwendet."
+  },
+  {
+    "id": "ES04",
+    "werk": "engelsturz",
+    "x": 0.72,
+    "y": 0.12,
+    "w": 0.12,
+    "titel": "Der Kugelfisch",
+    "stelle": "Sturz der rebellierenden Engel, oben rechts",
+    "text": "Ein kugelrunder, aufgeblähter Körper mit zwei winzigen Knopfaugen, einem kleinen Schnabel und Flossen, die wie Flügel abstehen. Halb Fisch, halb Vogel stürzt das Wesen durch das Blau. Um es herum schwirrt ein Schwarm schwarzer Fliegen.\n\nDer Körper erinnert an einen Kugelfisch, der sich bei Gefahr aufpumpt. Solche Tiere kamen im 16. Jahrhundert als Kuriositäten aus Übersee nach Antwerpen, wo Bruegel lebte, als er das Bild malte. Reiche Sammler stellten sie in Kunst- und Wunderkammern aus. Forscher haben in dem Gemälde mehrere solcher exotischen Tiere entdeckt. Bruegel verwandelt die Rebellen also teilweise in Geschöpfe, die seine Zeitgenossen tatsächlich bestaunen konnten.\n\nDer Witz liegt im Ausdruck: Der kleine Kugelfisch schaut eher verdutzt als böse."
+  },
+  {
+    "id": "ES05",
+    "werk": "engelsturz",
+    "x": 0.81,
+    "y": 0.44,
+    "w": 0.1,
+    "titel": "Der Helm mit dem gelben Band",
+    "stelle": "Sturz der rebellierenden Engel, rechte Bildhälfte",
+    "text": "Ein Gesicht mit großen runden Augen und offenem Mund schaut aus einem spitzen weißen Helm, der wie ein Zuckerhut geformt ist. Ein gelbes Band ist darum gebunden und flattert davon. Unter dem Helm trägt die Gestalt ein Kettenhemd, die Arme sind nackt und dürr.\n\nDiese Figur ist ganz im Geist von Hieronymus Bosch gemalt. Gestalten mit absurden Kopfbedeckungen, Trichtern, Töpfen oder Helmen bevölkern Boschs Höllen. Bruegel galt zu Lebzeiten als „neuer Bosch“. Sein Verleger Hieronymus Cock in Antwerpen brachte sogar einen Kupferstich nach Bruegels Entwurf unter Boschs Namen heraus, weil sich Bosch besser verkaufte.\n\nDer Blick dieser Gestalt ist eher erschrocken als drohend. Viele Gefallene in diesem Bild wirken so, als könnten sie selbst nicht glauben, was gerade mit ihnen geschieht."
+  },
+  {
+    "id": "ES06",
+    "werk": "engelsturz",
+    "x": 0.39,
+    "y": 0.635,
+    "w": 0.14,
+    "titel": "Der Engel mit den Schmetterlingsflügeln",
+    "stelle": "Sturz der rebellierenden Engel, untere Bildmitte",
+    "text": "Hier sieht man die Verwandlung mitten im Vorgang. Ein Gefallener hat noch das Gesicht eines Engels mit lockigem Haar, aber sein Mund ist zu einem Schrei aufgerissen, die Augen weit offen. Über ihm spannen sich große Flügel mit schwarz-weißem Muster, die eindeutig einem Schmetterling gehören.\n\nDie Engelsflügel der Rebellen werden im Sturz zu Flügeln von Insekten, Fledermäusen und Vögeln. Der Schmetterling ist dabei eine doppeldeutige Wahl: Er ist schön, aber er gilt auch als flüchtig und vergänglich.\n\nRechts davon bläht sich ein rosa Wesen auf, eine Art Ballon mit Fischmaul. Die Mischung aus Zartem und Groteskem ist typisch für Bruegels Umgang mit dem Thema."
+  },
+  {
+    "id": "ES07",
+    "werk": "engelsturz",
+    "x": 0.0,
+    "y": 0.6,
+    "w": 0.15,
+    "titel": "Das Saiteninstrument",
+    "stelle": "Sturz der rebellierenden Engel, unten links",
+    "text": "Unten links ist ein Gefallener in die Musikinstrumente gestürzt. Ein Wesen mit rotem Haar und dünnen Armen liegt rücklings auf dem Korpus eines großen Saiteninstruments, dessen geschwungene Schalllöcher wie Augen wirken. Ein langes, gemustertes Blasinstrument ragt schräg ins Bild.\n\nMusikinstrumente tauchen schon bei Bosch in der Hölle auf. Im Garten der Lüste werden die Verdammten auf Harfen und Lauten gekreuzigt. Musik galt als Verführung der Sinne, als Verlockung, die vom Seelenheil ablenkt.\n\nRund um das Instrument sieht man Rüstungsteile, Krebsscheren und einen roten Fisch. Bruegel stapelt Dinge aus allen Lebensbereichen übereinander, als würde die ganze Schöpfung in Unordnung geraten."
+  },
+  {
+    "id": "ES08",
+    "werk": "engelsturz",
+    "x": 0.17,
+    "y": 0.72,
+    "w": 0.15,
+    "titel": "Die weißen Fische",
+    "stelle": "Sturz der rebellierenden Engel, unten links der Mitte",
+    "text": "Zwei bleiche, riesige Fischwesen verschlingen einander. Das obere hat ein Maul voller spitzer Zähne aufgerissen, aus dem dünne Menschenarme ragen. Das untere zeigt ebenfalls die Zähne, darunter blickt ein Gesicht mit aufgerissenen Augen hervor.\n\nDas Fressen und Gefressenwerden ist ein Motiv, das Bruegel gut kannte. Einige Jahre zuvor hatte er die Vorlage für den Kupferstich „Die großen Fische fressen die kleinen“ gezeichnet, ein Bild über die Gier der Mächtigen.\n\nDie Farbe der Fische ist auffällig. In diesem dunklen unteren Bereich leuchtet ihr fahles Weiß wie die Flügel der Engel oben. Es ist, als hätten sie die Farbe des Himmels mitgenommen, die nun zu toter, bleicher Haut geworden ist."
+  },
+  {
+    "id": "ES09",
+    "werk": "engelsturz",
+    "x": 0.69,
+    "y": 0.72,
+    "w": 0.13,
+    "titel": "Der aufgeplatzte Leib",
+    "stelle": "Sturz der rebellierenden Engel, unten rechts",
+    "text": "Ein bleicher, aufgedunsener Körper ist aufgeplatzt. Im Inneren sieht man eine Masse runder Eier und rötliches Fleisch. Dünne graue Arme umklammern den Leib, als wollte die Kreatur ihn zusammenhalten. Darüber liegt ein rotes, warziges Gebilde, das an eine Granatapfelschale oder einen Laich erinnert.\n\nDas Motiv ist eines der rätselhaftesten des Bildes. Eier stehen für Fruchtbarkeit und Entstehung, hier aber quellen sie aus einem gestürzten Wesen hervor. Man kann es als Bild der Maßlosigkeit lesen, als falsche Fruchtbarkeit, die aus dem Bösen kommt.\n\nMalerisch ist die Stelle bemerkenswert. Bruegel arbeitet mit dünnen Lasuren, also durchscheinenden Farbschichten, durch die der helle Malgrund schimmert. Daher wirkt die Haut so glasig und wächsern."
+  },
+  {
+    "id": "ES10",
+    "werk": "engelsturz",
+    "x": 0.843,
+    "y": 0.855,
+    "w": 0.06,
+    "titel": "Das Gesicht am Boden",
+    "stelle": "Sturz der rebellierenden Engel, unterer Bildrand rechts",
+    "text": "Ganz unten, am Rand des Bildes, schaut ein kleines rundes Gesicht aus einem Gestrüpp aus braunen Haaren hervor. Es hat große, starre Augen, eine knollige Nase und einen Mund mit spitzen Zähnen. Man übersieht es leicht, so klein ist es im Gesamtbild.\n\nBruegel hat das Bild bis an die Ränder gefüllt. Selbst in diesem Winkel, wo der Höllensturz auf dem Grund ankommt, sitzt noch ein Wesen und starrt den Betrachter an. Es ist eines der wenigen Gesichter, die direkt aus dem Bild herausschauen.\n\nDie Vergrößerung zeigt, wie frei Bruegel hier gemalt hat. Das Haar besteht aus raschen, trockenen Pinselstrichen, der Boden darunter ist nur angedeutet.",
+    "makro": true
   }
 ]
