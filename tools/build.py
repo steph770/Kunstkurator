@@ -243,7 +243,7 @@ def build(werke, crops):
         vsrc = None
         for c in [c for c in crops if c["werk"] == wid]:
             left, top, cw, ch = crop_box(c, W, H)
-            key = f"{left},{top},{cw},{ch},{c.get('hell')},{c.get('glaetten')},k3"
+            key = f"{left},{top},{cw},{ch},{c.get('hell')},k3"
             meta["_ausschnitte"][c["id"]] = hashlib.sha1(key.encode()).hexdigest()[:8]
             dest = os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg")
             stamp = dest + ".box"
@@ -252,8 +252,6 @@ def build(werke, crops):
             print(f"  {c['id']}: {cw}x{ch} px aus {wid}", flush=True)
             vsrc = vsrc or unpacked(src)
             extract(vsrc, left, top, cw, ch, FRAME_W, FRAME_H, dest, quality=93, hell=c.get("hell"))
-            if c.get("glaetten"):
-                glaetten(dest, c["glaetten"])
             Image.open(dest).resize((450, 600), Image.LANCZOS).save(
                 os.path.join(ROOT, "img/vorschau", f"{c['id']}.jpg"), quality=82, optimize=True)
             with open(stamp, "w") as f:
@@ -268,28 +266,15 @@ def build(werke, crops):
     kacheln(werke, used)
     with open(os.path.join(ROOT, "data", "bildinfo.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
-    # ZIP mit allen Rahmenbildern
+    rahmenbilder(crops)
+    # ZIP mit allen Rahmenbildern (fertig umgerechnet, zum Hochladen über die Weboberfläche des Rahmens)
     os.makedirs(os.path.join(ROOT, "download"), exist_ok=True)
     zp = os.path.join(ROOT, "download", "rahmenbilder.zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_STORED) as z:
         for c in [c for c in crops if not c.get("test")]:
-            info = zipfile.ZipInfo(f"{c['id']}.jpg", date_time=(2026, 1, 1, 0, 0, 0))
-            with open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"), "rb") as f:
+            info = zipfile.ZipInfo(f"{c['id']}.png", date_time=(2026, 1, 1, 0, 0, 0))
+            with open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.png"), "rb") as f:
                 z.writestr(info, f.read())
-    # Eigene Umrechnung ins Displayformat (BMP in der Rahmenpalette) für Testvarianten
-    bmp = [c for c in crops if c.get("format") == "bmp"]
-    if bmp:
-        import dither
-        palette = dither.palette_aus(geraet_laden())
-        print("Palette:", palette, flush=True)
-        for c in bmp:
-            v = c.get("verarbeitung") or {}
-            img = Image.open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"))
-            theo, sim = dither.umrechnen(img, palette, v.get("saettigung", 1.0), v.get("kern", "floyd-steinberg"),
-                                         v.get("fehleranteil", 1.0), v.get("gamma", 0.9))
-            theo.save(os.path.join(ROOT, "img/rahmen", f"{c['id']}.bmp"))
-            sim.resize((450, 600), Image.LANCZOS).save(os.path.join(ROOT, "img/vorschau", f"{c['id']}.jpg"), quality=88)
-            print(f"  BMP {c['id']} fertig", flush=True)
     print(f"Fertig: {len(crops)} Ausschnitte", flush=True)
 
 
@@ -306,9 +291,40 @@ def geraet_laden():
         return None
 
 
-def glaetten(path, staerke):
+# Umrechnung für das Display, im Darstellungstest als Variante D ausgewählt
+STANDARD = {"glaetten": 7, "kern": "stucki", "saettigung": 1.15, "gamma": 0.9}
+
+
+def rahmenbilder(crops):
+    """Rechnet jeden Ausschnitt selbst in die 6 Displayfarben um und speichert ihn als PNG mit Farbpalette.
+    Die Firmware erkennt Bilder, die nur aus Palettenfarben bestehen, und zeigt sie ohne eigene Umrechnung."""
+    import dither
+    palette = dither.palette_aus(geraet_laden())
+    print("Palette:", palette, flush=True)
+    pal_img = Image.new("P", (1, 1))
+    flach = [v for n in dither.FARBEN for v in dither.THEORIE[n]]
+    pal_img.putpalette(flach + [0] * (768 - len(flach)))
+    for c in crops:
+        v = {**STANDARD, **(c.get("verarbeitung") or {})}
+        jpg = os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg")
+        png = os.path.join(ROOT, "img/rahmen", f"{c['id']}.png")
+        with open(jpg, "rb") as f:
+            key = hashlib.sha1(f.read() + json.dumps([palette, v], sort_keys=True).encode()).hexdigest()
+        stamp = png + ".box"
+        if os.path.exists(png) and os.path.exists(stamp) and open(stamp).read() == key:
+            continue
+        img = Image.open(jpg).convert("RGB")
+        if v["glaetten"]:
+            img = glaetten(img, v["glaetten"])
+        theo, _ = dither.umrechnen(img, palette, v["saettigung"], v["kern"], 1.0, v["gamma"])
+        theo.quantize(palette=pal_img, dither=Image.Dither.NONE).save(png, optimize=True)
+        with open(stamp, "w") as f:
+            f.write(key)
+        print(f"  Rahmenbild {c['id']} ({os.path.getsize(png) // 1024} KB)", flush=True)
+
+
+def glaetten(img, staerke):
     """Kantenerhaltendes Glätten: beruhigt Craquelé und Rauschen, Konturen bleiben scharf."""
-    img = Image.open(path).convert("RGB")
     try:
         import cv2
         import numpy as np
@@ -320,7 +336,7 @@ def glaetten(path, staerke):
     except ImportError:
         from PIL import ImageFilter
         img = img.filter(ImageFilter.MedianFilter(3))
-    img.save(path, "JPEG", quality=93, optimize=True, progressive=False, subsampling=0)
+    return img
 
 
 KACHEL_MAX = int(os.environ.get("KACHEL_MAX", "7000"))

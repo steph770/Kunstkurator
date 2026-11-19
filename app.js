@@ -283,8 +283,8 @@ function detailText(a) {
     <div class="lesetext">${absatz(a.text)}</div>
     <div class="detail-fuss">
       <img src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt="">
-      <div class="klein leise">${a.format === "bmp" ? "Simulation mit den gemessenen Displayfarben" : "So erscheint der Ausschnitt am Rahmen"} · Datei ${esc(a.id)}.${a.format === "bmp" ? "bmp" : "jpg"}<br>
-        <a class="knopf" href="img/rahmen/${a.id}.${a.format === "bmp" ? "bmp" : "jpg"}" download="${a.id}.${a.format === "bmp" ? "bmp" : "jpg"}">Bild laden</a>
+      <div class="klein leise">Ausschnitt für den Rahmen · Datei ${esc(a.id)}.png (bereits in die sechs Displayfarben umgerechnet)<br>
+        <a class="knopf" href="img/rahmen/${a.id}.png" download="${a.id}.png">Bild laden</a>
         <a class="knopf" href="#/werk/${w.id}">Zum Gemälde</a></div>
     </div>`;
 }
@@ -407,7 +407,7 @@ function info() {
       <div class="raster">${D.status.verlauf.slice(0, 8).map(v => D.alle.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}
     ${testBereich()}
     <h2>Ohne Internet</h2>
-    <p class="leise">Alle Bilder gibt es auch als ZIP mit 1200 × 1600 Pixeln, zum Hochladen über die Weboberfläche des Rahmens in ein Album.</p>
+    <p class="leise">Alle Bilder gibt es auch als ZIP mit 1200 × 1600 Pixeln, bereits für das Display umgerechnet, zum Hochladen über die Weboberfläche des Rahmens in ein Album.</p>
     <p><a class="knopf" href="download/rahmenbilder.zip" download>Alle ${D.ausschnitte.length} Bilder als ZIP</a></p>`;
   rahmenKnoepfe(app);
   app.querySelectorAll("[data-kopieren]").forEach(b => b.onclick = () => {
