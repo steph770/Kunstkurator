@@ -94,7 +94,7 @@
   {
     "id": "GL19",
     "werk": "garten",
-    "x": 0.428,
+    "x": 0.44,
     "y": 0.65,
     "w": 0.04,
     "titel": "Die Kohlmeise",
@@ -614,7 +614,7 @@
   {
     "id": "AR07",
     "werk": "arnolfini",
-    "x": 0.43,
+    "x": 0.445,
     "y": 0.185,
     "w": 0.1,
     "titel": "„Johannes de eyck fuit hic“",
@@ -945,7 +945,7 @@
   {
     "id": "NW07",
     "werk": "nachtwache",
-    "x": 0.245,
+    "x": 0.262,
     "y": 0.59,
     "w": 0.075,
     "hell": 1.6,
