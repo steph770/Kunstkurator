@@ -1,1 +1,69 @@
-{}
+{
+ "_ausschnitte": {
+  "GL01": "9a6e29d9",
+  "GL02": "cfef994a",
+  "GL03": "41a0d346",
+  "GL04": "685885ca",
+  "GL05": "40e0356a",
+  "GL06": "d451f370",
+  "GL07": "589fda11",
+  "GL08": "d5ee839c",
+  "GL09": "42e590c5",
+  "GL10": "1d64aa64",
+  "GL11": "1be466d9",
+  "GL12": "fb571314",
+  "GL13": "e445979a",
+  "GL14": "8a594c34",
+  "KS01": "91cca0ba",
+  "KS02": "7e538e54",
+  "KS03": "305e3f6c",
+  "KS04": "57707911",
+  "KS05": "48b0e866",
+  "KS06": "fc8a8f1c",
+  "KS07": "d67008cb",
+  "NS01": "146c6a0d",
+  "NS02": "1d8f6f02",
+  "NS03": "400473aa",
+  "NS04": "f70076fd",
+  "NS05": "593d7bc6",
+  "NS06": "46c7ee76",
+  "NS07": "eba756e3",
+  "TB01": "bb9dd42e",
+  "TB02": "5f5e1fdc",
+  "TB03": "8a7a6fe8",
+  "TB04": "af4a0289",
+  "TB05": "e877790d",
+  "TB06": "60fb23ca",
+  "WG01": "994511f8",
+  "WG02": "2fb12daa",
+  "WG03": "573818d3",
+  "WG04": "e001ee30",
+  "WG05": "0f316107",
+  "WG06": "5fa22537"
+ },
+ "garten": {
+  "breite": 39137,
+  "hoehe": 22279,
+  "quelle": "https://commons.wikimedia.org/wiki/File:The_Garden_of_earthly_delights.jpg"
+ },
+ "kinderspiele": {
+  "breite": 41519,
+  "hoehe": 29944,
+  "quelle": "https://commons.wikimedia.org/wiki/File:Children%27s_Games_(Bruegel).jpg"
+ },
+ "sprichwoerter": {
+  "breite": 5649,
+  "hoehe": 4000,
+  "quelle": "https://commons.wikimedia.org/wiki/File:Pieter_Brueghel_the_Elder_-_The_Dutch_Proverbs_-_Google_Art_Project.jpg"
+ },
+ "turmbau": {
+  "breite": 30000,
+  "hoehe": 21952,
+  "quelle": "https://commons.wikimedia.org/wiki/File:Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg"
+ },
+ "weltgericht": {
+  "breite": 27398,
+  "hoehe": 18000,
+  "quelle": "https://commons.wikimedia.org/wiki/File:Hieronymus_Bosch_-_The_Last_Judgment_(Academy_of_Fine_Arts_Vienna).jpg"
+ }
+}
