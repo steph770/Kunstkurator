@@ -392,13 +392,6 @@ function info() {
     ${rahmenKarte()}
     ${url ? `
     <div class="infokasten">
-      <strong>Einrichtung (einmalig)</strong>
-      <ol>
-        <li>Rahmen mit der Refresh-Taste aufwecken und die Weboberfläche öffnen.</li>
-        <li>In den Einstellungen bei Auto-Rotate als Quelle <em>URL</em> wählen und diese Adresse eintragen:<br><code class="url">${esc(url)}</code>
-          <button class="mini" data-kopieren="${esc(url)}">Kopieren</button></li>
-        <li>Einen Zeitplan wählen, zum Beispiel einmal täglich in der Früh.</li>
-      </ol>
       <strong>Im Alltag</strong>
       <ol>
         <li>In der App bei einem Ausschnitt „Als Nächstes am Rahmen zeigen“ tippen.</li>
