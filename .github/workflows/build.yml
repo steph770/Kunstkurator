@@ -68,6 +68,13 @@ jobs:
             git pull --rebase -X theirs -q origin main
             git push origin HEAD:main
           fi
+      - name: Kacheln weitergeben
+        if: ${{ github.event.inputs.modus != 'survey' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: kacheln
+          path: kacheln
+          retention-days: 1
 
   seite:
     needs: bilder
@@ -80,11 +87,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: kacheln
+          path: _site/kacheln
       - name: Seite zusammenstellen
         run: |
-          mkdir -p _site
+          mkdir -p _site/vendor
           cp -r index.html app.js style.css sw.js manifest.webmanifest icon-*.png .nojekyll data img download _site/
           find _site/img -name "*.box" -delete
+          cd /tmp && npm pack openseadragon@5 --silent && tar xzf openseadragon-*.tgz
+          cp /tmp/package/build/openseadragon/openseadragon.min.js "$GITHUB_WORKSPACE/_site/vendor/"
+          du -sh "$GITHUB_WORKSPACE/_site"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

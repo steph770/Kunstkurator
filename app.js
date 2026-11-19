@@ -162,37 +162,131 @@ function zoomen(root) {
   });
 }
 
+// ---------- Bühne: das ganze Gemälde, stufenlos zoombar ----------
+let buehne = null; // {werk, viewer, el, aktiv}
+
+function rechteck(a) {
+  const i = D.info[a.werk];
+  const r = i ? i.hoehe / i.breite : 0.75;
+  return new OpenSeadragon.Rect(a.x, a.y * r, a.w, a.w * 4 / 3);
+}
+
+function buehneBauen(el, werkId, startId) {
+  const fallback = () => {
+    const w = D.werkBy[werkId];
+    const a = D.ausschnitte.find(x => x.id === startId);
+    el.classList.add("statisch");
+    el.innerHTML = gesamtbild(w, a || null, !a);
+    zoomen(el);
+    buehne = null;
+  };
+  if (!window.OpenSeadragon) { fallback(); return; }
+  const viewer = OpenSeadragon({
+    element: el,
+    tileSources: `kacheln/${werkId}.dzi`,
+    showNavigationControl: false,
+    gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
+    gestureSettingsTouch: { clickToZoom: false, dblClickToZoom: true, pinchRotate: false },
+    maxZoomPixelRatio: 2.5,
+    visibilityRatio: 0.5,
+    animationTime: 1.1,
+    springStiffness: 6.5,
+    immediateRender: false,
+    preserveImageSizeOnResize: true,
+  });
+  buehne = { werk: werkId, viewer, el, aktiv: startId };
+  viewer.addHandler("open-failed", fallback);
+  viewer.addHandler("open", () => {
+    for (const a of D.ausschnitte.filter(x => x.werk === werkId)) {
+      const m = document.createElement("div");
+      m.className = "marke-alle" + (a.id === buehne.aktiv ? " aktiv" : "");
+      m.dataset.id = a.id;
+      m.title = a.titel;
+      m.innerHTML = `<span>${D.nummer[a.id]}</span>`;
+      viewer.addOverlay({ element: m, location: rechteck(a) });
+      new OpenSeadragon.MouseTracker({ element: m, clickHandler: () => { location.hash = "#/a/" + a.id; } });
+    }
+    const a = D.ausschnitte.find(x => x.id === startId);
+    if (a) viewer.viewport.fitBounds(rechteck(a), true);
+  });
+}
+
+function buehneZu(id) {
+  if (!buehne) return;
+  buehne.aktiv = id;
+  buehne.el.querySelectorAll(".marke-alle").forEach(m => m.classList.toggle("aktiv", m.dataset.id === id));
+  const a = D.ausschnitte.find(x => x.id === id);
+  if (a && buehne.viewer.world.getItemCount()) buehne.viewer.viewport.fitBounds(rechteck(a));
+}
+
+function stationen(werkId) { return D.ausschnitte.filter(x => x.werk === werkId); }
+
+function leiste(a) {
+  const st = stationen(a.werk), i = st.indexOf(a);
+  const vor = st[(i - 1 + st.length) % st.length], nach = st[(i + 1) % st.length];
+  return `<div class="buehne-leiste">
+      <a class="knopf rund" href="#/a/${vor.id}" aria-label="Vorige Station">‹</a>
+      <button class="knopf" data-ganz>Ganzes Bild</button>
+      <span class="station leise klein">Station ${i + 1} von ${st.length}</span>
+      <a class="knopf rund" href="#/a/${nach.id}" aria-label="Nächste Station">›</a>
+    </div>`;
+}
+
+function detailText(a) {
+  const w = D.werkBy[a.werk];
+  return `
+    <h1>${esc(a.titel)}</h1>
+    <p class="werkzeile">${werkZeile(w)}${a.stelle ? "<br>" + esc(a.stelle) : ""}</p>
+    ${rahmenAktion(a)}
+    <div class="lesetext">${absatz(a.text)}</div>
+    <div class="detail-fuss">
+      <img src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt="">
+      <div class="klein leise">So erscheint der Ausschnitt am Rahmen · Datei ${esc(a.id)}.jpg<br>
+        <a class="knopf" href="img/rahmen/${a.id}.jpg" download="${a.id}.jpg">Bild laden</a>
+        <a class="knopf" href="#/werk/${w.id}">Zum Gemälde</a></div>
+    </div>`;
+}
+
+function leisteKnoepfe(root) {
+  root.querySelectorAll("[data-ganz]").forEach(b => b.onclick = () => {
+    if (!buehne) return;
+    const vp = buehne.viewer.viewport;
+    if (b.dataset.zustand === "ganz") {
+      const a = D.ausschnitte.find(x => x.id === buehne.aktiv);
+      if (a) vp.fitBounds(rechteck(a));
+      b.dataset.zustand = ""; b.textContent = "Ganzes Bild";
+    } else {
+      vp.goHome();
+      b.dataset.zustand = "ganz"; b.textContent = "Zum Ausschnitt";
+    }
+  });
+}
+
 function detail(id, keepScroll) {
   const a = D.ausschnitte.find(x => x.id === id);
   if (!a) return uebersicht();
-  const w = D.werkBy[a.werk];
-  const liste = D.ausschnitte;
-  const i = liste.indexOf(a);
-  const vor = liste[(i - 1 + liste.length) % liste.length], nach = liste[(i + 1) % liste.length];
   document.title = a.titel + " · Kunstkurator";
-  app.innerHTML = `
-    <div class="detail">
-      <div class="detail-bild">
-        <img src="img/rahmen/${a.id}.jpg${IV(a.id)}" alt="${esc(a.titel)}">
-        <div class="blaettern">
-          <a class="knopf" href="#/a/${vor.id}">‹ Zurück</a>
-          <a class="knopf" href="img/rahmen/${a.id}.jpg" download="${a.id}.jpg">Bild laden</a>
-          <a class="knopf" href="#/a/${nach.id}">Weiter ›</a>
+  const vorhanden = buehne && buehne.werk === a.werk && document.body.contains(buehne.el) && document.getElementById("detailtext");
+  if (vorhanden) {
+    document.getElementById("detailtext").innerHTML = detailText(a);
+    document.getElementById("leiste").innerHTML = leiste(a);
+    if (buehne.aktiv !== a.id) buehneZu(a.id);
+  } else {
+    if (buehne) { try { buehne.viewer.destroy(); } catch {} buehne = null; }
+    app.innerHTML = `
+      <div class="detail">
+        <div class="buehne-spalte">
+          <div class="buehne" id="buehne"></div>
+          <div id="leiste">${leiste(a)}</div>
         </div>
-      </div>
-      <div>
-        <h1>${esc(a.titel)}</h1>
-        <p class="werkzeile">${werkZeile(w)}${a.stelle ? "<br>" + esc(a.stelle) : ""}</p>
-        ${rahmenAktion(a)}
-        <div class="lesetext">${absatz(a.text)}</div>
-        <h2>Wo im Gemälde</h2>
-        ${gesamtbild(w, a, false)}
-        <p class="klein leise" style="margin-top:1.5em">Ausschnitt ${D.nummer[a.id]} von ${D.ausschnitte.filter(x => x.werk === w.id).length} aus diesem Werk · Datei ${esc(a.id)}.jpg</p>
-      </div>
-    </div>`;
-  zoomen(app);
+        <div id="detailtext">${detailText(a)}</div>
+      </div>`;
+    buehneBauen(document.getElementById("buehne"), a.werk, a.id);
+  }
+  leisteKnoepfe(app);
   rahmenKnoepfe(app);
-  if (!keepScroll) window.scrollTo(0, 0);
+  if (!keepScroll && !vorhanden) window.scrollTo(0, 0);
+  if (vorhanden && !keepScroll) document.getElementById("detailtext").scrollIntoView({ block: "nearest" });
 }
 
 function rahmenAktion(a) {
@@ -209,15 +303,17 @@ function werk(id) {
   if (!w) return uebersicht();
   document.title = w.titel + " · Kunstkurator";
   const quelle = D.info[id] && D.info[id].quelle;
+  if (buehne) { try { buehne.viewer.destroy(); } catch {} buehne = null; }
   app.innerHTML = `
     <h1>${esc(w.titel)}</h1>
     <p class="werkzeile">${esc(w.kuenstler)} · ${esc(w.datierung)} · ${esc(w.technik)}, ${esc(w.masse)}<br>${esc(w.museum)}, ${esc(w.ort)}</p>
-    ${gesamtbild(w, null, true)}
+    <div class="buehne breit" id="buehne"></div>
+    <p class="hinweis">Mit zwei Fingern zoomen, eine nummerierte Station antippen für ihren Begleittext.</p>
     <div class="lesetext" style="margin-top:1.4em">${absatz(D.texte[id])}</div>
-    <h2>Die Ausschnitte</h2>
-    <div class="raster">${D.ausschnitte.filter(a => a.werk === id).map(kachel).join("")}</div>
+    <h2>Die Stationen</h2>
+    <div class="raster">${stationen(id).map(kachel).join("")}</div>
     ${quelle ? `<p class="fuss"><a href="${esc(quelle)}" target="_blank" rel="noopener">Abbildung auf Wikimedia Commons</a> (gemeinfrei)</p>` : ""}`;
-  zoomen(app);
+  buehneBauen(document.getElementById("buehne"), id, null);
   window.scrollTo(0, 0);
 }
 
@@ -260,6 +356,8 @@ function zufall() {
 
 function route() {
   if (!D) return;
+  const ziel = location.hash.replace(/^#\/?/, "").split("/")[0];
+  if (ziel !== "a" && ziel !== "werk" && buehne) { try { buehne.viewer.destroy(); } catch {} buehne = null; }
   const h = location.hash.replace(/^#\/?/, "");
   const [teil, id] = h.split("/");
   if (teil === "a") detail(decodeURIComponent(id));

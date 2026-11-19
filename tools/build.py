@@ -259,6 +259,7 @@ def build(werke, crops):
             base = fn.split(".")[0]
             if base not in seen:
                 os.remove(os.path.join(ROOT, d, fn))
+    kacheln(werke, used)
     with open(os.path.join(ROOT, "data", "bildinfo.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
     # ZIP mit allen Rahmenbildern
@@ -270,6 +271,29 @@ def build(werke, crops):
             with open(os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg"), "rb") as f:
                 z.writestr(info, f.read())
     print(f"Fertig: {len(crops)} Ausschnitte", flush=True)
+
+
+KACHEL_MAX = int(os.environ.get("KACHEL_MAX", "7000"))
+
+
+def kacheln(werke, used):
+    """Zerlegt jedes Gemälde in Kacheln (Deep Zoom), damit die App stufenlos zoomen kann.
+    Landet in ./kacheln und wird nicht eingecheckt, sondern direkt mit der Seite veröffentlicht."""
+    if os.environ.get("KACHELN", "1") == "0":
+        return
+    out = os.path.join(ROOT, "kacheln")
+    os.makedirs(out, exist_ok=True)
+    werk_by = {w["id"]: w for w in werke}
+    for wid in used:
+        if os.path.exists(os.path.join(out, wid + ".dzi")):
+            continue
+        src, _ = original(werk_by[wid])
+        tmp = os.path.join(out, wid + ".tmp.v")
+        subprocess.run(["vipsthumbnail", src, "--size", f"{KACHEL_MAX}x{KACHEL_MAX}", "-o", tmp], check=True)
+        vips("dzsave", tmp, os.path.join(out, wid), "--suffix", ".jpg[Q=80,optimize_coding,strip]",
+             "--tile-size", "510", "--overlap", "1")
+        os.remove(tmp)
+        print(f"  Kacheln {wid} fertig", flush=True)
 
 
 if __name__ == "__main__":

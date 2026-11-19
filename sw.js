@@ -1,6 +1,6 @@
 // Offline-Fähigkeit: App-Gerüst vorab, Daten frisch mit Rückfall, Bilder aus dem Cache sobald einmal geladen.
-const CACHE = "kunstkurator-v2";
-const SHELL = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "icon-192.png"];
+const CACHE = "kunstkurator-v3";
+const SHELL = ["./", "index.html", "style.css", "app.js", "vendor/openseadragon.min.js", "manifest.webmanifest", "icon-192.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -15,7 +15,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
   if (url.pathname.endsWith(".zip")) return;
-  const isImg = url.pathname.includes("/img/");
+  const isImg = url.pathname.includes("/img/") || url.pathname.includes("/kacheln/");
   if (isImg) {
     e.respondWith(caches.open(CACHE).then(async c => {
       const hit = await c.match(e.request);
