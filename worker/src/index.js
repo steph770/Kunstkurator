@@ -27,18 +27,29 @@ export default {
     const stub = env.RAHMEN.get(env.RAHMEN.idFromName("rahmen"));
 
     if (url.pathname === "/bild" && request.method === "GET") {
-      const ids = await ausschnittIds(env);
-      if (!ids.length) return new Response("Keine Ausschnitte gefunden", { status: 503 });
+      const liste = await ausschnitte(env);
+      if (!liste.length) return new Response("Keine Ausschnitte gefunden", { status: 503 });
+      const ids = liste.map(a => a.id);
+      const zufall = liste.filter(a => !a.test).map(a => a.id);
       const akku = request.headers.get("X-Battery-Percentage");
+      const geraet = {};
+      for (const [h, k] of [["X-Processing-Settings", "processing"], ["X-Color-Palette", "palette"],
+                            ["X-Display-Width", "breite"], ["X-Display-Height", "hoehe"],
+                            ["X-Display-Orientation", "ausrichtung"], ["X-Firmware-Version", "firmware"]]) {
+        const v = request.headers.get(h);
+        if (v !== null) { try { geraet[k] = JSON.parse(v); } catch { geraet[k] = v; } }
+      }
       const wahl = await (await stub.fetch("https://do/naechstes", {
         method: "POST",
-        body: JSON.stringify({ ids, akku: akku === null ? null : Number(akku) }),
+        body: JSON.stringify({ ids, zufall, akku: akku === null ? null : Number(akku), geraet }),
       })).json();
-      const bild = await fetch(`${env.QUELLE}/img/rahmen/${wahl.id}.jpg?v=${env.BILD_VERSION || "1"}`, { cf: { cacheTtl: 86400, cacheEverything: true } });
+      const eintrag = liste.find(a => a.id === wahl.id) || {};
+      const epd = eintrag.format === "epdgz";
+      const bild = await fetch(`${env.QUELLE}/img/rahmen/${wahl.id}.${epd ? "epdgz" : "jpg"}?v=${env.BILD_VERSION || "1"}`, { cf: { cacheTtl: 86400, cacheEverything: true } });
       if (!bild.ok) return new Response("Bild nicht erreichbar", { status: 502 });
       return new Response(bild.body, {
         headers: {
-          "Content-Type": "image/jpeg",
+          "Content-Type": epd ? "application/octet-stream" : "image/jpeg",
           "Cache-Control": "no-store",
           "X-Kunstkurator-Id": wahl.id,
         },
@@ -65,11 +76,14 @@ export default {
   },
 };
 
-async function ausschnittIds(env) {
-  const r = await fetch(`${env.QUELLE}/data/ausschnitte.json`, { cf: { cacheTtl: 300, cacheEverything: true } });
+async function ausschnitte(env) {
+  const r = await fetch(`${env.QUELLE}/data/ausschnitte.json`, { cf: { cacheTtl: 120, cacheEverything: true } });
   if (!r.ok) return [];
-  const liste = await r.json();
-  return liste.map(a => a.id);
+  return r.json();
+}
+
+async function ausschnittIds(env) {
+  return (await ausschnitte(env)).map(a => a.id);
 }
 
 export class Rahmen {
@@ -91,21 +105,23 @@ export class Rahmen {
     }
 
     if (url.pathname === "/naechstes") {
-      const { ids, akku } = await request.json();
+      const { ids, zufall, akku, geraet } = await request.json();
       let id;
       if (s.wunsch && ids.includes(s.wunsch.id)) {
         id = s.wunsch.id;
       } else {
         // Zufall, aber die letzten Bilder auslassen, solange genug übrig bleiben
-        const zuletzt = new Set(s.verlauf.slice(0, Math.min(10, Math.floor(ids.length / 2))).map(v => v.id));
-        const pool = ids.filter(x => !zuletzt.has(x));
-        const auswahl = pool.length ? pool : ids;
+        const basis = zufall && zufall.length ? zufall : ids;
+        const zuletzt = new Set(s.verlauf.slice(0, Math.min(10, Math.floor(basis.length / 2))).map(v => v.id));
+        const pool = basis.filter(x => !zuletzt.has(x));
+        const auswahl = pool.length ? pool : basis;
         id = auswahl[Math.floor(Math.random() * auswahl.length)];
       }
       const jetzt = new Date().toISOString();
       s.aktuell = { id, seit: jetzt, gewuenscht: !!(s.wunsch && s.wunsch.id === id) };
       s.wunsch = null;
       if (akku !== null && !Number.isNaN(akku)) s.akku = { prozent: akku, stand: jetzt };
+      if (geraet && Object.keys(geraet).length) s.geraet = { ...geraet, stand: jetzt };
       s.verlauf = [{ id, zeit: jetzt }, ...(s.verlauf || [])].slice(0, 30);
       await this.storage.put("zustand", s);
       return Response.json({ id });
