@@ -12,9 +12,10 @@ const absatz = t => (Array.isArray(t) ? t : String(t || "").split(/\n\s*\n/))
 
 async function laden() {
   const get = n => fetch("data/" + n + V, { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null);
-  const [werke, ausschnitte, info, texte] = await Promise.all([
-    get("werke.json"), get("ausschnitte.json"), get("bildinfo.json"), get("werktexte.json")]);
-  D = { werke: werke || [], ausschnitte: ausschnitte || [], info: info || {}, texte: texte || {} };
+  const [werke, ausschnitte, info, texte, rahmen] = await Promise.all([
+    get("werke.json"), get("ausschnitte.json"), get("bildinfo.json"), get("werktexte.json"), get("rahmen.json")]);
+  D = { werke: werke || [], ausschnitte: ausschnitte || [], info: info || {}, texte: texte || {},
+        vermittler: (rahmen && rahmen.vermittler || "").replace(/\/$/, ""), status: null };
   D.werkBy = Object.fromEntries(D.werke.map(w => [w.id, w]));
   D.nummer = {};
   for (const w of D.werke) D.ausschnitte.filter(a => a.werk === w.id).forEach((a, i) => D.nummer[a.id] = i + 1);
@@ -39,6 +40,71 @@ function kachel(a) {
     <div class="kachel-werk">${esc(w ? w.titel : "")}</div></div></a>`;
 }
 
+
+// ---------- Verbindung zum Rahmen über den Vermittler ----------
+const seit = iso => {
+  if (!iso) return "";
+  const min = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (min < 1) return "gerade eben";
+  if (min < 60) return `vor ${min} Min.`;
+  const h = Math.round(min / 60);
+  if (h < 24) return `vor ${h} Std.`;
+  const d = Math.round(h / 24);
+  return d === 1 ? "gestern" : `vor ${d} Tagen`;
+};
+const titelVon = id => (D.ausschnitte.find(a => a.id === id) || {}).titel || id;
+
+async function statusLaden() {
+  if (!D.vermittler) return;
+  try {
+    const r = await fetch(D.vermittler + "/status", { cache: "no-store" });
+    if (r.ok) D.status = await r.json();
+  } catch { /* offline: alten Stand behalten */ }
+}
+
+async function wunschSetzen(id) {
+  let pin = localStorage.getItem("kk-pin");
+  if (!pin) {
+    pin = prompt("PIN für den Rahmen (einmalig, wird auf diesem Gerät gespeichert):");
+    if (!pin) return false;
+  }
+  try {
+    const r = await fetch(D.vermittler + "/wunsch", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, pin }) });
+    if (r.status === 403) { localStorage.removeItem("kk-pin"); alert("Die PIN stimmt nicht."); return false; }
+    if (!r.ok) { alert("Das hat nicht geklappt."); return false; }
+    localStorage.setItem("kk-pin", pin);
+    D.status = await r.json();
+    return true;
+  } catch { alert("Der Rahmen-Vermittler ist gerade nicht erreichbar."); return false; }
+}
+
+function rahmenKarte() {
+  if (!D.vermittler) return "";
+  const s = D.status;
+  if (!s) return `<div class="rahmenkarte leise klein">Rahmenstatus wird geladen …</div>`;
+  const akt = s.aktuell;
+  const akku = s.akku ? `<span class="akku ${s.akku.prozent < 20 ? "niedrig" : ""}">Akku ${Math.round(s.akku.prozent)} %</span>` : "";
+  const wunsch = s.wunsch ? `<div class="wunschzeile">Als Nächstes: <a href="#/a/${s.wunsch.id}">${esc(titelVon(s.wunsch.id))}</a>
+      <button class="mini" data-wunsch-weg>Zurücknehmen</button></div>` : "";
+  if (!akt) return `<div class="rahmenkarte"><div><div class="leise klein">Am Rahmen</div>
+      <div>Noch kein Bild über den Kurator geladen.</div>${wunsch}</div>${akku}</div>`;
+  return `<div class="rahmenkarte">
+      <a href="#/a/${akt.id}"><img src="img/vorschau/${akt.id}.jpg${IV(akt.id)}" alt=""></a>
+      <div class="rahmenkarte-text"><div class="leise klein">Am Rahmen · ${seit(akt.seit)} ${akku}</div>
+      <a class="rahmenkarte-titel" href="#/a/${akt.id}">${esc(titelVon(akt.id))}</a>${wunsch}</div></div>`;
+}
+
+function rahmenKnoepfe(root) {
+  root.querySelectorAll("[data-wunsch-weg]").forEach(b => b.onclick = async e => {
+    e.preventDefault(); if (await wunschSetzen(null)) aktualisieren();
+  });
+  root.querySelectorAll("[data-wunsch]").forEach(b => b.onclick = async e => {
+    e.preventDefault(); b.disabled = true;
+    if (await wunschSetzen(b.dataset.wunsch)) aktualisieren(); else b.disabled = false;
+  });
+}
+
 function uebersicht() {
   document.title = "Kunstkurator";
   const liste = D.ausschnitte.filter(a => filter === "alle" || a.werk === filter);
@@ -48,6 +114,7 @@ function uebersicht() {
     <a class="werkkarte" href="#/werk/${w.id}"><img loading="lazy" src="img/werke/${w.id}.jpg${V}" alt="">
     <div><strong>${esc(w.titel)}</strong><span class="leise klein">${esc(w.kuenstler)} · ${D.ausschnitte.filter(a => a.werk === w.id).length} Ausschnitte</span></div></a>`).join("");
   app.innerHTML = `
+    ${rahmenKarte()}
     <h1>Ausschnitte</h1>
     <p class="leise">${D.ausschnitte.length} Details aus ${D.werke.filter(w => D.ausschnitte.some(a => a.werk === w.id)).length} Gemälden, zugeschnitten für den Rahmen.</p>
     <div class="chips">${chips}</div>
@@ -55,6 +122,7 @@ function uebersicht() {
     <h2>Die Gemälde</h2>
     <div class="werke">${werke}</div>
     <p class="fuss">Alle Abbildungen gemeinfrei, Quelle: Wikimedia Commons.</p>`;
+  rahmenKnoepfe(app);
   app.querySelectorAll(".chip").forEach(b => b.onclick = () => {
     filter = b.dataset.f; sessionStorage.setItem("kk-filter", filter); uebersicht();
   });
@@ -94,7 +162,7 @@ function zoomen(root) {
   });
 }
 
-function detail(id) {
+function detail(id, keepScroll) {
   const a = D.ausschnitte.find(x => x.id === id);
   if (!a) return uebersicht();
   const w = D.werkBy[a.werk];
@@ -115,6 +183,7 @@ function detail(id) {
       <div>
         <h1>${esc(a.titel)}</h1>
         <p class="werkzeile">${werkZeile(w)}${a.stelle ? "<br>" + esc(a.stelle) : ""}</p>
+        ${rahmenAktion(a)}
         <div class="lesetext">${absatz(a.text)}</div>
         <h2>Wo im Gemälde</h2>
         ${gesamtbild(w, a, false)}
@@ -122,7 +191,17 @@ function detail(id) {
       </div>
     </div>`;
   zoomen(app);
-  window.scrollTo(0, 0);
+  rahmenKnoepfe(app);
+  if (!keepScroll) window.scrollTo(0, 0);
+}
+
+function rahmenAktion(a) {
+  if (!D.vermittler) return "";
+  const s = D.status || {};
+  if (s.aktuell && s.aktuell.id === a.id) return `<p class="hinweisbox">Hängt gerade am Rahmen (${seit(s.aktuell.seit)}).</p>`;
+  if (s.wunsch && s.wunsch.id === a.id) return `<p class="hinweisbox">Kommt als Nächstes. Drück am Rahmen die rechte Taste.
+      <button class="mini" data-wunsch-weg>Zurücknehmen</button></p>`;
+  return `<p><button class="knopf gold" data-wunsch="${a.id}">Als Nächstes am Rahmen zeigen</button></p>`;
 }
 
 function werk(id) {
@@ -144,21 +223,34 @@ function werk(id) {
 
 function info() {
   document.title = "Rahmen · Kunstkurator";
+  const url = D.vermittler ? D.vermittler + "/bild" : "";
   app.innerHTML = `
-    <h1>Bilder für den Rahmen</h1>
-    <p class="leise">Jeder Ausschnitt liegt als JPG mit 1200 × 1600 Pixeln im Hochformat bereit, passend zum reTerminal E1004.</p>
-    <p><a class="knopf gold" href="download/rahmenbilder.zip" download>Alle ${D.ausschnitte.length} Bilder als ZIP laden</a></p>
+    <h1>Der Rahmen</h1>
+    ${rahmenKarte()}
+    ${url ? `
     <div class="infokasten">
-      <strong>So kommen die Bilder auf den Rahmen</strong>
+      <strong>Einrichtung (einmalig)</strong>
       <ol>
-        <li>ZIP am Computer laden und entpacken.</li>
-        <li>Rahmen mit der Refresh-Taste aufwecken, die Weboberfläche bleibt dann erreichbar.</li>
-        <li>Weboberfläche im Browser öffnen, ein Album anlegen (zum Beispiel „Bosch“ und „Bruegel“) und die Bilder hineinziehen. Die Firmware rechnet sie beim Hochladen ins Displayformat um.</li>
-        <li>In den Einstellungen die Rotation auf Speicher und Reihenfolge „random“ stellen.</li>
-        <li>Rechte Taste am Rahmen: nächstes Bild, auch aus dem Tiefschlaf.</li>
+        <li>Rahmen mit der Refresh-Taste aufwecken und die Weboberfläche öffnen.</li>
+        <li>In den Einstellungen bei Auto-Rotate als Quelle <em>URL</em> wählen und diese Adresse eintragen:<br><code class="url">${esc(url)}</code>
+          <button class="mini" data-kopieren="${esc(url)}">Kopieren</button></li>
+        <li>Einen Zeitplan wählen, zum Beispiel einmal täglich in der Früh. Ohne Wunsch kommt dann ein Zufallsbild.</li>
       </ol>
-    </div>
-    <p class="leise klein">Neue Gemälde kommen über ein Update dazu. Bereits geladene Bilder ändern ihren Dateinamen nicht.</p>`;
+      <strong>Im Alltag</strong>
+      <ol>
+        <li>In der App bei einem Ausschnitt „Als Nächstes am Rahmen zeigen“ tippen.</li>
+        <li>Am Rahmen die rechte Taste drücken. Ohne Wunsch kommt ein zufälliger Ausschnitt.</li>
+      </ol>
+    </div>` : `<p class="leise">Die Verbindung zum Rahmen ist noch nicht eingerichtet.</p>`}
+    ${D.status && D.status.verlauf && D.status.verlauf.length ? `<h2>Zuletzt am Rahmen</h2>
+      <div class="raster">${D.status.verlauf.slice(0, 8).map(v => D.ausschnitte.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}
+    <h2>Ohne Internet</h2>
+    <p class="leise">Alle Bilder gibt es auch als ZIP mit 1200 × 1600 Pixeln, zum Hochladen über die Weboberfläche des Rahmens in ein Album.</p>
+    <p><a class="knopf" href="download/rahmenbilder.zip" download>Alle ${D.ausschnitte.length} Bilder als ZIP</a></p>`;
+  rahmenKnoepfe(app);
+  app.querySelectorAll("[data-kopieren]").forEach(b => b.onclick = () => {
+    navigator.clipboard && navigator.clipboard.writeText(b.dataset.kopieren).then(() => b.textContent = "Kopiert");
+  });
 }
 
 function zufall() {
@@ -178,5 +270,21 @@ function route() {
 }
 
 window.addEventListener("hashchange", route);
-laden().then(route);
+laden().then(async () => { route(); await statusLaden(); aktualisieren(); });
+
+// Status alle 30 Sekunden auffrischen, solange die App sichtbar ist
+function aktualisieren() {
+  const h = location.hash.replace(/^#\/?/, "").split("/");
+  if (h[0] === "a") detail(decodeURIComponent(h[1]), true);
+  else if (!h[0] || h[0] === "info") route();
+}
+setInterval(async () => {
+  if (document.visibilityState !== "visible" || !D || !D.vermittler) return;
+  const vorher = JSON.stringify(D.status);
+  await statusLaden();
+  if (JSON.stringify(D.status) !== vorher) aktualisieren();
+}, 30000);
+document.addEventListener("visibilitychange", async () => {
+  if (document.visibilityState === "visible" && D && D.vermittler) { await statusLaden(); aktualisieren(); }
+});
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});

@@ -1,0 +1,15 @@
+name = "kunstkurator"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[vars]
+QUELLE = "https://steph770.github.io/Kunstkurator"
+
+[[durable_objects.bindings]]
+name = "RAHMEN"
+class_name = "Rahmen"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Rahmen"]
