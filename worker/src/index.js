@@ -34,7 +34,7 @@ export default {
         method: "POST",
         body: JSON.stringify({ ids, akku: akku === null ? null : Number(akku) }),
       })).json();
-      const bild = await fetch(`${env.QUELLE}/img/rahmen/${wahl.id}.jpg`, { cf: { cacheTtl: 86400, cacheEverything: true } });
+      const bild = await fetch(`${env.QUELLE}/img/rahmen/${wahl.id}.jpg?v=${env.BILD_VERSION || "1"}`, { cf: { cacheTtl: 86400, cacheEverything: true } });
       if (!bild.ok) return new Response("Bild nicht erreichbar", { status: 502 });
       return new Response(bild.body, {
         headers: {

@@ -5,6 +5,7 @@ workers_dev = true
 
 [vars]
 QUELLE = "https://steph770.github.io/Kunstkurator"
+BILD_VERSION = "2"
 
 [[durable_objects.bindings]]
 name = "RAHMEN"
