@@ -58,5 +58,89 @@
     "museum": "Kunsthistorisches Museum",
     "ort": "Wien",
     "commons": "File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg"
+  },
+  {
+    "id": "genter",
+    "kuerzel": "GA",
+    "titel": "Der Genter Altar",
+    "kuenstler": "Jan und Hubert van Eyck",
+    "datierung": "vollendet 1432",
+    "technik": "Öl auf Eichenholz, Polyptychon",
+    "masse": "geöffnet rund 3,5 × 4,6 m",
+    "museum": "Sint-Baafskathedraal",
+    "ort": "Gent",
+    "commons": "File:Jan and Hubert van Eyck - Ghent Altarpiece.jpg"
+  },
+  {
+    "id": "arnolfini",
+    "kuerzel": "AR",
+    "titel": "Die Arnolfini-Hochzeit",
+    "kuenstler": "Jan van Eyck",
+    "datierung": "1434",
+    "technik": "Öl auf Eichenholz",
+    "masse": "82,2 × 60 cm",
+    "museum": "National Gallery",
+    "ort": "London",
+    "commons": "File:Jan van Eyck - Arnolfini Portrait - Macrophotography.jpg"
+  },
+  {
+    "id": "antonius",
+    "kuerzel": "VA",
+    "titel": "Die Versuchung des heiligen Antonius",
+    "kuenstler": "Hieronymus Bosch",
+    "datierung": "um 1500-1510",
+    "technik": "Öl auf Eichenholz, Triptychon",
+    "masse": "Mitteltafel 131,5 × 119 cm",
+    "museum": "Museu Nacional de Arte Antiga",
+    "ort": "Lissabon",
+    "commons": "File:Temptation of Saint Anthony.jpg"
+  },
+  {
+    "id": "triumph",
+    "kuerzel": "TT",
+    "titel": "Der Triumph des Todes",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "um 1562",
+    "technik": "Öl auf Holz",
+    "masse": "117 × 162 cm",
+    "museum": "Museo del Prado",
+    "ort": "Madrid",
+    "commons": "File:Thetriumphofdeath.jpg"
+  },
+  {
+    "id": "avercamp",
+    "kuerzel": "WL",
+    "titel": "Winterlandschaft mit Eisläufern",
+    "kuenstler": "Hendrick Avercamp",
+    "datierung": "um 1608",
+    "technik": "Öl auf Eichenholz",
+    "masse": "77,3 × 131,9 cm",
+    "museum": "Rijksmuseum",
+    "ort": "Amsterdam",
+    "commons": "File:Avercamp, Hendrick - Winterlandschap met schaatsers - SK-A-1718.jpg"
+  },
+  {
+    "id": "bellotto",
+    "kuerzel": "BW",
+    "titel": "Wien, vom Belvedere aus gesehen",
+    "kuenstler": "Bernardo Bellotto, gen. Canaletto",
+    "datierung": "1758/61",
+    "technik": "Öl auf Leinwand",
+    "masse": "135 × 213 cm",
+    "museum": "Kunsthistorisches Museum",
+    "ort": "Wien",
+    "commons": "File:Bernardo Bellotto, il Canaletto - View of Vienna from the Belvedere.jpg"
+  },
+  {
+    "id": "nachtwache",
+    "kuerzel": "NW",
+    "titel": "Die Nachtwache",
+    "kuenstler": "Rembrandt van Rijn",
+    "datierung": "1642",
+    "technik": "Öl auf Leinwand",
+    "masse": "379,5 × 453,5 cm",
+    "museum": "Rijksmuseum",
+    "ort": "Amsterdam",
+    "commons": "File:Rembrandt Harmensz. van Rijn - Nachtwacht - Google Art Project.jpg"
   }
 ]
