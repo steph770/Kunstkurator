@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .originale
-          key: originale-${{ hashFiles('data/werke.json') }}
+          key: originale-${{ github.run_id }}
           restore-keys: originale-
       - name: Bilder erzeugen
         env:

@@ -1,6 +1,7 @@
 "use strict";
 const app = document.getElementById("app");
-const V = "?v=" + (window.KK_VERSION || "1");
+const V = "?v=1";
+const IV = id => "?v=" + ((D && D.info._ausschnitte && D.info._ausschnitte[id]) || "1");
 let D = null; // {werke, ausschnitte, info, texte}
 let filter = sessionStorage.getItem("kk-filter") || "alle";
 
@@ -33,7 +34,7 @@ function werkZeile(w) {
 function kachel(a) {
   const w = D.werkBy[a.werk];
   return `<a class="kachel" href="#/a/${a.id}">
-    <img loading="lazy" src="img/vorschau/${a.id}.jpg${V}" alt="">
+    <img loading="lazy" src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt="">
     <div class="kachel-text"><div class="kachel-titel">${esc(a.titel)}</div>
     <div class="kachel-werk">${esc(w ? w.titel : "")}</div></div></a>`;
 }
@@ -104,7 +105,7 @@ function detail(id) {
   app.innerHTML = `
     <div class="detail">
       <div class="detail-bild">
-        <img src="img/rahmen/${a.id}.jpg${V}" alt="${esc(a.titel)}">
+        <img src="img/rahmen/${a.id}.jpg${IV(a.id)}" alt="${esc(a.titel)}">
         <div class="blaettern">
           <a class="knopf" href="#/a/${vor.id}">‹ Zurück</a>
           <a class="knopf" href="img/rahmen/${a.id}.jpg" download="${a.id}.jpg">Bild laden</a>

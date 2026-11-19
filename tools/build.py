@@ -214,7 +214,7 @@ def build(werke, crops):
     werk_by = {w["id"]: w for w in werke}
     for d in ("img/rahmen", "img/vorschau", "img/werke"):
         os.makedirs(os.path.join(ROOT, d), exist_ok=True)
-    meta = {}
+    meta = {"_ausschnitte": {}}
     seen = set()
     for c in crops:
         if c["id"] in seen:
@@ -236,6 +236,7 @@ def build(werke, crops):
         for c in [c for c in crops if c["werk"] == wid]:
             left, top, cw, ch = crop_box(c, W, H)
             key = f"{left},{top},{cw},{ch}"
+            meta["_ausschnitte"][c["id"]] = hashlib.sha1(key.encode()).hexdigest()[:8]
             dest = os.path.join(ROOT, "img/rahmen", f"{c['id']}.jpg")
             stamp = dest + ".box"
             if os.path.exists(dest) and os.path.exists(stamp) and open(stamp).read() == key:
