@@ -71,6 +71,37 @@ def commons_info(title):
     return page["imageinfo"][0]
 
 
+def kuenstlerbilder():
+    """Lädt Bildnisse der Künstler (nur wo ein zeitgenössisches existiert) als kleine JPEGs."""
+    pfad = os.path.join(ROOT, "data", "kuenstler.json")
+    if not os.path.exists(pfad):
+        return
+    os.makedirs(os.path.join(ROOT, "img/kuenstler"), exist_ok=True)
+    for k in load("kuenstler.json"):
+        titel = k.get("bild")
+        if not titel and k.get("bild_suche"):
+            q = urllib.parse.urlencode({"action": "query", "list": "search", "srsearch": k["bild_suche"],
+                                        "srnamespace": "6", "srlimit": "1", "format": "json", "formatversion": "2"})
+            treffer = json.loads(http_get("https://commons.wikimedia.org/w/api.php?" + q))["query"]["search"]
+            titel = treffer[0]["title"] if treffer else None
+        ziel = os.path.join(ROOT, "img/kuenstler", f"{k['id']}.jpg")
+        stamp = ziel + ".box"
+        if not titel:
+            continue
+        if os.path.exists(ziel) and os.path.exists(stamp) and open(stamp).read() == titel:
+            continue
+        q = urllib.parse.urlencode({"action": "query", "titles": titel, "prop": "imageinfo", "iiprop": "url",
+                                    "iiurlwidth": "900", "format": "json", "formatversion": "2"})
+        info = json.loads(http_get("https://commons.wikimedia.org/w/api.php?" + q))["query"]["pages"][0]["imageinfo"][0]
+        tmp = ziel + ".roh"
+        http_get(info["thumburl"], tmp)
+        Image.open(tmp).convert("RGB").save(ziel, "JPEG", quality=86, optimize=True, progressive=False)
+        os.remove(tmp)
+        with open(stamp, "w") as f:
+            f.write(titel)
+        print(f"Künstlerbild {k['id']}: {titel}", flush=True)
+
+
 def original(werk):
     os.makedirs(CACHE, exist_ok=True)
     info = commons_info(werk["commons"])
@@ -264,6 +295,10 @@ def build(werke, crops):
             if base not in seen:
                 os.remove(os.path.join(ROOT, d, fn))
     kacheln(werke, used)
+    try:
+        kuenstlerbilder()
+    except Exception as e:  # noqa: BLE001
+        print("Künstlerbilder übersprungen:", e, flush=True)
     with open(os.path.join(ROOT, "data", "bildinfo.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
     rahmenbilder(crops)

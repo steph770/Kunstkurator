@@ -12,12 +12,14 @@ const absatz = t => (Array.isArray(t) ? t : String(t || "").split(/\n\s*\n/))
 
 async function laden() {
   const get = n => fetch("data/" + n + V, { cache: "no-cache" }).then(r => r.ok ? r.json() : null).catch(() => null);
-  const [werke, ausschnitte, info, texte, rahmen] = await Promise.all([
-    get("werke.json"), get("ausschnitte.json"), get("bildinfo.json"), get("werktexte.json"), get("rahmen.json")]);
+  const [werke, ausschnitte, info, texte, rahmen, kuenstler] = await Promise.all([
+    get("werke.json"), get("ausschnitte.json"), get("bildinfo.json"), get("werktexte.json"), get("rahmen.json"), get("kuenstler.json")]);
   const alle = ausschnitte || [];
   D = { werke: werke || [], alle, ausschnitte: alle.filter(a => !a.test), tests: alle.filter(a => a.test), info: info || {}, texte: texte || {},
         vermittler: (rahmen && rahmen.vermittler || "").replace(/\/$/, ""), status: null };
   D.werkBy = Object.fromEntries(D.werke.map(w => [w.id, w]));
+  D.kuenstler = kuenstler || [];
+  D.kBy = Object.fromEntries(D.kuenstler.map(k => [k.id, k]));
   D.nummer = {};
   for (const w of D.werke) D.ausschnitte.filter(a => a.werk === w.id).forEach((a, i) => D.nummer[a.id] = i + 1);
 }
@@ -30,7 +32,8 @@ function box(a) {
 }
 
 function werkZeile(w) {
-  return `${esc(w.kuenstler)}, <a href="#/werk/${w.id}">${esc(w.titel)}</a>, ${esc(w.datierung)} · ${esc(w.museum)}, ${esc(w.ort)}`;
+  const k = w.kid && D.kBy[w.kid] ? `<a href="#/kuenstler/${w.kid}">${esc(w.kuenstler)}</a>` : esc(w.kuenstler);
+  return `${k}, <a href="#/werk/${w.id}">${esc(w.titel)}</a>, ${esc(w.datierung)} · ${esc(w.museum)}, ${esc(w.ort)}`;
 }
 
 function kachel(a) {
@@ -107,23 +110,6 @@ async function wunschSetzen(id) {
   } catch { alert("Der Rahmen-Vermittler ist gerade nicht erreichbar."); return false; }
 }
 
-function rahmenKarte() {
-  if (!D.vermittler) return "";
-  const s = D.status;
-  if (!s) return `<div class="rahmenkarte leise klein">Rahmenstatus wird geladen …</div>`;
-  const akt = s.aktuell;
-  const akku = s.akku ? `<span class="akku ${s.akku.prozent < 20 ? "niedrig" : ""}">Akku ${Math.round(s.akku.prozent)} %</span>` : "";
-  const n = naechsterAmRahmen();
-  const wunsch = n ? `<div class="wunschzeile">Als Nächstes${n.wunsch ? "" : " (Reihenfolge)"}: <a href="#/a/${n.id}">${esc(titelVon(n.id))}</a>
-      ${n.wunsch ? `<button class="mini" data-wunsch-weg>Zurücknehmen</button>` : ""}</div>` : `<div class="wunschzeile leise klein">Als Nächstes: Zufall</div>`;
-  if (!akt) return `<div class="rahmenkarte"><div><div class="leise klein">Am Rahmen</div>
-      <div>Noch kein Bild über den Kurator geladen.</div>${wunsch}</div>${akku}</div>`;
-  return `<div class="rahmenkarte">
-      <a href="#/a/${akt.id}"><img src="img/vorschau/${akt.id}.jpg${IV(akt.id)}" alt=""></a>
-      <div class="rahmenkarte-text"><div class="leise klein">Am Rahmen · ${seit(akt.seit)} ${akku}</div>
-      <a class="rahmenkarte-titel" href="#/a/${akt.id}">${esc(titelVon(akt.id))}</a>${wunsch}</div></div>`;
-}
-
 function rahmenKnoepfe(root) {
   root.querySelectorAll("[data-wunsch-weg]").forEach(b => b.onclick = async e => {
     e.preventDefault(); if (await wunschSetzen(null)) aktualisieren();
@@ -134,30 +120,7 @@ function rahmenKnoepfe(root) {
   });
   root.querySelectorAll("[data-wunsch]").forEach(b => b.onclick = async e => {
     e.preventDefault(); b.disabled = true;
-    if (await wunschSetzen(b.dataset.wunsch)) aktualisieren(); else b.disabled = false;
-  });
-}
-
-function uebersicht() {
-  document.title = "Kunstkurator";
-  const liste = D.ausschnitte.filter(a => filter === "alle" || a.werk === filter);
-  const chips = [["alle", "Alle"], ...D.werke.filter(w => D.ausschnitte.some(a => a.werk === w.id)).map(w => [w.id, w.titel])]
-    .map(([id, t]) => `<button class="chip ${filter === id ? "aktiv" : ""}" data-f="${id}">${esc(t)}</button>`).join("");
-  const werke = D.werke.filter(w => D.ausschnitte.some(a => a.werk === w.id)).map(w => `
-    <a class="werkkarte" href="#/werk/${w.id}"><img loading="lazy" src="img/werke/${w.id}.jpg${V}" alt="">
-    <div><strong>${esc(w.titel)}</strong><span class="leise klein">${esc(w.kuenstler)} · ${D.ausschnitte.filter(a => a.werk === w.id).length} Ausschnitte</span></div></a>`).join("");
-  app.innerHTML = `
-    ${rahmenKarte()}
-    <h1>Ausschnitte</h1>
-    <p class="leise">${D.ausschnitte.length} Details aus ${D.werke.filter(w => D.ausschnitte.some(a => a.werk === w.id)).length} Gemälden, zugeschnitten für den Rahmen.</p>
-    <div class="chips">${chips}</div>
-    <div class="raster">${liste.map(kachel).join("")}</div>
-    <h2>Die Gemälde</h2>
-    <div class="werke">${werke}</div>
-    <p class="fuss">Alle Abbildungen gemeinfrei, Quelle: Wikimedia Commons.</p>`;
-  rahmenKnoepfe(app);
-  app.querySelectorAll(".chip").forEach(b => b.onclick = () => {
-    filter = b.dataset.f; sessionStorage.setItem("kk-filter", filter); uebersicht();
+    if (await wunschSetzen(b.dataset.wunsch)) { b.textContent = "Kommt als Nächstes"; aktualisieren(); } else b.disabled = false;
   });
 }
 
@@ -306,7 +269,7 @@ function leisteKnoepfe(root) {
 
 function detail(id, keepScroll) {
   const a = D.alle.find(x => x.id === id);
-  if (!a) return uebersicht();
+  if (!a) return gemaeldeSeite();
   document.title = a.titel + " · Kunstkurator";
   const vorhanden = buehne && buehne.werk === a.werk && document.body.contains(buehne.el) && document.getElementById("detailtext");
   if (vorhanden) {
@@ -341,107 +304,199 @@ function rahmenAktion(a) {
 
 function werk(id) {
   const w = D.werkBy[id];
-  if (!w) return uebersicht();
+  if (!w) return gemaeldeSeite();
   document.title = w.titel + " · Kunstkurator";
   const quelle = D.info[id] && D.info[id].quelle;
   if (buehne) { try { buehne.viewer.destroy(); } catch {} buehne = null; }
+  const st = stationen(id), erste = st[0];
+  const k = w.kid && D.kBy[w.kid];
   app.innerHTML = `
+    <p class="klein"><a class="zurueck" href="#/gemaelde">‹ Alle Gemälde</a></p>
     <h1>${esc(w.titel)}</h1>
-    <p class="werkzeile">${esc(w.kuenstler)} · ${esc(w.datierung)} · ${esc(w.technik)}, ${esc(w.masse)}<br>${esc(w.museum)}, ${esc(w.ort)}</p>
+    <p class="werkzeile">${k ? `<a href="#/kuenstler/${k.id}">${esc(w.kuenstler)}</a>` : esc(w.kuenstler)} · ${esc(w.datierung)} · ${esc(w.technik)}, ${esc(w.masse)}<br>${esc(w.museum)}, ${esc(w.ort)}</p>
     <div class="buehne breit" id="buehne"></div>
     <p class="hinweis">Mit zwei Fingern zoomen, eine nummerierte Station antippen für ihren Begleittext.</p>
+    ${D.vermittler && erste ? `<p><button class="knopf gold" data-wunsch="${erste.id}">Dieses Gemälde am Rahmen zeigen</button>
+      <span class="leise klein">Beginnt mit Station 1, dann der Reihe nach.</span></p>` : ""}
     <div class="lesetext" style="margin-top:1.4em">${absatz(D.texte[id])}</div>
-    <h2>Die Stationen</h2>
-    <div class="raster">${stationen(id).map(kachel).join("")}</div>
+    <h2>Die Ausschnitte</h2>
+    <div class="raster">${st.map(kachel).join("")}</div>
     ${quelle ? `<p class="fuss"><a href="${esc(quelle)}" target="_blank" rel="noopener">Abbildung auf Wikimedia Commons</a> (gemeinfrei)</p>` : ""}`;
+  rahmenKnoepfe(app);
   buehneBauen(document.getElementById("buehne"), id, null);
   window.scrollTo(0, 0);
 }
 
-function testKachel(a, zusatz) {
-  const s = D.status || {};
-  const marke = s.aktuell && s.aktuell.id === a.id ? "hängt gerade" : s.wunsch && s.wunsch.id === a.id ? "kommt als Nächstes" : "";
-  return `<div class="testkarte">
-    <a href="#/a/${a.id}"><img loading="lazy" src="img/vorschau/${a.id}.jpg${IV(a.id)}" alt=""></a>
-    <div><strong>${esc(a.titel)}</strong>${zusatz ? `<br><span class="leise klein">${esc(zusatz)}</span>` : ""}
-      ${marke ? `<br><span class="hinweis-klein">${marke}</span>` : ""}
-      <br>${D.vermittler ? `<button class="mini" data-wunsch="${a.id}">Als Nächstes zeigen</button>` : ""}
-      <a class="mini" href="#/a/${a.id}">Text</a></div></div>`;
+// ---------- Untere Leiste ----------
+function reiterSetzen(name) {
+  document.querySelectorAll(".unten a").forEach(a => a.classList.toggle("aktiv", a.dataset.reiter === name));
 }
 
-function testBereich() {
-  if (!D.tests.length) return "";
-  const ref = D.ausschnitte.find(a => a.id === "GL01");
-  const varianten = D.tests.filter(a => a.format === "bmp"), makros = D.tests.filter(a => a.format !== "bmp");
-  return `<h2>Darstellungstest</h2>
-    <p class="leise">Derselbe Ausschnitt in mehreren Umrechnungen. Schick sie nacheinander an den Rahmen und vergleich aus normalem Betrachtungsabstand. Die Vorschaubilder hier sind nur eine Annäherung, entscheidend ist das echte Display.</p>
-    <div class="testliste">
-      ${ref ? testKachel(ref, "Referenz: so wie bisher, Umrechnung durch den Rahmen") : ""}
-      ${varianten.map(a => testKachel(a)).join("")}
-    </div>
-    ${makros.length ? `<h3>Makros</h3>
-    <p class="leise">Sehr enge Ausschnitte, in denen Pinselstriche, pastose Farbe und Craquelé sichtbar werden.</p>
-    <div class="testliste">${makros.map(a => testKachel(a, D.werkBy[a.werk] && D.werkBy[a.werk].titel)).join("")}</div>` : ""}`;
-}
+const groesse = id => `img/rahmen/${id}.jpg${IV(id)}`;
 
-function info() {
-  document.title = "Rahmen · Kunstkurator";
-  const url = D.vermittler ? D.vermittler + "/bild" : "";
+// ---------- Im Rahmen ----------
+function rahmenSeite() {
+  document.title = "Im Rahmen · Kunstkurator";
+  reiterSetzen("rahmen");
+  if (!D.vermittler) { app.innerHTML = `<h1>Im Rahmen</h1><p class="leise">Die Verbindung zum Rahmen ist nicht eingerichtet.</p>`; return; }
+  const s = D.status;
+  const akku = s && s.akku ? `<span class="akku ${s.akku.prozent < 20 ? "niedrig" : ""}">Akku ${Math.round(s.akku.prozent)} %</span>` : "";
+  const akt = s && s.aktuell && D.alle.find(a => a.id === s.aktuell.id);
+  let oben;
+  if (!s) oben = `<p class="leise">Rahmenstatus wird geladen …</p>`;
+  else if (!akt) oben = `<p class="leise">Noch kein Bild über den Kurator geladen. ${akku}</p>`;
+  else {
+    const w = D.werkBy[akt.werk];
+    oben = `
+      <div class="buehnenbild">
+        <a href="#/a/${akt.id}"><img src="${groesse(akt.id)}" alt="${esc(akt.titel)}"></a>
+        <div class="buehnenbild-text">
+          <div class="leise klein">Hängt seit ${seit(s.aktuell.seit).replace(/^vor /, "")} ${akku}</div>
+          <h1>${esc(akt.titel)}</h1>
+          <p class="werkzeile">${werkZeile(w)}${akt.stelle ? "<br>" + esc(akt.stelle) : ""}</p>
+          <p><a class="knopf" href="#/a/${akt.id}">Im Gemälde zeigen</a></p>
+          <div class="lesetext">${absatz(akt.text)}</div>
+        </div>
+      </div>`;
+  }
+  const zufall = s && s.modus === "zufall";
   app.innerHTML = `
-    <h1>Der Rahmen</h1>
-    ${rahmenKarte()}
-    ${url ? `
+    ${oben}
     <div class="infokasten">
-      <strong>Im Alltag</strong>
-      <ol>
-        <li>In der App bei einem Ausschnitt „Als Nächstes am Rahmen zeigen“ tippen.</li>
-        <li>Am Rahmen die rechte Taste drücken. Ohne Wunsch kommt ${(D.status && D.status.modus === "zufall") ? "ein zufälliger Ausschnitt" : "der nächste Ausschnitt des Gemäldes, nach der letzten Station das nächste Gemälde"}.</li>
-      </ol>
-      <strong>Ohne Wunsch</strong>
+      <strong>Ohne Wunsch kommt beim Tastendruck</strong>
       <div class="moduswahl">
-        <button class="knopf ${(D.status && D.status.modus === "zufall") ? "" : "gold"}" data-modus="reihe">Der Reihe nach</button>
-        <button class="knopf ${(D.status && D.status.modus === "zufall") ? "gold" : ""}" data-modus="zufall">Zufall</button>
+        <button class="knopf ${zufall ? "" : "gold"}" data-modus="reihe">Der Reihe nach</button>
+        <button class="knopf ${zufall ? "gold" : ""}" data-modus="zufall">Zufall</button>
       </div>
-    </div>` : `<p class="leise">Die Verbindung zum Rahmen ist noch nicht eingerichtet.</p>`}
-    ${D.status && D.status.verlauf && D.status.verlauf.length ? `<h2>Zuletzt am Rahmen</h2>
-      <div class="raster">${D.status.verlauf.slice(0, 8).map(v => D.alle.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}
-    ${testBereich()}
+      <p class="leise klein">${zufall ? "Ein zufälliger Ausschnitt aus der ganzen Sammlung." : "Die nächste Station des Gemäldes, nach der letzten Station das nächste Gemälde."} Bild wechseln: rechte Taste am Rahmen kurz antippen und warten, bis das Bild aufgebaut ist.</p>
+    </div>
+    ${s && s.verlauf && s.verlauf.length > 1 ? `<h2>Zuletzt am Rahmen</h2>
+      <div class="raster">${s.verlauf.slice(1, 9).map(v => D.alle.find(a => a.id === v.id)).filter(Boolean).map(kachel).join("")}</div>` : ""}
     <h2>Ohne Internet</h2>
     <p class="leise">Alle Bilder gibt es auch als ZIP mit 1200 × 1600 Pixeln, bereits für das Display umgerechnet, zum Hochladen über die Weboberfläche des Rahmens in ein Album.</p>
     <p><a class="knopf" href="download/rahmenbilder.zip" download>Alle ${D.ausschnitte.length} Bilder als ZIP</a></p>`;
   rahmenKnoepfe(app);
-  app.querySelectorAll("[data-kopieren]").forEach(b => b.onclick = () => {
-    navigator.clipboard && navigator.clipboard.writeText(b.dataset.kopieren).then(() => b.textContent = "Kopiert");
+}
+
+// ---------- Als Nächstes ----------
+async function ueberspringen() {
+  const r = reihe(), n = naechsterAmRahmen();
+  const ziel = n ? r[(r.indexOf(n.id) + 1) % r.length] : r[Math.floor(Math.random() * r.length)];
+  return wunschSetzen(ziel);
+}
+
+function naechstesSeite() {
+  document.title = "Als Nächstes · Kunstkurator";
+  reiterSetzen("naechstes");
+  if (!D.vermittler) { app.innerHTML = `<h1>Als Nächstes</h1><p class="leise">Die Verbindung zum Rahmen ist nicht eingerichtet.</p>`; return; }
+  if (!D.status) { app.innerHTML = `<h1>Als Nächstes</h1><p class="leise">Rahmenstatus wird geladen …</p>`; return; }
+  const n = naechsterAmRahmen();
+  const knoepfe = `<div class="knopfreihe">
+      <button class="knopf" data-ueberspringen>Überspringen</button>
+      <a class="knopf" href="#/gemaelde">Anderes wählen</a>
+      ${n && n.wunsch ? `<button class="knopf" data-wunsch-weg>Zurücknehmen</button>` : ""}
+    </div>`;
+  if (!n) {
+    app.innerHTML = `<h1>Als Nächstes</h1>
+      <p class="leise">Der Rahmen steht auf Zufall. Welches Bild kommt, entscheidet sich erst beim Tastendruck.</p>${knoepfe}`;
+  } else {
+    const a = D.alle.find(x => x.id === n.id), w = D.werkBy[a.werk];
+    app.innerHTML = `
+      <div class="buehnenbild">
+        <a href="#/a/${a.id}"><img src="${groesse(a.id)}" alt="${esc(a.titel)}"></a>
+        <div class="buehnenbild-text">
+          <div class="leise klein">${n.wunsch ? "Ausgewählt" : "Nächste Station in der Reihenfolge"} · kommt beim nächsten Tastendruck</div>
+          <h1>${esc(a.titel)}</h1>
+          <p class="werkzeile">${werkZeile(w)}${a.stelle ? "<br>" + esc(a.stelle) : ""}</p>
+          ${knoepfe}
+          <div class="lesetext">${absatz(a.text)}</div>
+        </div>
+      </div>`;
+  }
+  rahmenKnoepfe(app);
+  app.querySelectorAll("[data-ueberspringen]").forEach(b => b.onclick = async () => {
+    b.disabled = true; if (await ueberspringen()) naechstesSeite(); else b.disabled = false;
   });
 }
 
-function zufall() {
-  const a = D.ausschnitte[Math.floor(Math.random() * D.ausschnitte.length)];
-  location.replace("#/a/" + a.id);
+// ---------- Gemälde ----------
+function werkKarte(w) {
+  const n = stationen(w.id).length;
+  return `<a class="werkkarte" href="#/werk/${w.id}"><img loading="lazy" src="img/werke/${w.id}.jpg${V}" alt="">
+    <div><strong>${esc(w.titel)}</strong><span class="leise klein">${esc(w.kuenstler)} · ${esc(w.datierung)}<br>${n} Ausschnitte</span></div></a>`;
 }
 
+function gemaeldeSeite() {
+  document.title = "Gemälde · Kunstkurator";
+  reiterSetzen("gemaelde");
+  const liste = [...D.werke].filter(w => stationen(w.id).length).sort((a, b) => (a.jahr || 0) - (b.jahr || 0));
+  app.innerHTML = `<h1>Gemälde</h1>
+    <p class="leise">${liste.length} Gemälde von ${(liste[0] || {}).jahr} bis ${(liste[liste.length - 1] || {}).jahr}, mit ${D.ausschnitte.length} Ausschnitten für den Rahmen.</p>
+    <div class="werke">${liste.map(werkKarte).join("")}</div>
+    <p class="fuss">Alle Abbildungen gemeinfrei, Quelle: Wikimedia Commons.</p>`;
+}
+
+// ---------- Künstler ----------
+function kuenstlerBild(k, klasse) {
+  return `<img class="${klasse}" src="img/kuenstler/${k.id}.jpg${V}" alt="" onerror="this.remove()">`;
+}
+
+function kuenstlerListe() {
+  document.title = "Künstler · Kunstkurator";
+  reiterSetzen("kuenstler");
+  const jahr = k => Math.min(...D.werke.filter(w => w.kid === k.id).map(w => w.jahr || 9999));
+  const liste = [...D.kuenstler].sort((a, b) => jahr(a) - jahr(b));
+  app.innerHTML = `<h1>Künstler</h1>
+    <div class="kuenstlerliste">${liste.map(k => `
+      <a class="kuenstlerkarte" href="#/kuenstler/${k.id}">
+        ${kuenstlerBild(k, "kuenstler-mini")}
+        <div><strong>${esc(k.name)}</strong><span class="leise klein">${esc(k.lebensdaten)}</span>
+        <p class="klein">${esc(k.kurz)}</p></div></a>`).join("")}</div>`;
+}
+
+function kuenstlerSeite(id) {
+  const k = D.kBy[id];
+  if (!k) return kuenstlerListe();
+  document.title = k.name + " · Kunstkurator";
+  reiterSetzen("kuenstler");
+  const werke = D.werke.filter(w => w.kid === id && stationen(w.id).length);
+  app.innerHTML = `
+    <p class="klein"><a class="zurueck" href="#/kuenstler">‹ Alle Künstler</a></p>
+    <h1>${esc(k.name)}</h1>
+    <p class="werkzeile">${esc(k.lebensdaten)}</p>
+    ${k.bild || k.bild_suche ? `<figure class="kuenstler-bild">${kuenstlerBild(k, "")}<figcaption class="leise klein">${esc(k.bild_text || "")}</figcaption></figure>` : ""}
+    <div class="lesetext">${absatz(k.text)}</div>
+    <h2>In der Sammlung</h2>
+    <div class="werke">${werke.map(werkKarte).join("")}</div>`;
+  window.scrollTo(0, 0);
+}
+
+// ---------- Navigation ----------
 function route() {
   if (!D) return;
-  const ziel = location.hash.replace(/^#\/?/, "").split("/")[0];
-  if (ziel !== "a" && ziel !== "werk" && buehne) { try { buehne.viewer.destroy(); } catch {} buehne = null; }
   const h = location.hash.replace(/^#\/?/, "");
   const [teil, id] = h.split("/");
-  if (teil === "a") detail(decodeURIComponent(id));
-  else if (teil === "werk") werk(decodeURIComponent(id));
-  else if (teil === "info") info();
-  else if (teil === "zufall") zufall();
-  else uebersicht();
+  if (teil !== "a" && teil !== "werk" && buehne) { try { buehne.viewer.destroy(); } catch {} buehne = null; }
+  if (teil === "a") { reiterSetzen("gemaelde"); detail(decodeURIComponent(id)); }
+  else if (teil === "werk") { reiterSetzen("gemaelde"); werk(decodeURIComponent(id)); }
+  else if (teil === "gemaelde") gemaeldeSeite();
+  else if (teil === "kuenstler") id ? kuenstlerSeite(decodeURIComponent(id)) : kuenstlerListe();
+  else if (teil === "naechstes") naechstesSeite();
+  else rahmenSeite();
+  if (teil !== "a") window.scrollTo(0, 0);
 }
 
 window.addEventListener("hashchange", route);
 laden().then(async () => { route(); await statusLaden(); aktualisieren(); });
 
-// Status alle 30 Sekunden auffrischen, solange die App sichtbar ist
+// Nach neuem Rahmenstatus nur die Seiten neu zeichnen, die ihn anzeigen
 function aktualisieren() {
   const h = location.hash.replace(/^#\/?/, "").split("/");
   if (h[0] === "a") detail(decodeURIComponent(h[1]), true);
-  else if (!h[0] || h[0] === "info") route();
+  else if (h[0] === "naechstes") naechstesSeite();
+  else if (!h[0] || h[0] === "rahmen" || h[0] === "info") { const y = window.scrollY; rahmenSeite(); window.scrollTo(0, y); }
 }
+// Status alle 30 Sekunden auffrischen, solange die App sichtbar ist
 setInterval(async () => {
   if (document.visibilityState !== "visible" || !D || !D.vermittler) return;
   const vorher = JSON.stringify(D.status);

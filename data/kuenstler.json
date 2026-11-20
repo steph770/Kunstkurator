@@ -1,0 +1,50 @@
+[
+  {
+    "id": "vaneyck",
+    "name": "Jan und Hubert van Eyck",
+    "lebensdaten": "Jan um 1390-1441, Hubert gestorben 1426",
+    "kurz": "Brüder aus Flandern, Jan wurde Hofmaler des Herzogs von Burgund und brachte die Ölmalerei zu einer nie gesehenen Feinheit.",
+    "bild_suche": "Portrait of a Man in a Turban Jan van Eyck National Gallery London",
+    "bild_text": "Mann mit rotem Turban, 1433, möglicherweise ein Selbstbildnis Jan van Eycks",
+    "text": "Über Hubert van Eyck weiß man fast nichts. Eine Inschrift auf dem Rahmen des Genter Altars nennt ihn als den Maler, der das Werk begonnen hat, „größer als irgendeiner“. Nach seinem Tod 1426 vollendete sein jüngerer Bruder Jan den Altar, 1432 wurde er geweiht. Welche Teile von wem stammen, ist bis heute ungeklärt.\n\nJan van Eyck ist dagegen gut belegt. Er arbeitete als Hofmaler und Kammerdiener für Philipp den Guten, Herzog von Burgund, und reiste in dessen Auftrag sogar diplomatisch: 1428 fuhr er nach Portugal, um die Braut des Herzogs zu malen. Ab etwa 1430 lebte er in Brügge, damals einer der reichsten Handelsstädte Europas. Dort entstand 1434 die Arnolfini-Hochzeit für einen italienischen Kaufmann.\n\nVan Eyck hat die Ölmalerei nicht erfunden, aber er beherrschte sie wie niemand vor ihm. Er legte viele dünne, durchscheinende Farbschichten übereinander, sogenannte Lasuren. So entstehen Glanz auf Metall, Licht in Glas und die Tiefe von Samt und Pelz. Sein Wahlspruch, den er auf manche Rahmen schrieb, lautete „Als ich can“, so gut ich kann.\n\nHieronymus Bosch und Pieter Bruegel bauten auf dieser flämischen Tradition auf. Ohne van Eycks Genauigkeit im Kleinen wären ihre Gewimmelbilder nicht denkbar."
+  },
+  {
+    "id": "bosch",
+    "name": "Hieronymus Bosch",
+    "lebensdaten": "um 1450-1516",
+    "kurz": "Maler aus Herzogenbusch, Erfinder der Mischwesen und Höllenlandschaften, die bis heute seinen Namen tragen.",
+    "text": "Hieronymus Bosch hieß eigentlich Jheronimus van Aken. Er stammte aus einer Malerfamilie und verbrachte sein ganzes Leben in 's-Hertogenbosch, deutsch Herzogenbusch, einer wohlhabenden Stadt im Herzogtum Brabant. Nach ihr nannte er sich Bosch. Er heiratete eine reiche Frau und war angesehenes Mitglied der Liebfrauenbruderschaft, einer frommen Vereinigung von Bürgern und Geistlichen.\n\nVon ihm sind nur rund 25 Gemälde erhalten, keines davon ist datiert. Trotzdem wurde er schon zu Lebzeiten berühmt. Fürsten in ganz Europa sammelten seine Bilder, allen voran später der spanische König Philipp II. Deshalb hängen der Garten der Lüste und viele andere Werke heute im Prado in Madrid.\n\nBosch malte die Welt als Schauplatz zwischen Sünde und Erlösung. Seine Höllen sind voller Mischwesen aus Tieren, Pflanzen, Werkzeugen und Musikinstrumenten, seine Paradiese voller Rätsel. Vieles davon geht auf Sprichwörter, Predigten und die Volksfrömmigkeit seiner Zeit zurück, vieles bleibt bis heute unerklärt.\n\nEin gesichertes Bildnis von Bosch gibt es nicht. Nach seinem Tod entstanden so viele Nachahmungen, dass Verleger noch Jahrzehnte später Werke anderer Künstler unter seinem Namen verkauften. Der bekannteste seiner Erben ist Pieter Bruegel, der als „neuer Bosch“ gefeiert wurde."
+  },
+  {
+    "id": "bruegel",
+    "name": "Pieter Bruegel der Ältere",
+    "lebensdaten": "um 1525/30-1569",
+    "kurz": "Flämischer Maler des Volkslebens und der großen Gewimmelbilder, zunächst als „neuer Bosch“ gefeiert.",
+    "bild_suche": "Pieter Bruegel the Elder portrait Lampsonius Wierix engraving",
+    "bild_text": "Kupferstich von 1572, wenige Jahre nach seinem Tod entstanden",
+    "text": "Wo genau Pieter Bruegel geboren wurde, ist unbekannt. 1551 wurde er in Antwerpen als Meister in die Malergilde aufgenommen. Bald danach reiste er nach Italien und zeichnete auf dem Weg die Alpen, deren Weite später in vielen seiner Landschaften steckt.\n\nZurück in Antwerpen arbeitete er für den Verleger Hieronymus Cock, der Kupferstiche in ganz Europa verkaufte. Bruegel lieferte Entwürfe im Stil von Hieronymus Bosch, die so gut ankamen, dass Cock einen davon sogar unter Boschs Namen herausbrachte. Der Sturz der rebellierenden Engel von 1562 zeigt diesen Bosch-Einfluss noch deutlich.\n\nDanach fand Bruegel seinen eigenen Ton. In den Sprichwörtern und den Kinderspielen füllt er ganze Dörfer mit Menschen, die alle etwas tun, beobachtet ohne Spott und ohne Predigt. Später kamen die großen Landschaften dazu, etwa die Jäger im Schnee. Den Beinamen „Bauernbruegel“ bekam er, weil er so oft das Leben einfacher Leute malte.\n\n1563 heiratete er und zog nach Brüssel, wo er schon 1569 starb. Seine Söhne Pieter Brueghel der Jüngere und Jan Brueghel der Ältere wurden ebenfalls Maler. Die größte Sammlung seiner Gemälde besitzt das Kunsthistorische Museum in Wien, darunter der Turmbau zu Babel und die Kinderspiele."
+  },
+  {
+    "id": "avercamp",
+    "name": "Hendrick Avercamp",
+    "lebensdaten": "1585-1634",
+    "kurz": "Der Maler der holländischen Winter, gehörlos und deshalb „der Stumme von Kampen“ genannt.",
+    "text": "Hendrick Avercamp wurde in Amsterdam geboren und wuchs in Kampen auf, einer kleinen Hansestadt an der IJssel. Er war von Geburt an gehörlos und konnte nicht sprechen. Seine Zeitgenossen nannten ihn deshalb „de Stomme van Kampen“, den Stummen von Kampen.\n\nSeine Lehrzeit verbrachte er in Amsterdam, wo viele Künstler arbeiteten, die aus dem spanisch beherrschten Flandern geflohen waren. Über sie lernte er die Tradition Pieter Bruegels kennen: weite Landschaften, belebt von unzähligen kleinen Menschen.\n\nAvercamp machte daraus ein eigenes Fach, die Winterlandschaft. Seine Bilder entstanden mitten in der sogenannten Kleinen Eiszeit, einer Kälteperiode, in der die Kanäle und Flüsse der Niederlande jeden Winter zufroren. Auf seinen Eisflächen trifft sich die ganze Gesellschaft: Bürger in feinen Kleidern, Bauern, Kinder, Liebespaare, Fischer an ihren Eislöchern, und immer wieder jemand, der gerade hinfällt.\n\nViele seiner Szenen beruhen auf genauen Zeichnungen, die er im Freien anfertigte und später im Atelier zu Gemälden zusammensetzte. Der Humor und die Lust am Detail verbinden ihn mit Bruegel, die helle, zarte Farbigkeit ist ganz seine eigene."
+  },
+  {
+    "id": "rembrandt",
+    "name": "Rembrandt van Rijn",
+    "lebensdaten": "1606-1669",
+    "kurz": "Der große Maler des Goldenen Zeitalters der Niederlande, Meister von Licht und Schatten.",
+    "bild": "File:Rembrandt van Rijn - Self-Portrait - Google Art Project.jpg",
+    "bild_text": "Selbstbildnis, 1659, National Gallery of Art, Washington",
+    "text": "Rembrandt Harmenszoon van Rijn war der Sohn eines Müllers aus Leiden. Um 1631 zog er nach Amsterdam, die reichste Stadt Europas, und wurde dort rasch der gefragteste Porträtmaler. 1634 heiratete er Saskia van Uylenburgh, die Cousine seines Kunsthändlers.\n\n1642 vollendete er die Nachtwache, das Gruppenbild einer Schützenkompanie. Im selben Jahr starb Saskia. Von ihren vier Kindern überlebte nur der Sohn Titus. In den folgenden Jahren gingen die Aufträge zurück, Rembrandt lebte über seine Verhältnisse und sammelte leidenschaftlich Kunst. 1656 musste er Konkurs anmelden, sein Haus und seine Sammlung wurden versteigert.\n\nKein Maler vor ihm hat sich so oft selbst dargestellt: Es gibt rund 80 Selbstbildnisse als Gemälde, Radierungen und Zeichnungen, vom jungen Mann mit Locken bis zum alten, müden Gesicht. Sie zeigen auch, wie sich seine Malweise veränderte. Aus feinem, glattem Farbauftrag wurden breite, dicke Pinselzüge, die erst aus der Entfernung Form annehmen.\n\nSein Markenzeichen ist das Licht. Er lässt Figuren aus tiefem Dunkel hervortreten, als fiele ein Lichtstrahl auf sie. Die Maler dieses Stils nennt man nach dem italienischen Wort für Hell-Dunkel auch Meister des Chiaroscuro."
+  },
+  {
+    "id": "bellotto",
+    "name": "Bernardo Bellotto",
+    "lebensdaten": "1722-1780",
+    "kurz": "Venezianischer Vedutenmaler, Neffe Canalettos, malte im Auftrag von Maria Theresia dreizehn Ansichten Wiens.",
+    "text": "Bernardo Bellotto wurde in Venedig geboren und lernte bei seinem Onkel Antonio Canal, genannt Canaletto, dem berühmtesten Maler von Stadtansichten seiner Zeit. Solche genauen Stadtbilder heißen Veduten, vom italienischen Wort für Ansicht. Bellotto übernahm vom Onkel nicht nur die Kunst, sondern im Ausland auch den Namen: An den Höfen nördlich der Alpen nannte man ihn ebenfalls Canaletto.\n\n1747 holte ihn der sächsische Kurfürst nach Dresden, wo er die berühmten Ansichten der Stadt an der Elbe malte. 1759 bis 1761 arbeitete er in Wien für Kaiserin Maria Theresia. Für sie entstanden dreizehn große Stadtansichten, darunter der Blick vom Oberen Belvedere über die Stadt. Die meisten hängen heute im Kunsthistorischen Museum. Später arbeitete er in München und zuletzt als Hofmaler in Warschau, wo er starb.\n\nBellotto arbeitete mit großer Genauigkeit und benutzte vermutlich eine Camera obscura, einen dunklen Kasten, der das Bild einer Szene durch eine Linse auf eine Fläche wirft. Im Vergleich zum sonnigen Venedig seines Onkels sind seine Farben kühler, sein Licht klarer, die Schatten schärfer.\n\nWie genau er malte, zeigt eine besondere Geschichte: Nach der Zerstörung Warschaus im Zweiten Weltkrieg dienten seine Ansichten als Vorlage für den Wiederaufbau der Altstadt."
+  }
+]

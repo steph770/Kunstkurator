@@ -3,7 +3,7 @@ name: Bilder bauen
 on:
   push:
     branches: [main]
-    paths: ["data/werke.json", "data/ausschnitte.json", "data/werktexte.json", "tools/**", ".github/workflows/build.yml", "index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest"]
+    paths: ["data/werke.json", "data/ausschnitte.json", "data/werktexte.json", "data/kuenstler.json", "tools/**", ".github/workflows/build.yml", "index.html", "app.js", "style.css", "sw.js", "manifest.webmanifest"]
   workflow_dispatch:
     inputs:
       modus:

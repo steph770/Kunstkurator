@@ -161,3 +161,41 @@ button.knopf { font: inherit; }
 .marke-test { border: 2px dashed #e0b84a !important; }
 .moduswahl { display: flex; gap: .5em; margin: .4em 0 .2em; flex-wrap: wrap; }
 .makro-marke { display: inline-block; font-size: .75em; padding: 0 .4em; border: 1px solid #b8902f; color: #b8902f; border-radius: 4px; margin-right: .2em; }
+
+/* Untere Leiste */
+main { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
+.unten {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: rgba(29, 26, 22, .97); backdrop-filter: blur(8px);
+  border-top: 1px solid #3a332a; padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.unten a {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  text-decoration: none; color: var(--leise); font-size: .72rem; padding: 4px 0;
+}
+.unten svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.unten a.aktiv { color: var(--gold); }
+.zurueck { color: var(--leise); text-decoration: none; }
+
+/* Großes Bild mit Text (Im Rahmen, Als Nächstes) */
+.buehnenbild { display: grid; gap: 18px; }
+.buehnenbild img { width: 100%; max-width: 460px; margin: 0 auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,.45); }
+.buehnenbild h1 { margin-top: .2em; }
+@media (min-width: 860px) {
+  .buehnenbild { grid-template-columns: minmax(320px, 440px) 1fr; align-items: start; }
+  .buehnenbild > a { position: sticky; top: 76px; }
+}
+.knopfreihe { display: flex; flex-wrap: wrap; gap: 8px; margin: .6em 0 1.2em; }
+
+/* Künstler */
+.kuenstlerliste { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.kuenstlerkarte { display: flex; gap: 12px; text-decoration: none; background: var(--flaeche); border-radius: 6px; padding: 12px; }
+.kuenstlerkarte strong { font-family: var(--serif); font-weight: 500; font-size: 1.1rem; display: block; }
+.kuenstlerkarte p { margin: .4em 0 0; color: var(--text); }
+.kuenstler-mini { width: 64px; height: 80px; object-fit: cover; border-radius: 4px; flex: none; }
+.kuenstler-bild { margin: 0 0 1.2em; max-width: 320px; }
+.kuenstler-bild img { width: 100%; border-radius: 4px; }
+.kuenstler-bild figcaption { margin-top: 6px; }
+@media (min-width: 860px) { .kuenstler-bild { float: right; margin: 0 0 1em 1.5em; } }
+.werkkarte span { display: block; margin-top: 3px; }

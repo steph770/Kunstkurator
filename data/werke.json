@@ -1,77 +1,5 @@
 [
   {
-    "id": "garten",
-    "kuerzel": "GL",
-    "titel": "Der Garten der Lüste",
-    "kuenstler": "Hieronymus Bosch",
-    "datierung": "um 1490-1500",
-    "technik": "Öl auf Eichenholz, Triptychon",
-    "masse": "205,5 × 384,9 cm (geöffnet)",
-    "museum": "Museo del Prado",
-    "ort": "Madrid",
-    "commons": "File:The Garden of earthly delights.jpg"
-  },
-  {
-    "id": "weltgericht",
-    "kuerzel": "WG",
-    "titel": "Das Weltgericht",
-    "kuenstler": "Hieronymus Bosch",
-    "datierung": "um 1490-1505",
-    "technik": "Öl auf Eichenholz, Triptychon",
-    "masse": "Mitteltafel 163 × 128 cm, Flügel je 167 × 60 cm",
-    "museum": "Gemäldegalerie der Akademie der bildenden Künste",
-    "ort": "Wien",
-    "commons": "File:Hieronymus Bosch - The Last Judgment (Academy of Fine Arts Vienna).jpg"
-  },
-  {
-    "id": "sprichwoerter",
-    "kuerzel": "NS",
-    "titel": "Die niederländischen Sprichwörter",
-    "kuenstler": "Pieter Bruegel der Ältere",
-    "datierung": "1559",
-    "technik": "Öl auf Eichenholz",
-    "masse": "117 × 163 cm",
-    "museum": "Gemäldegalerie, Staatliche Museen zu Berlin",
-    "ort": "Berlin",
-    "commons": "File:Pieter Brueghel the Elder - The Dutch Proverbs - Google Art Project.jpg"
-  },
-  {
-    "id": "kinderspiele",
-    "kuerzel": "KS",
-    "titel": "Die Kinderspiele",
-    "kuenstler": "Pieter Bruegel der Ältere",
-    "datierung": "1560",
-    "technik": "Öl auf Eichenholz",
-    "masse": "118 × 161 cm",
-    "museum": "Kunsthistorisches Museum",
-    "ort": "Wien",
-    "commons": "File:Children's Games (Bruegel).jpg"
-  },
-  {
-    "id": "turmbau",
-    "kuerzel": "TB",
-    "titel": "Der Turmbau zu Babel",
-    "kuenstler": "Pieter Bruegel der Ältere",
-    "datierung": "1563",
-    "technik": "Öl auf Eichenholz",
-    "masse": "114 × 155 cm",
-    "museum": "Kunsthistorisches Museum",
-    "ort": "Wien",
-    "commons": "File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg"
-  },
-  {
-    "id": "engelsturz",
-    "kuerzel": "ES",
-    "titel": "Der Sturz der rebellierenden Engel",
-    "kuenstler": "Pieter Bruegel d. Ä.",
-    "datierung": "1562",
-    "technik": "Öl auf Eichenholz",
-    "masse": "117 × 162 cm",
-    "museum": "Königliche Museen der Schönen Künste",
-    "ort": "Brüssel",
-    "commons": "File:Pieter Bruegel the Elder - The Fall of the Rebel Angels - Google Art Project.jpg"
-  },
-  {
     "id": "genter",
     "kuerzel": "GA",
     "titel": "Der Genter Altar",
@@ -81,7 +9,9 @@
     "masse": "geöffnet rund 3,5 × 4,6 m",
     "museum": "Sint-Baafskathedraal",
     "ort": "Gent",
-    "commons": "File:Jan and Hubert van Eyck - Ghent Altarpiece.jpg"
+    "commons": "File:Jan and Hubert van Eyck - Ghent Altarpiece.jpg",
+    "kid": "vaneyck",
+    "jahr": 1432
   },
   {
     "id": "arnolfini",
@@ -93,7 +23,37 @@
     "masse": "82,2 × 60 cm",
     "museum": "National Gallery",
     "ort": "London",
-    "commons": "File:Jan van Eyck - Arnolfini Portrait - Macrophotography.jpg"
+    "commons": "File:Jan van Eyck - Arnolfini Portrait - Macrophotography.jpg",
+    "kid": "vaneyck",
+    "jahr": 1434
+  },
+  {
+    "id": "garten",
+    "kuerzel": "GL",
+    "titel": "Der Garten der Lüste",
+    "kuenstler": "Hieronymus Bosch",
+    "datierung": "um 1490-1500",
+    "technik": "Öl auf Eichenholz, Triptychon",
+    "masse": "205,5 × 384,9 cm (geöffnet)",
+    "museum": "Museo del Prado",
+    "ort": "Madrid",
+    "commons": "File:The Garden of earthly delights.jpg",
+    "kid": "bosch",
+    "jahr": 1490
+  },
+  {
+    "id": "weltgericht",
+    "kuerzel": "WG",
+    "titel": "Das Weltgericht",
+    "kuenstler": "Hieronymus Bosch",
+    "datierung": "um 1490-1505",
+    "technik": "Öl auf Eichenholz, Triptychon",
+    "masse": "Mitteltafel 163 × 128 cm, Flügel je 167 × 60 cm",
+    "museum": "Gemäldegalerie der Akademie der bildenden Künste",
+    "ort": "Wien",
+    "commons": "File:Hieronymus Bosch - The Last Judgment (Academy of Fine Arts Vienna).jpg",
+    "kid": "bosch",
+    "jahr": 1490
   },
   {
     "id": "antonius",
@@ -105,7 +65,51 @@
     "masse": "Mitteltafel 131,5 × 119 cm",
     "museum": "Museu Nacional de Arte Antiga",
     "ort": "Lissabon",
-    "commons": "File:Temptation of Saint Anthony.jpg"
+    "commons": "File:Temptation of Saint Anthony.jpg",
+    "kid": "bosch",
+    "jahr": 1500
+  },
+  {
+    "id": "sprichwoerter",
+    "kuerzel": "NS",
+    "titel": "Die niederländischen Sprichwörter",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1559",
+    "technik": "Öl auf Eichenholz",
+    "masse": "117 × 163 cm",
+    "museum": "Gemäldegalerie, Staatliche Museen zu Berlin",
+    "ort": "Berlin",
+    "commons": "File:Pieter Brueghel the Elder - The Dutch Proverbs - Google Art Project.jpg",
+    "kid": "bruegel",
+    "jahr": 1559
+  },
+  {
+    "id": "kinderspiele",
+    "kuerzel": "KS",
+    "titel": "Die Kinderspiele",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1560",
+    "technik": "Öl auf Eichenholz",
+    "masse": "118 × 161 cm",
+    "museum": "Kunsthistorisches Museum",
+    "ort": "Wien",
+    "commons": "File:Children's Games (Bruegel).jpg",
+    "kid": "bruegel",
+    "jahr": 1560
+  },
+  {
+    "id": "engelsturz",
+    "kuerzel": "ES",
+    "titel": "Der Sturz der rebellierenden Engel",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1562",
+    "technik": "Öl auf Eichenholz",
+    "masse": "117 × 162 cm",
+    "museum": "Königliche Museen der Schönen Künste",
+    "ort": "Brüssel",
+    "commons": "File:Pieter Bruegel the Elder - The Fall of the Rebel Angels - Google Art Project.jpg",
+    "kid": "bruegel",
+    "jahr": 1562
   },
   {
     "id": "triumph",
@@ -117,7 +121,23 @@
     "masse": "117 × 162 cm",
     "museum": "Museo del Prado",
     "ort": "Madrid",
-    "commons": "File:Thetriumphofdeath.jpg"
+    "commons": "File:Thetriumphofdeath.jpg",
+    "kid": "bruegel",
+    "jahr": 1562
+  },
+  {
+    "id": "turmbau",
+    "kuerzel": "TB",
+    "titel": "Der Turmbau zu Babel",
+    "kuenstler": "Pieter Bruegel der Ältere",
+    "datierung": "1563",
+    "technik": "Öl auf Eichenholz",
+    "masse": "114 × 155 cm",
+    "museum": "Kunsthistorisches Museum",
+    "ort": "Wien",
+    "commons": "File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art Project - edited.jpg",
+    "kid": "bruegel",
+    "jahr": 1563
   },
   {
     "id": "avercamp",
@@ -129,19 +149,9 @@
     "masse": "77,3 × 131,9 cm",
     "museum": "Rijksmuseum",
     "ort": "Amsterdam",
-    "commons": "File:Avercamp, Hendrick - Winterlandschap met schaatsers - SK-A-1718.jpg"
-  },
-  {
-    "id": "bellotto",
-    "kuerzel": "BW",
-    "titel": "Wien, vom Belvedere aus gesehen",
-    "kuenstler": "Bernardo Bellotto, gen. Canaletto",
-    "datierung": "1758/61",
-    "technik": "Öl auf Leinwand",
-    "masse": "135 × 213 cm",
-    "museum": "Kunsthistorisches Museum",
-    "ort": "Wien",
-    "commons": "File:Bernardo Bellotto, il Canaletto - View of Vienna from the Belvedere.jpg"
+    "commons": "File:Avercamp, Hendrick - Winterlandschap met schaatsers - SK-A-1718.jpg",
+    "kid": "avercamp",
+    "jahr": 1608
   },
   {
     "id": "nachtwache",
@@ -153,6 +163,22 @@
     "masse": "379,5 × 453,5 cm",
     "museum": "Rijksmuseum",
     "ort": "Amsterdam",
-    "commons": "File:Rembrandt Harmensz. van Rijn - Nachtwacht - Google Art Project.jpg"
+    "commons": "File:Rembrandt Harmensz. van Rijn - Nachtwacht - Google Art Project.jpg",
+    "kid": "rembrandt",
+    "jahr": 1642
+  },
+  {
+    "id": "bellotto",
+    "kuerzel": "BW",
+    "titel": "Wien, vom Belvedere aus gesehen",
+    "kuenstler": "Bernardo Bellotto, gen. Canaletto",
+    "datierung": "1758/61",
+    "technik": "Öl auf Leinwand",
+    "masse": "135 × 213 cm",
+    "museum": "Kunsthistorisches Museum",
+    "ort": "Wien",
+    "commons": "File:Bernardo Bellotto, il Canaletto - View of Vienna from the Belvedere.jpg",
+    "kid": "bellotto",
+    "jahr": 1758
   }
 ]
